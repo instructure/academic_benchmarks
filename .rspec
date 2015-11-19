@@ -1,0 +1,10 @@
+--color
+
+--require ./lib/academic_benchmarks
+--require ./util/tree_hash_generator
+
+--require spec_helper
+--require object_helper
+--require api_helper
+--require namespace_helper
+--require standards_helper
