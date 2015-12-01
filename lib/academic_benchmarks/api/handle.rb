@@ -6,7 +6,9 @@ module AcademicBenchmarks
     class Handle
       include HTTParty
 
-      attr_accessor :partner_id, :partner_key, :user_id
+      attr_accessor :partner_id, :partner_key
+
+      attr_reader :user_id # user_id writer is defined below
 
       base_uri AcademicBenchmarks::Api::Constants.base_url
 
@@ -35,7 +37,11 @@ module AcademicBenchmarks
       def initialize(partner_id:, partner_key:, user_id: "")
         @partner_id = partner_id
         @partner_key = partner_key
-        @user_id = user_id
+        @user_id = user_id.to_s
+      end
+
+      def user_id=(user_id)
+        @user_id = user_id.to_s
       end
 
       def related(guid:, fields: [])
