@@ -10,6 +10,32 @@ There are many automated tests in the form of specs which can be run as follows:
 
 However, you may wish to verify functionality manually.  If so, here are some steps to verify this library.  You will need credentials (see README.md):
 
+### Install the current version of the gem and start up an interactive ruby console with the gem loaded:
+
+1. First make sure no other versions of the gem are installed:
+
+    ```
+    gem uninstall academic_benchmarks
+    ```
+
+1. From the root directory of the project, build a new version of gem:
+
+    ```
+    gem build academic_benchmarks.gemspec
+    ```
+
+1. Now install the newly built gem, substituting the current version for <gem-ver> below:
+
+    ```
+    gem install academic_benchmarks-<gem-ver>.gem
+    ```
+
+1. Start up an interactive console and require the `academic_benchmarks` gem:
+
+    ```
+    $ irb
+    irb(main):001:0> require 'academic_benchmarks'
+    ```
 
 ### Check authentication works properly and authorities list properly:
 
