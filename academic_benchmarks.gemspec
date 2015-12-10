@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = 'bporter@instructure.com'
   s.files       = ['lib/academic_benchmarks.rb'] + Dir['lib/academic_benchmarks/**/*']
   s.homepage    = 'https://github.com/instructure/academic_benchmarks'
-  s.license     = 'GPL'
+  s.license     = 'AGPL-3.0'
 
   s.add_runtime_dependency 'httparty', '~> 0.13'
   s.add_runtime_dependency "activesupport", ">= 3.2.22", "<= 4.2"
