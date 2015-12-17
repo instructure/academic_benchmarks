@@ -50,4 +50,16 @@ RSpec.describe Standards do
 
     RSpec::Expectations.configuration.warn_about_potential_false_positives = prev_val
   end
+
+  context "responds to methods" do
+    let(:s) { Standards.new(nil) }
+
+    it "provides access to documents" do
+      expect(s).to respond_to(:documents)
+    end
+
+    it "provides access to authorities" do
+      expect(s).to respond_to(:authorities)
+    end
+  end
 end
