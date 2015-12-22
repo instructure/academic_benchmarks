@@ -53,6 +53,10 @@ module AcademicBenchmarks
         raw_search(list: "authority").map{|a| a["data"]["authority"]}.map{|a| AcademicBenchmarks::Standards::Authority.from_hash(a)}
       end
 
+      def documents
+        raw_search(list: "document").map{|a| a["data"]["document"]}.map{|a| AcademicBenchmarks::Standards::Document.from_hash(a)}
+      end
+
       private
 
       def raw_search(opts = {})
