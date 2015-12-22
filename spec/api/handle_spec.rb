@@ -14,12 +14,30 @@ RSpec.describe Handle do
     ApiHelper::PARTNER_KEY
   end
 
-  def set_env_vars(partner_key:, partner_id:)
-    ENV[Constants.partner_key_env_var] = partner_key
-    ENV[Constants.partner_id_env_var]  = partner_id
-  end
-
   context "instantiable from environment variables" do
+    def set_env_vars(partner_id:, partner_key:)
+      ENV[Constants.partner_id_env_var]  = partner_id
+      ENV[Constants.partner_key_env_var] = partner_key
+    end
+
+    def save_initial_env_vars
+      @original_partner_id  = ENV[Constants.partner_id_env_var]
+      @original_partner_key = ENV[Constants.partner_key_env_var]
+    end
+
+    def restore_env_vars
+      ENV[Constants.partner_id_env_var]  = @original_partner_id
+      ENV[Constants.partner_key_env_var] = @original_partner_key
+    end
+
+    before :all do
+      save_initial_env_vars
+    end
+
+    after :each do
+      restore_env_vars
+    end
+
     it "works" do
       set_env_vars(
         partner_key: ApiHelper::PARTNER_KEY,

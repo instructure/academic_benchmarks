@@ -4,6 +4,7 @@
 --require ./util/tree_hash_generator
 
 --require spec_helper
+--require config_helper
 --require object_helper
 --require api_helper
 --require namespace_helper
