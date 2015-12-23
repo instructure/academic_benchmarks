@@ -10,5 +10,7 @@ COPY . /app
 
 RUN gem build academic_benchmarks.gemspec
 RUN bundle install
+RUN gem install --local academic_benchmarks
 
-CMD bundle exec rspec spec/
+COPY docker_assets/irbrc.txt /root/.irbrc
+CMD irb -r academic_benchmarks

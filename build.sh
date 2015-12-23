@@ -8,7 +8,7 @@ echo 'Building docker image academic_benchmarks_specs'
 sudo docker build -t academic_benchmarks_specs .
 
 echo 'Running the regular unit tests'
-sudo docker run academic_benchmarks_specs
+sudo docker run academic_benchmarks_specs bundle exec rspec spec
 
 #
 # run the tests that require credentials
@@ -24,4 +24,4 @@ sudo -E docker run \
   -e 'ACADEMIC_BENCHMARKS_RUN_LIVE=1' \
   -e 'ACADEMIC_BENCHMARKS_PARTNER_ID' \
   -e 'ACADEMIC_BENCHMARKS_PARTNER_KEY' \
-  academic_benchmarks_specs
+  academic_benchmarks_specs bundle exec rspec spec

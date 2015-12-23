@@ -1,0 +1,6 @@
+require 'academic_benchmarks'
+
+puts "\nWelcome to the academic_benchmarks gem command line!"
+puts "\nYou can get started using the library by creating a handle:"
+puts "(see https://github.com/instructure/academic_benchmarks#get-a-handle for help)"
+puts "\nExample:\nab_handle = AcademicBenchmarks::Api::Handle.new(partner_id:, partner_key:)\n\n"
