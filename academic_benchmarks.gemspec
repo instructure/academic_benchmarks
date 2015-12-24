@@ -15,7 +15,9 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'httparty', '~> 0.13'
   s.add_runtime_dependency "activesupport", ">= 3.2.22", "<= 4.2"
 
-  s.add_development_dependency "byebug", '~> 4.0'
+  s.add_development_dependency "vcr", "~> 3.0"
   s.add_development_dependency "rspec", "~> 3.1"
+  s.add_development_dependency "byebug", '~> 4.0'
+  s.add_development_dependency "webmock", "~> 1.22"
   s.add_development_dependency "awesome_print", "~> 1.6"
 end

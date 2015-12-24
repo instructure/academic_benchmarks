@@ -5,7 +5,11 @@
 
 --require spec_helper
 --require config_helper
+--require vcr_helper
 --require object_helper
 --require api_helper
 --require namespace_helper
 --require standards_helper
+
+--require webmock/rspec
+--require vcr
