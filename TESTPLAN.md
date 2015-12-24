@@ -48,7 +48,7 @@ However, you may wish to verify functionality manually.  If so, here are some st
 1. Now list authorities and make sure you get a list of authorities back.  What comes back will depend on your subscription.  For a sandbox it might look like this:
 
     ```
-    ab_handle.standards.authorities
+    ab_handle.standards.authorities.to_h
     {:code=>"IN", :guid=>"A8334A58-901A-11DF-A622-0C319DFF4B22", :description=>"Indiana"}
     {:code=>"CC", :guid=>"A83297F2-901A-11DF-A622-0C319DFF4B22", :description=>"NGA Center/CCSSO"}
     {:code=>"OH", :guid=>"A834F40C-901A-11DF-A622-0C319DFF4B22", :description=>"Ohio"}
@@ -95,3 +95,28 @@ However, you may wish to verify functionality manually.  If so, here are some st
     ```
 
     Observe that the appropriate standard is returned
+
+### Retrieve a tree of standards belonging to an Authority
+
+1. Request the tree.  You can pass either an authority code, guid, or description to the `authority_tree` method and it will find the corresponding authority object.  Note that this may take some time depending on how many standards are in the tree.
+
+    ```
+    auth_tree = ab_handle.standards.authority_tree(authority)
+    ```
+
+    Observe that auth_tree is a data structure that has an Authority at the the top, with children that have children that have children, etc.  Here is a suggestion on how to do it.  All of these statements should evaluate to true:
+
+    ```
+    auth_tree.class == AcademicBenchmarks::Standards::StandardsTree
+    auth_tree.root.class == AcademicBenchmarks::Standards::Authority
+    auth_tree.root.code == <the authority code that you passed in (or guid or description)>
+    auth_tree.children.count > 0
+    auth_tree.children.first.class == AcademicBenchmarks::Standards::Standard
+    auth_tree.children.first.children.count > 0
+    ```
+
+    Additionally:
+
+    1. `auth_tree.root` looks like the correct Authority object
+    1. `auth_tree.children.first` looks like a sane level 2 standard (it has a high-up sounding title/description)
+    1. A leaf node looks like a sane bottom-level standard

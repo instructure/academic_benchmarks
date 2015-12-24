@@ -23,17 +23,17 @@ RSpec.describe Auth do
     context "signature" do
       it "returns a signature with no user ID" do
         expect(Auth.signature_for(
-          partner_key: ApiHelper::PARTNER_KEY,
+          partner_key: ApiHelper::Fixtures::PARTNER_KEY,
           message: message(expires: Time.now.to_i)
         )).not_to be_empty
       end
 
       it "returns a signature with user ID" do
         expect(Auth.signature_for(
-          partner_key: ApiHelper::PARTNER_KEY,
+          partner_key: ApiHelper::Fixtures::PARTNER_KEY,
           message: message(
             expires: Time.now.to_i,
-            user_id: ApiHelper::USER_ID
+            user_id: ApiHelper::Fixtures::USER_ID
           )
         )).not_to be_empty
       end
@@ -41,10 +41,10 @@ RSpec.describe Auth do
 
     it "returns some auth_query_params" do
       expect(Auth.auth_query_params(
-        partner_id: ApiHelper::PARTNER_ID,
-        partner_key: ApiHelper::PARTNER_KEY,
+        partner_id: ApiHelper::Fixtures::PARTNER_ID,
+        partner_key: ApiHelper::Fixtures::PARTNER_KEY,
         expires: Time.now.to_i,
-        user_id: ApiHelper::USER_ID
+        user_id: ApiHelper::Fixtures::USER_ID
       )).not_to be_empty
     end
   end
@@ -53,8 +53,8 @@ RSpec.describe Auth do
     it "returns the correct signature with user id" do
       SIGNATURE_WITH_UID.each do |expires, expected|
         expect(Auth.signature_for(
-          partner_key: ApiHelper::PARTNER_KEY,
-          message: message(expires: expires, user_id: ApiHelper::USER_ID)
+          partner_key: ApiHelper::Fixtures::PARTNER_KEY,
+          message: message(expires: expires, user_id: ApiHelper::Fixtures::USER_ID)
         )).to eq(expected)
       end
     end
@@ -62,7 +62,7 @@ RSpec.describe Auth do
     it "returns the correct signature without user id" do
       SIGNATURE_WITHOUT_UID.each do |expires, expected|
         expect(Auth.signature_for(
-          partner_key: ApiHelper::PARTNER_KEY,
+          partner_key: ApiHelper::Fixtures::PARTNER_KEY,
           message: message(expires: expires, user_id: '')
         )).to eq(expected)
       end
@@ -73,15 +73,15 @@ RSpec.describe Auth do
     it "generates the correct auth_query_params with user id" do
       SIGNATURE_WITH_UID.each do |expires, signature|
         expect(Auth.auth_query_params(
-          partner_id: ApiHelper::PARTNER_ID,
-          partner_key: ApiHelper::PARTNER_KEY,
+          partner_id: ApiHelper::Fixtures::PARTNER_ID,
+          partner_key: ApiHelper::Fixtures::PARTNER_KEY,
           expires: expires,
-          user_id: ApiHelper::USER_ID
+          user_id: ApiHelper::Fixtures::USER_ID
         )).to eq({
-          "partner.id" => ApiHelper::PARTNER_ID,
+          "partner.id" => ApiHelper::Fixtures::PARTNER_ID,
           "auth.signature" => signature,
           "auth.expires" => expires,
-          "user.id" => ApiHelper::USER_ID
+          "user.id" => ApiHelper::Fixtures::USER_ID
         })
       end
     end
@@ -89,11 +89,11 @@ RSpec.describe Auth do
     it "generates the correct auth_query_params without user id" do
       SIGNATURE_WITHOUT_UID.each do |expires, signature|
         expect(Auth.auth_query_params(
-          partner_id: ApiHelper::PARTNER_ID,
-          partner_key: ApiHelper::PARTNER_KEY,
+          partner_id: ApiHelper::Fixtures::PARTNER_ID,
+          partner_key: ApiHelper::Fixtures::PARTNER_KEY,
           expires: expires
         )).to eq({
-          "partner.id" => ApiHelper::PARTNER_ID,
+          "partner.id" => ApiHelper::Fixtures::PARTNER_ID,
           "auth.signature" => signature,
           "auth.expires" => expires,
           "user.id" => ""

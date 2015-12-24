@@ -1,4 +1,6 @@
 RSpec.describe Standards do
+  let(:handle) { ApiHelper::Live.new_handle }
+
   it "rejects search parameters that are not valid" do
     valid_params = AcademicBenchmarks::Api::Constants.standards_search_params
     invalid_params = %w[ice hurricane wind snow avalanche tornado tsunami]
@@ -14,11 +16,15 @@ RSpec.describe Standards do
     }.to raise_error(ArgumentError, /invalid.search.params/i)
   end
 
-  context "authorities" do
+  # can also name the cassette: context "something", vcr: { cassette_name: "authorities" } do
+  context "authorities", :vcr do
     it "lists authorities properly" do
-      {"data"=>{"authority"=>{"guid"=>"A8334A58-901A-11DF-A622-0C319DFF4B22", "descr"=>"Indiana", "code"=>"IN"}}}
-      {"data"=>{"authority"=>{"guid"=>"A83297F2-901A-11DF-A622-0C319DFF4B22", "descr"=>"NGA Center/CCSSO", "code"=>"CC"}}}
-      {"data"=>{"authority"=>{"guid"=>"A834F40C-901A-11DF-A622-0C319DFF4B22", "descr"=>"Ohio", "code"=>"OH"}}}
+      auths = handle.standards.authorities
+      expect(auths).to be_a(Array)
+      expect(auths.count).to be > 0
+      expect(auths.any? do |a|
+        a.code == ApiHelper::Live.known_present_authority
+      end).to be_truthy
     end
   end
 
@@ -60,6 +66,149 @@ RSpec.describe Standards do
 
     it "provides access to authorities" do
       expect(s).to respond_to(:authorities)
+    end
+
+    context "provides trees" do
+      it "provides a tree for an authority" do
+        expect(s).to respond_to(:authority_tree)
+      end
+
+      it "provides a tree for a document" do
+        pending "Needs implementation.  Should be pretty easy " \
+                "to use authority_tree as a blueprint."
+        expect(s).to respond_to(:document_tree)
+      end
+    end
+  end
+
+  context "trees", :vcr do
+    context "builds authority trees", vcr: { cassette_name: "api-standards-builds-authority-tree" } do
+      it "builds an authority tree" do
+        auth = handle.standards.authorities.first
+        expect(auth).to be_a(Authority)
+        expect(auth.children.count).to be_zero
+        auth_tree = handle.standards.authority_tree(auth)
+        expect(auth_tree).to be_a(StandardsTree)
+        expect(auth_tree.root).to be_a(Authority)
+        expect(auth_tree.children.count).to be > 0
+      end
+
+      it "builds an authority tree second" do
+        auth = handle.standards.authorities.first
+        expect(auth).to be_a(Authority)
+        expect(auth.children.count).to be_zero
+        auth_tree = handle.standards.authority_tree(auth)
+        expect(auth_tree).to be_a(StandardsTree)
+        expect(auth_tree.root).to be_a(Authority)
+        expect(auth_tree.children.count).to be > 0
+      end
+    end
+
+    it "builds a document tree" do
+      pending "implement similarly to authority tree"
+      fail
+    end
+
+    context "searching and matching authorities" do
+      let(:standards_stub) do
+        ->(method:, retval:) do
+          s = ApiHelper::Live.new_handle.standards
+          allow(s).to receive(method) { retval }
+          s
+        end
+      end
+
+      authority_range = (0..9)
+
+      authority_range.each do |num|
+        let(:"authority_#{num}") do
+          # Authority will follow this pattern (example given for num == 1)
+          #   code: "BB"
+          #   guid: "1111111111"
+          #   description: "authority '1'"
+          Authority.new(
+            code: "#{('A'.ord + num).chr * 2}",
+            guid: "#{num.to_s * 10}",
+            description: "authority '#{num}'"
+          )
+        end
+      end
+
+      let(:authority_array) do
+        authority_range.inject([]) do |acc, num|
+          acc.push(send(:"authority_#{num}"))
+          acc
+        end
+      end
+
+      context "errors searching for authorities" do
+        it "errors if multiple authorities match the query" do
+          authority_2.code = authority_1.code
+          ss = standards_stub.call(
+            method: :match_authority,
+            retval: [ authority_1, authority_2 ]
+          )
+          expect{
+            ss.send(:find_authority, authority_1.code)
+          }.to raise_error(StandardError, /more than one/i)
+        end
+
+        it "errors if no authorities match the query" do
+          ss = standards_stub.call(
+            method: :match_authority,
+            retval: []
+          )
+          expect{
+            ss.send(:find_authority, "ISHOULDNOTEXIST")
+          }.to raise_error(StandardError, /no authority.*matched/i)
+        end
+      end
+
+      context "matching authorities" do
+        let(:ss_with_auth_array) do
+          standards_stub.call(
+            method: :authorities,
+            retval: authority_array
+          )
+        end
+
+        it "matches authorities by code" do
+          bb = ss_with_auth_array.send(:match_authority, 'BB')
+          expect(bb).to be_a(Array)
+          expect(bb.count).to eq(1)
+          expect(bb.first.code).to eq('BB')
+        end
+
+        it "matches authorities by guid" do
+          bb = ss_with_auth_array.send(:match_authority, "#{'4' * 10}")
+          expect(bb).to be_a(Array)
+          expect(bb.count).to eq(1)
+          expect(bb.first.code).to eq('EE')
+        end
+
+        it "matches authorities by description" do
+          bb = ss_with_auth_array.send(:match_authority, "authority '6'")
+          expect(bb).to be_a(Array)
+          expect(bb.count).to eq(1)
+          expect(bb.first.code).to eq('GG')
+        end
+      end
+    end
+
+    it "matches real authority by guid" do
+      auths = handle.standards.authorities
+      indiana = auths.find{ |a| a.code == "IN" }
+      expect(indiana).not_to be_nil
+      expect(indiana).to be_an(Authority)
+      expect(indiana.guid).not_to be_nil
+      expect(indiana.guid).to be_a(String)
+      expect(indiana.guid).not_to be_empty
+      matches = handle.standards.send(:match_authority, indiana.guid)
+      expect(matches).to be_an(Array)
+      expect(matches.count).to eq(1)
+      expect(matches.first.code).to eq(indiana.code)
+      expect(matches.first.guid).to eq(indiana.guid)
+      expect(matches.first.description).to eq(indiana.description)
     end
   end
 end

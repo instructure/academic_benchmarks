@@ -30,6 +30,15 @@ module AcademicBenchmarks
         end
       end
 
+      def consolidate_under_root(root)
+        trees.each do |tree|
+          tree.root.parent = root
+          tree.root.parent_guid = root.guid
+          root.children.push(tree.root)
+        end
+        StandardsTree.new(root)
+      end
+
       def add_standard(standard)
         if standard.is_a?(Standard)
           raise StandardError.new(
@@ -51,6 +60,18 @@ module AcademicBenchmarks
 
       def empty?
         @trees.empty?
+      end
+
+      def to_s
+        trees.map{|tree| tree.to_s}
+      end
+
+      def to_h
+        trees.map{|tree| tree.to_h}
+      end
+
+      def to_json
+        trees.map{|tree| tree.to_json}
       end
 
       private

@@ -13,4 +13,10 @@ RSpec.describe Authority do
     h = Authority.from_hash(auth_hash)
     compare_obj_to_hash(h, auth_hash)
   end
+
+  it "can have children" do
+    standards = (1..5).map{ |i| Standard.new({ guid: i.to_s }) }
+    h = Authority.from_hash(auth_hash)
+    expect{h.children = standards}.to change{h.children}.from([]).to(standards)
+  end
 end

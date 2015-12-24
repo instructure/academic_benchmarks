@@ -1,14 +1,17 @@
+require 'active_support/core_ext/module'
+
 module AcademicBenchmarks
   module Standards
     class StandardsTree
-      attr_reader :root_standard
+      attr_reader :root
+      delegate :children, :to_s, :to_h, :to_json, to: :root
 
       # The item hash can optionally be built to permit the speedy
       # addition of standards to the tree. since the tree is unordered,
       # adding to it can be expensive without this
 
-      def initialize(root_standard, build_item_hash: true)
-        @root_standard = root_standard
+      def initialize(root, build_item_hash: true)
+        @root = root
         if build_item_hash
           @item_hash = {}
           go_ahead_and_build_item_hash
@@ -39,8 +42,8 @@ module AcademicBenchmarks
       private
 
       def go_ahead_and_build_item_hash
-        @item_hash[@root_standard.guid] = @root_standard
-        add_children_to_item_hash(@root_standard)
+        @item_hash[@root.guid] = @root
+        add_children_to_item_hash(@root)
       end
 
       def add_children_to_item_hash(parent)
@@ -51,8 +54,8 @@ module AcademicBenchmarks
       end
 
       def find_parent(standard)
-        return @root_standard if @root_standard.guid == standard.parent_guid
-        check_children_for_parent(standard.parent_guid, @root_standard)
+        return @root if @root.guid == standard.parent_guid
+        check_children_for_parent(standard.parent_guid, @root)
       end
 
       # does a depth-first search
