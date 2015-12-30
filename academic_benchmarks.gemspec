@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'academic_benchmarks'
-  s.version     = '0.0.2'
-  s.date        = '2015-12-07'
+  s.version     = '0.0.3'
+  s.date        = '2015-12-18'
   s.summary     = "A ruby api for accessing the Academic Benchmarks API"
   s.description = "A ruby api for accessing the Academic Benchmarks API.  " \
                   "A valid subscription with accompanying credentials " \
