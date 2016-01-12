@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "activesupport", ">= 3.2.22", "<= 4.2"
 
   s.add_development_dependency "vcr", "~> 3.0"
-  s.add_development_dependency "rspec", "~> 3.1"
+  s.add_development_dependency "rspec", "~> 3.4"
   s.add_development_dependency "byebug", '~> 4.0'
   s.add_development_dependency "webmock", "~> 1.22"
   s.add_development_dependency "rubocop", "~> 0.35"

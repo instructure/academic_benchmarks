@@ -1,17 +1,17 @@
 RSpec.describe Handle do
   def new_handle
     Handle.new(
-      partner_id:  ApiHelper::PARTNER_ID,
-      partner_key: ApiHelper::PARTNER_KEY
+      partner_id:  ApiHelper::Fixtures::PARTNER_ID,
+      partner_key: ApiHelper::Fixtures::PARTNER_KEY
     )
   end
 
   def partner_id
-    ApiHelper::PARTNER_ID
+    ApiHelper::Fixtures::PARTNER_ID
   end
 
   def partner_key
-    ApiHelper::PARTNER_KEY
+    ApiHelper::Fixtures::PARTNER_KEY
   end
 
   context "instantiable from environment variables" do
@@ -40,8 +40,8 @@ RSpec.describe Handle do
 
     it "works" do
       set_env_vars(
-        partner_key: ApiHelper::PARTNER_KEY,
-        partner_id:  ApiHelper::PARTNER_ID
+        partner_key: ApiHelper::Fixtures::PARTNER_KEY,
+        partner_id:  ApiHelper::Fixtures::PARTNER_ID
       )
       expect{Handle.init_from_env}.not_to raise_error
       expect(Handle.init_from_env.partner_id).to  eq(partner_id)

@@ -50,14 +50,49 @@ module AcademicBenchmarks
       end
 
       def authorities
-        raw_search(list: "authority").map{|a| a["data"]["authority"]}.map{|a| AcademicBenchmarks::Standards::Authority.from_hash(a)}
+        raw_search(list: "authority").map do |a|
+          AcademicBenchmarks::Standards::Authority.from_hash(a["data"]["authority"])
+        end
       end
 
       def documents
-        raw_search(list: "document").map{|a| a["data"]["document"]}.map{|a| AcademicBenchmarks::Standards::Document.from_hash(a)}
+        raw_search(list: "document").map do |a|
+          AcademicBenchmarks::Standards::Document.from_hash(a["data"]["document"])
+        end
+      end
+
+      def authority_tree(authority_or_authority_code_guid_or_desc)
+        authority = if authority_or_authority_code_guid_or_desc.is_a?(Authority)
+                      authority_or_authority_code_guid_or_desc
+                    else
+                      find_authority(authority_or_authority_code_guid_or_desc)
+                    end
+        auth_children = search(authority: authority.code)
+        StandardsForest.new(auth_children).consolidate_under_root(authority)
       end
 
       private
+
+      def find_authority(authority_code_guid_or_desc)
+        auths = match_authority(authority_code_guid_or_desc)
+        if auths.empty?
+          raise StandardError,
+            "No authority code, guid, or description matched '#{authority_code_guid_or_desc}'"
+        elsif auths.count > 1
+          raise StandardError,
+            "Authority code, guid, or description matched more than one authority.  " \
+            "matched '#{auths.map(&:to_json).join('; ')}'"
+        end
+        auths.first
+      end
+
+      def match_authority(authority_code_guid_or_desc)
+        authorities.select do |auth|
+          auth.code  == authority_code_guid_or_desc ||
+          auth.guid  == authority_code_guid_or_desc ||
+          auth.descr == authority_code_guid_or_desc
+        end
+      end
 
       def raw_search(opts = {})
         request_search_pages_and_concat_resources(opts.merge(auth_query_params))

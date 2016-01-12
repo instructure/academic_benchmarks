@@ -2,7 +2,7 @@ RSpec.describe Standard do
   include ObjectHelper
 
   let(:api_response) do
-    JSON.parse(ApiHelper.all_standards_response)
+    JSON.parse(ApiHelper::Fixtures.all_standards_response)
   end
 
   # poro == plain old ruby object
