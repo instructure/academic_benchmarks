@@ -11,7 +11,7 @@ _Brought to you by your friends at [Instructure](https://www.instructure.com/)_ 
 * So you don't have to implement your own authentication
 * To avoid dealing with raw endpoints
 * Beating the pains of de-pagination
-* For trees that actually work
+* For fully constructed and inflated authority and document trees
 * Re-using code is smart
 
 ## Get Started
@@ -30,7 +30,7 @@ Of course you can also just install the gem by itself:
 
 ### Get some credentials
 
-First you need some credentials (a "Partner ID" and a "Partner Key").  Either get some by paying Academic Benchmarks a pile of money, or by [signing up for a sandbox account](http://docs.academicbenchmarks.com/#?d=support&f=request_demo).
+First you need some credentials (a "Partner ID" and a "Partner Key").  Either get some by paying Academic Benchmarks a some money, or by [signing up for a sandbox account](http://docs.academicbenchmarks.com/#?d=support&f=request_demo).
 
 ### Get a Handle
 
