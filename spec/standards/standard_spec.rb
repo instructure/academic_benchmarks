@@ -61,9 +61,9 @@ RSpec.describe Standard do
   end
 
   context "children" do
-    let (:parent) { Standard.new(api_response["resources"][0]) }
-    let (:child1) { Standard.new(api_response["resources"][1]) }
-    let (:child2) { Standard.new(api_response["resources"][2]) }
+    let(:parent) { Standard.new(api_response["resources"][0]) }
+    let(:child1) { Standard.new(api_response["resources"][1]) }
+    let(:child2) { Standard.new(api_response["resources"][2]) }
 
     it "can be added to the standard" do
       expect{
@@ -89,6 +89,36 @@ RSpec.describe Standard do
       expect{
         parent.remove_child(child2)
       }.to change{parent.children}.from([child2]).to([])
+    end
+
+    it "sets the parent of its child to itself" do
+      expect{
+        parent.add_child(child1)
+      }.to change{child1.parent}.from(nil).to(parent)
+    end
+  end
+
+  context "grades" do
+    let(:grade1) { Grade.new(high: "So high", low: "low man") }
+
+    it "cascades grades properly" do
+      s1 = StandardsHelper.standard
+      s1.grade = grade1
+      last_standard = s1
+      10.times do |i|
+        last_standard.add_child(StandardsHelper.standard)
+        last_standard = last_standard.children.first
+        last_standard.number = i
+        last_standard.grade = nil
+      end
+      expect(s1).to have_children
+      expect(s1.grade.low).to  eq(grade1.low)
+      expect(s1.grade.high).to eq(grade1.high)
+      expect(last_standard).not_to have_children
+      expect(last_standard.instance_variable_get("@grade")).to be_nil
+      expect(last_standard.grade).not_to be_nil
+      expect(last_standard.grade.low).to  eq(grade1.low)
+      expect(last_standard.grade.high).to eq(grade1.high)
     end
   end
 end

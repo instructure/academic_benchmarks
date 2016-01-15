@@ -95,6 +95,8 @@ Style/ParallelAssignment:
   Enabled: false
 Style/WhileUntilModifier:
   Enabled: false
+Style/RaiseArgs:
+  EnforcedStyle: compact
 
 # Rails style changes
 Rails/TimeZone:
