@@ -36,10 +36,10 @@ RSpec.describe TreeHashGenerator do
       expect(new_standard_data["guid"]).to match(/[0-9a-f\-]{20,}/i)
       expect(new_standard_data["descr"]).to eq(
         "This description is for standard number " \
-        "#{new_standard_data["number"]}"
+        "#{new_standard_data['number']}"
       )
       expect(new_standard_data["self"]).to eq(
-        "#{base_self_url}/#{new_standard_data["guid"]}"
+        "#{base_self_url}/#{new_standard_data['guid']}"
       )
       expect(new_standard_data["parent"]).to be_nil
     end

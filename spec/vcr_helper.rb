@@ -26,7 +26,7 @@ VCR.configure do |c|
   #
   c.default_cassette_options = {
     record: record,
-    #re_record_interval: 7.days,
+    # re_record_interval: 7.days,
     match_requests_on: [
       :method, VCR.request_matchers.uri_without_params(
         :"auth.expires",

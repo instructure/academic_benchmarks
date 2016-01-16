@@ -88,7 +88,7 @@ module AcademicBenchmarks
       private
 
       def attr_to_val_or_nil(klass, hash, attr)
-        return nil unless hash.has_key?(attr)
+        return nil unless hash.key?(attr)
         klass.from_hash(hash)
       end
     end

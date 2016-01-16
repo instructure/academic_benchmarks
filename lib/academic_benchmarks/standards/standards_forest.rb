@@ -49,7 +49,7 @@ module AcademicBenchmarks
         else
           raise ArgumentError.new(
             "standard must be an 'AcademicBenchmarks::Standards::Standard' " \
-            "or a 'Hash' but was a #{standard.class.to_s}"
+            "or a 'Hash' but was a #{standard.class}"
           )
         end
       end
@@ -63,15 +63,15 @@ module AcademicBenchmarks
       end
 
       def to_s
-        trees.map{|tree| tree.to_s}
+        trees.map(&:to_s)
       end
 
       def to_h
-        trees.map{|tree| tree.to_h}
+        trees.map(&:to_h)
       end
 
       def to_json
-        trees.map{|tree| tree.to_json}
+        trees.map(&:to_json)
       end
 
       private
@@ -107,7 +107,7 @@ module AcademicBenchmarks
       end
 
       def present_in_hash_or_raise(guid)
-        unless @guid_to_standard.has_key?(guid)
+        unless @guid_to_standard.key?(guid)
           raise StandardError.new(
             "item missing from guid_to_standard hash"
           )

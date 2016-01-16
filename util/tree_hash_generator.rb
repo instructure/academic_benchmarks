@@ -27,7 +27,7 @@ module AcademicBenchmarks
 
         retval = self.BASE_STANDARD.dup
         retval["data"]["guid"] = guid
-        retval["data"]["self"] = "#{retval["data"]["self"]}/#{guid}"
+        retval["data"]["self"] = "#{retval['data']['self']}/#{guid}"
         retval["data"]["number"] = number
         retval["data"]["descr"] = descr
         retval["data"]["parent"] = parent if parent

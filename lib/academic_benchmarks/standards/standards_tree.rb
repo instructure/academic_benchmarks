@@ -34,7 +34,7 @@ module AcademicBenchmarks
         else
           raise ArgumentError.new(
             "standard must be an 'AcademicBenchmarks::Standards::Standard' " \
-            "or a 'Hash' but was a #{standard.class.to_s}"
+            "or a 'Hash' but was a #{standard.class}"
           )
         end
       end
