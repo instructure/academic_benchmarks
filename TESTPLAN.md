@@ -14,8 +14,23 @@ However, you may wish to verify functionality manually.
 If so, here are some steps to verify this library.
 You will need credentials (see README.md):
 
-### Install the current version of the gem and start up
-an interactive ruby console with the gem loaded:
+### Install the current version of the gem and start up an interactive ruby console with the gem loaded:
+
+#### Using docker:
+
+1. Build the docker container from the root directory of the project:
+
+    ```
+    docker build -t academic_benchmarks .
+    ```
+
+1. Run it!
+
+    ```
+    docker run -it academic_benchmarks
+    ```
+
+#### Into your native ruby installation:
 
 1. First make sure no other versions of the gem are installed:
 
@@ -44,8 +59,7 @@ current version for <gem-ver> below:
     irb(main):001:0> require 'academic_benchmarks'
     ```
 
-### Check authentication works properly and authorities
-list properly:
+### Check authentication works properly and authorities list properly:
 
 1. Pass-in credentials directly:
 
