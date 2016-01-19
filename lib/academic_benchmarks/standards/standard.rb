@@ -6,10 +6,11 @@ module AcademicBenchmarks
       include InstVarsToHash
 
       attr_reader :status, :deepest, :children
+      attr_writer :grade
       attr_accessor :guid, :description, :number, :stem, :label, :level,
                     :version, :seq, :adopt_year, :authority, :course,
-                    :document, :grade, :has_relations, :subject,
-                    :subject_doc, :parent, :parent_guid
+                    :document, :has_relations, :subject, :subject_doc,
+                    :parent, :parent_guid
 
       alias_method :descr, :description
 
@@ -34,7 +35,7 @@ module AcademicBenchmarks
         @subject_doc = attr_to_val_or_nil(SubjectDoc, data, "subject_doc")
         @has_relations = attr_to_val_or_nil(HasRelations, data, "has_relations")
 
-        # Parent guid extraction can be a little more complicated. Thanks AB!
+        # Parent guid extraction can be a little more complicated
         if data["parent"] && data["parent"].is_a?(String)
           @parent_guid = data["parent"]
         elsif data["parent"] && data["parent"].is_a?(Hash)
@@ -74,15 +75,33 @@ module AcademicBenchmarks
         unless child.is_a?(Standard)
           raise ArgumentError.new("Tried to set child that isn't a Standard")
         end
+        child.parent = self
         @children.push(child)
       end
 
       def remove_child(child)
+        child.parent = nil
         @children.delete(child)
       end
 
       def has_children?
         @children.count > 0
+      end
+
+      def leaf?
+        !has_children?
+      end
+
+      def grade
+        return @grade if @grade
+
+        # check to see if one of our parents has a grade.  Use that if so
+        p = parent
+        while p
+          return p.grade if p.grade
+          p = p.parent
+        end
+        nil
       end
 
       private

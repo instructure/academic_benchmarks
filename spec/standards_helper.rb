@@ -1,9 +1,11 @@
+require 'securerandom'
+
 module StandardsHelper
   def self.standard_hash
-    JSON.parse(ApiHelper.search_authority_indiana_response).first
+    JSON.parse(ApiHelper::Fixtures.search_authority_indiana_response).first
   end
 
   def self.standard
-    self.standard_hash
+    Standard.new(self.standard_hash).tap{|s| s.guid = SecureRandom.uuid}
   end
 end
