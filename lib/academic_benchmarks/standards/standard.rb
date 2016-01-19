@@ -43,6 +43,8 @@ module AcademicBenchmarks
         end
       end
 
+      alias_method :from_hash, :initialize
+
       def active?
         status == "Active"
       end

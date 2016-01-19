@@ -49,29 +49,38 @@ module AcademicBenchmarks
         request_search_pages_and_concat_resources(auth_query_params)
       end
 
-      def authorities
-        raw_search(list: "authority").map do |a|
+      def authorities(query_params = {})
+        raw_search({list: "authority"}.merge(query_params)).map do |a|
           AcademicBenchmarks::Standards::Authority.from_hash(a["data"]["authority"])
         end
       end
 
-      def documents
-        raw_search(list: "document").map do |a|
+      def documents(query_params = {})
+        raw_search({list: "document"}.merge(query_params)).map do |a|
           AcademicBenchmarks::Standards::Document.from_hash(a["data"]["document"])
         end
       end
 
-      def authority_tree(authority_or_authority_code_guid_or_desc)
-        authority = if authority_or_authority_code_guid_or_desc.is_a?(Authority)
-                      authority_or_authority_code_guid_or_desc
-                    else
-                      find_authority(authority_or_authority_code_guid_or_desc)
-                    end
+      def authority_documents(authority_or_auth_code_guid_or_desc)
+        authority = auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
+        documents(authority: authority.code)
+      end
+
+      def authority_tree(authority_or_auth_code_guid_or_desc)
+        authority = auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
         auth_children = search(authority: authority.code)
         StandardsForest.new(auth_children).consolidate_under_root(authority)
       end
 
       private
+
+      def auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
+        if authority_or_auth_code_guid_or_desc.is_a?(AcademicBenchmarks::Standards::Authority)
+          authority_or_auth_code_guid_or_desc
+        else
+          find_authority(authority_or_auth_code_guid_or_desc)
+        end
+      end
 
       def find_authority(authority_code_guid_or_desc)
         auths = match_authority(authority_code_guid_or_desc)

@@ -28,6 +28,33 @@ RSpec.describe Standards do
     end
   end
 
+  context "documents", :vcr do
+    context "by authority", vcr: { cassette_name: "documents_by_authority" } do
+      it "lists documents by authority" do
+        auth = handle.standards.authorities.find{|a| a.code == "CC"}
+        expect(auth).to be_an(Authority)
+
+        auth_docs = handle.standards.authority_documents(auth)
+        expect(auth_docs.count).to eq(1)
+        expect(auth_docs.first.title).to match(/common.core.state.standards/i)
+      end
+
+      it "lists by right authority with either code, guid, or auth object" do
+        auth = handle.standards.authorities.find{|a| a.code == "CC"}
+        expect(auth).to be_an(Authority)
+
+        ad1 = handle.standards.authority_documents(auth)
+        ad2 = handle.standards.authority_documents(auth.code)
+
+        expect(ad1.count).to eq(1)
+        expect(ad2.count).to eq(1)
+
+        expect(ad1.first.title).to eq(ad2.first.title)
+        expect(ad1.first.guid).to eq(ad2.first.guid)
+      end
+    end
+  end
+
   it "requires a positive integer limit" do
     err_klass = ArgumentError
     err_regex = /limit.must.be.*positive.integer/
@@ -84,16 +111,6 @@ RSpec.describe Standards do
   context "trees", :vcr do
     context "builds authority trees", vcr: { cassette_name: "api-standards-builds-authority-tree" } do
       it "builds an authority tree" do
-        auth = handle.standards.authorities.first
-        expect(auth).to be_a(Authority)
-        expect(auth.children.count).to be_zero
-        auth_tree = handle.standards.authority_tree(auth)
-        expect(auth_tree).to be_a(StandardsTree)
-        expect(auth_tree.root).to be_a(Authority)
-        expect(auth_tree.children.count).to be > 0
-      end
-
-      it "builds an authority tree second" do
         auth = handle.standards.authorities.first
         expect(auth).to be_a(Authority)
         expect(auth.children.count).to be_zero
