@@ -105,23 +105,39 @@ RSpec.describe StandardsForest do
         retval
       end
 
-      let(:sforest) do
+      let(:valid_document) do
+        # Use common core since it should always children
+        retval = ab.standards.documents.find{|d| d.title =~ /common.core/i}
+        expect(retval).to be_a(Document)
+        retval
+      end
+
+      let(:sforest_auth) do
         StandardsForest.new(ab.standards.search(authority: valid_authority.code))
       end
 
+      let(:sforest_doc) do
+        StandardsForest.new(ab.standards.search(document: valid_document.guid))
+      end
+
       it "turns an authority search into a forest" do
-        expect(sforest.trees.count).to be > 0
+        expect(sforest_auth.trees.count).to be > 0
       end
 
       it "turns a document search into a tree" do
-        pending "Not yet implemented"
-        fail
+        expect(sforest_doc.trees.count).to be > 0
+        expect(sforest_doc.trees.first.root.children.count).to be > 0
+        expect(sforest_doc.trees.first.root.children.first.children.count).to be > 0
       end
 
       context "consolidation of a forest" do
         it "consolidates a forest under a document" do
-          pending "Not yet implemented"
-          fail
+          doc_tree = sforest_doc.consolidate_under_root(valid_document)
+          expect(doc_tree).to be_a(StandardsTree)
+          expect(doc_tree.root).to be_a(Document)
+          expect(doc_tree.root.guid).to eq(valid_document.guid)
+          expect(doc_tree.root.title).to eq(valid_document.title)
+          expect(doc_tree.children.count).to eq(sforest_doc.trees.count)
         end
       end
     end

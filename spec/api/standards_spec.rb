@@ -101,8 +101,6 @@ RSpec.describe Standards do
       end
 
       it "provides a tree for a document" do
-        pending "Needs implementation.  Should be pretty easy " \
-                "to use authority_tree as a blueprint."
         expect(s).to respond_to(:document_tree)
       end
     end
@@ -121,9 +119,16 @@ RSpec.describe Standards do
       end
     end
 
-    it "builds a document tree" do
-      pending "implement similarly to authority tree"
-      fail
+    context "builds document tree", vcr: { cassette_name: "api-standards-builds-document-tree" } do
+      it "builds a document tree" do
+        docs = handle.standards.documents.first
+        expect(docs).to be_a(Document)
+        expect(docs.children.count).to be_zero
+        doc_tree = handle.standards.document_tree(docs)
+        expect(doc_tree).to be_a(StandardsTree)
+        expect(doc_tree.root).to be_a(Document)
+        expect(doc_tree.children.count).to be > 0
+      end
     end
 
     context "searching and matching authorities" do
@@ -166,7 +171,7 @@ RSpec.describe Standards do
             retval: [ authority_1, authority_2 ]
           )
           expect{
-            ss.send(:find_authority, authority_1.code)
+            ss.send(:find_type, type: "authority", data: authority_1.code)
           }.to raise_error(StandardError, /more than one/i)
         end
 
@@ -176,7 +181,7 @@ RSpec.describe Standards do
             retval: []
           )
           expect{
-            ss.send(:find_authority, "ISHOULDNOTEXIST")
+            ss.send(:find_type, type: "authority", data: "ISHOULDNOTEXIST")
           }.to raise_error(StandardError, /no authority.*matched/i)
         end
       end

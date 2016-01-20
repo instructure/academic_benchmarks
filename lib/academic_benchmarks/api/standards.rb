@@ -69,38 +69,58 @@ module AcademicBenchmarks
       def authority_tree(authority_or_auth_code_guid_or_desc)
         authority = auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
         auth_children = search(authority: authority.code)
-        StandardsForest.new(auth_children).consolidate_under_root(authority)
+        AcademicBenchmarks::Standards::StandardsForest.new(auth_children).consolidate_under_root(authority)
+      end
+
+      def document_tree(document_or_guid)
+        document = doc_from_guid(document_or_guid)
+        doc_children = search(document: document.guid)
+        AcademicBenchmarks::Standards::StandardsForest.new(doc_children).consolidate_under_root(document)
       end
 
       private
+
+      def doc_from_guid(document_or_guid)
+        if document_or_guid.is_a?(AcademicBenchmarks::Standards::Document)
+          document_or_guid
+        else
+          find_type(type: "document", data: document_or_guid)
+        end
+      end
 
       def auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
         if authority_or_auth_code_guid_or_desc.is_a?(AcademicBenchmarks::Standards::Authority)
           authority_or_auth_code_guid_or_desc
         else
-          find_authority(authority_or_auth_code_guid_or_desc)
+          find_type(type: "authority", data: authority_or_auth_code_guid_or_desc)
         end
       end
 
-      def find_authority(authority_code_guid_or_desc)
-        auths = match_authority(authority_code_guid_or_desc)
-        if auths.empty?
-          raise StandardError,
-            "No authority code, guid, or description matched '#{authority_code_guid_or_desc}'"
-        elsif auths.count > 1
-          raise StandardError,
+      def find_type(type:, data:)
+        matches = send("match_#{type}", data)
+        if matches.empty?
+          raise StandardError.new(
+            "No #{type} code, guid, or description matched '#{data}'"
+          )
+        elsif matches.count > 1
+          raise StandardError.new(
             "Authority code, guid, or description matched more than one authority.  " \
-            "matched '#{auths.map(&:to_json).join('; ')}'"
+            "matched '#{matches.map(&:to_json).join('; ')}'"
+          )
         end
-        auths.first
+        matches.first
       end
 
-      def match_authority(authority_code_guid_or_desc)
+      def match_authority(data)
         authorities.select do |auth|
-          auth.code  == authority_code_guid_or_desc ||
-          auth.guid  == authority_code_guid_or_desc ||
-          auth.descr == authority_code_guid_or_desc
+          auth.code  == data ||
+          auth.guid  == data ||
+          auth.descr == data
         end
+      end
+
+      def match_document(data)
+        documents.select { |doc| doc.guid == data }
       end
 
       def raw_search(opts = {})

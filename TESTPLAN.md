@@ -129,7 +129,7 @@ steps and insert it below:
 
 1. Request the tree.  You can pass either an authority
 code, guid, or description to the `authority_tree`
-method and it will find the corresponding authority
+method and it will find the corresponding Authority
 object.  Note that this may take some time depending
 on how many standards are in the tree.
 
@@ -138,7 +138,7 @@ on how many standards are in the tree.
     ```
 
     Observe that auth_tree is a data structure that has
-    an Authority at the the top, with children that have
+    an Authority object at the top, with children that have
     children that have children, etc.  Here is a suggestion
     on how to do it.  All of these statements should
     evaluate to true:
@@ -156,5 +156,39 @@ on how many standards are in the tree.
 
     1. `auth_tree.root` looks like the correct Authority object
     1. `auth_tree.children.first` looks like a sane level 2
+    standard (it has a high-up sounding title/description)
+    1. A leaf node looks like a sane bottom-level standard
+
+### Retrieve a tree of standards belonging to a Document
+
+1. Request the tree.  You can pass either a Document
+object or guid to the `document_tree`
+method and it will find the corresponding Document
+object.  Note that this may take some time depending
+on how many standards are in the tree.
+
+
+    ```
+    doc_tree = ab_handle.standards.document_tree(document)
+    ```
+
+    Observe that doc_tree is a data structure that has a Document
+    object at the top, with children that have children that have
+    children, etc.  Here is a suggestion on how to do it.
+    All of these statements should evaluate to true:
+
+    ```
+    doc_tree.class == AcademicBenchmarks::Standards::StandardsTree
+    doc_tree.root.class == AcademicBenchmarks::Standards::Document
+    doc_tree.root.guid == <the document guid that you passed in>
+    doc_tree.children.count > 0
+    doc_tree.children.first.class == AcademicBenchmarks::Standards::Standard
+    doc_tree.children.first.children.count > 0
+    ```
+
+    Additionally:
+
+    1. `doc_tree.root` looks like the correct Document object
+    1. `doc_tree.children.first` looks like a sane level 2
     standard (it has a high-up sounding title/description)
     1. A leaf node looks like a sane bottom-level standard
