@@ -1,4 +1,3 @@
-
 #
 # This module will allow you to properly to_s, to_h, and to_json
 # on classes in which it is included.
@@ -10,22 +9,28 @@
 #
 
 module InstVarsToHash
-  def to_s(omit_parent: true)
-    to_h(omit_parent: omit_parent).to_s
+  def to_s(omit_parent: true, omit_empty_children: true)
+    to_h(
+      omit_parent: omit_parent,
+      omit_empty_children: omit_empty_children
+    ).to_s
   end
 
-  def to_h(omit_parent: true)
+  def to_h(omit_parent: true, omit_empty_children: true)
     retval = {}
     instance_variables.each do |iv|
-      unless omit_parent && (iv =~ /^@?parent$/i)
+      if !(skip_parent?(omit_parent, iv) || skip_children?(omit_empty_children, iv))
         retval[iv.to_s.delete('@').to_sym] = elem_to_h(instance_variable_get(iv))
       end
     end
     retval
   end
 
-  def to_json(omit_parent: true)
-    to_h(omit_parent: omit_parent).to_json
+  def to_json(omit_parent: true, omit_empty_children: true)
+    to_h(
+      omit_parent: omit_parent,
+      omit_empty_children: omit_empty_children
+    ).to_json
   end
 
   private
@@ -46,5 +51,13 @@ module InstVarsToHash
     else
       elem
     end
+  end
+
+  def skip_parent?(omit_parent, iv)
+    omit_parent && (iv =~ /^@?parent$/i)
+  end
+
+  def skip_children?(omit_empty_children, iv)
+    omit_empty_children && (iv =~ /^@?children$/i) && instance_variable_get(iv).empty?
   end
 end
