@@ -1,4 +1,13 @@
 RSpec.describe StandardsForest do
+
+  def available_or_fail(standards)
+    return true if ApiHelper::Live.standards_available?(standards)
+
+    pending "This test requires the #{standards} standards to be part " \
+            "of the subscription"
+    fail
+  end
+
   let(:ab) { ApiHelper::Live.new_handle }
 
   context "dummy data" do
@@ -130,14 +139,35 @@ RSpec.describe StandardsForest do
         expect(sforest_doc.trees.first.root.children.first.children.count).to be > 0
       end
 
+      it "properly finds orphans", vcr: {cassette_name: "utah_standards_forest"} do
+        # The Utah standards have at least one orphan.  If that becomes
+        # false in the future, this test will need revising
+        if available_or_fail("Utah")
+          utah_tree = ab.standards.authority_tree("Utah")
+          expect(utah_tree).to have_orphans
+          expect(utah_tree.orphans.class).to eq(Array)
+          expect(utah_tree.orphans.count).to eq(11)
+        end
+      end
+
       context "consolidation of a forest" do
         it "consolidates a forest under a document" do
           doc_tree = sforest_doc.consolidate_under_root(valid_document)
           expect(doc_tree).to be_a(StandardsTree)
           expect(doc_tree.root).to be_a(Document)
+
           expect(doc_tree.root.guid).to eq(valid_document.guid)
           expect(doc_tree.root.title).to eq(valid_document.title)
           expect(doc_tree.children.count).to eq(sforest_doc.trees.count)
+        end
+
+        it "doesn't die when consolidating the Utah standards", vcr: {cassette_name: "utah_standards_forest"} do
+          # This test can only be run if the Utah standards are part of the subscription
+          if available_or_fail("Utah")
+            expect {
+              ab.standards.authority_tree("Utah")
+            }.not_to raise_error
+          end
         end
       end
     end

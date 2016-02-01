@@ -3,7 +3,7 @@ require 'active_support/core_ext/module'
 module AcademicBenchmarks
   module Standards
     class StandardsTree
-      attr_reader :root
+      attr_reader :root, :orphans
       delegate :children, :to_s, :to_h, :to_json, to: :root
 
       # The item hash can optionally be built to permit the speedy
@@ -11,6 +11,7 @@ module AcademicBenchmarks
       # adding to it can be expensive without this
 
       def initialize(root, build_item_hash: true)
+        @orphans = []
         @root = root
         if build_item_hash
           @item_hash = {}
@@ -37,6 +38,18 @@ module AcademicBenchmarks
             "or a 'Hash' but was a #{standard.class}"
           )
         end
+      end
+
+      def add_orphan(orphan)
+        add_orphans([orphan])
+      end
+
+      def add_orphans(orphans)
+        @orphans.concat(orphans)
+      end
+
+      def has_orphans?
+        @orphans.present?
       end
 
       private

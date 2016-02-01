@@ -46,5 +46,18 @@ module ApiHelper
     def self.known_present_authority
       "IN"
     end
+
+    def self.standards_available?(standards)
+      handle = self.new_handle
+      available = handle.standards.authorities.any? do |auth|
+        auth.code == standards || auth.guid == standards || auth.description == standards
+      end
+      unless available
+        available = handle.standards.documents.any? do |stan|
+          stan.guid == standards || stan.title == standards
+        end
+      end
+      available
+    end
   end
 end

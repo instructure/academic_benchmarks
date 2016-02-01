@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.academicbenchmarks.com/rest/v3/standards?auth.expires=1454445552&auth.signature=yK%2BLCYJLESK5rNya0wjPAxDVF6SbIuxOKpp69HYjOwI=&limit=100&list=authority&offset=0&partner.id=devconnect02&user.id=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - content-type,accept,origin,ab-internal
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 02 Feb 2016 18:39:13 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      Content-Length:
+      - '949'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":{"emsg":"","category":"OK","code":200,"imsg":""},"resources":[{"data":{"authority":{"descr":"Achieve","code":"NRC","guid":"095383F6-BBCB-11E1-9321-88419DFF4B22"}}},{"data":{"authority":{"descr":"Alabama","code":"AL","guid":"A8325A6C-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"code":"FL","descr":"Florida","guid":"A832E0B8-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"guid":"A8334A58-901A-11DF-A622-0C319DFF4B22","code":"IN","descr":"Indiana"}}},{"data":{"authority":{"descr":"Kansas","code":"KS","guid":"A833636C-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"guid":"A833C528-901A-11DF-A622-0C319DFF4B22","code":"MD","descr":"Maryland"}}},{"data":{"authority":{"code":"CC","descr":"NGA
+        Center/CCSSO","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"guid":"A834F40C-901A-11DF-A622-0C319DFF4B22","descr":"Ohio","code":"OH"}}}],"count":8,"offset":0,"limit":100,"type":"standard","took":23}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 18:39:12 GMT
+- request:
+    method: get
+    uri: https://api.academicbenchmarks.com/rest/v3/standards?auth.expires=1454445552&auth.signature=yK%2BLCYJLESK5rNya0wjPAxDVF6SbIuxOKpp69HYjOwI=&limit=100&list=document&offset=0&partner.id=devconnect02&user.id=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - content-type,accept,origin,ab-internal
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 02 Feb 2016 18:39:13 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      Content-Length:
+      - '1058'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":{"emsg":"","code":200,"category":"OK","imsg":""},"resources":[{"data":{"document":{"title":"Academic
+        Standards","guid":"993690BE-C0DA-11DA-BD64-B7CEA439013B"}}},{"data":{"document":{"title":"College
+        and Career Ready Standards","guid":"1FC58C24-ACC2-11E0-BB03-D6D7D51F4EFC"}}},{"data":{"document":{"title":"Common
+        Core State Standards","guid":"964E0FEE-AD71-11DE-9BF2-C9169DFF4B22"}}},{"data":{"document":{"guid":"9935E84E-C0DA-11DA-844D-F1B58A7EE3C7","title":"Course
+        of Study","acronym":"COS"}}},{"data":{"document":{"guid":"E1D5D8B6-DA22-11E2-95B3-3B359DFF4B22","title":"Learning
+        Standards"}}},{"data":{"document":{"guid":"209823E4-2FB7-11DE-BA91-15719DFF4B22","acronym":"NGSSS","title":"Next
+        Generation Sunshine State Standards"}}},{"data":{"document":{"guid":"c37632ab-f617-4feb-9dcb-74cf8b3dc281","title":"NGSS
+        Arranged by Disciplinary Core Idea (DCI)"}}},{"data":{"document":{"title":"NGSS
+        Arranged by Disciplinary Core Idea (DCI)","guid":"39294526-BF3F-11E1-8A35-552B9DFF4B22"}}}],"count":8,"offset":0,"limit":100,"type":"standard","took":47}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 18:39:13 GMT
+recorded_with: VCR 3.0.1

@@ -1,7 +1,7 @@
 module AcademicBenchmarks
   module Standards
     class StandardsForest
-      attr_reader :trees, :data_hash
+      attr_reader :trees, :data_hash, :orphans
 
       # The guid to standard hash can optionally be saved to permit speedily
       # adding standards to the tree (since the tree is unordered,
@@ -18,6 +18,7 @@ module AcademicBenchmarks
         @data_hash = data_hash.dup.freeze if save_initial_data_hash
         @guid_to_standard = {} # a hash of guids to standards
         @trees = []
+        @orphans = []
         process_items(data_hash)
 
         # upgrade the hash data to a StandardsTree object
@@ -36,7 +37,7 @@ module AcademicBenchmarks
           tree.root.parent_guid = root.guid
           root.children.push(tree.root)
         end
-        StandardsTree.new(root)
+        StandardsTree.new(root).tap{ |st| st.add_orphans(@orphans) }
       end
 
       def add_standard(standard)
@@ -60,6 +61,10 @@ module AcademicBenchmarks
 
       def empty?
         @trees.empty?
+      end
+
+      def has_orphans?
+        @orphans.count > 0
       end
 
       def to_s
@@ -96,22 +101,21 @@ module AcademicBenchmarks
       def link_parent_and_children
         @guid_to_standard.values.each do |child|
           if child.parent_guid
-            present_in_hash_or_raise(child.parent_guid)
-            parent = @guid_to_standard[child.parent_guid]
-            parent.add_child(child)
-            child.parent = parent
+            parent_in_hash?(child.parent_guid) ? set_parent_and_child(child) : @orphans.push(child)
           else
             @trees.push(child)
           end
         end
       end
 
-      def present_in_hash_or_raise(guid)
-        unless @guid_to_standard.key?(guid)
-          raise StandardError.new(
-            "item missing from guid_to_standard hash"
-          )
-        end
+      def set_parent_and_child(child)
+        parent = @guid_to_standard[child.parent_guid]
+        parent.add_child(child)
+        child.parent = parent
+      end
+
+      def parent_in_hash?(guid)
+        @guid_to_standard.key?(guid)
       end
     end
   end
