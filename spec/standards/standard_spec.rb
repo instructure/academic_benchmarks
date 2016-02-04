@@ -24,6 +24,12 @@ RSpec.describe Standard do
     end
   end
 
+  it "reports obsolete standards as obsolete" do
+    standard.status = "Obsolete"
+    expect(standard).to be_obsolete
+    expect(standard).not_to be_active
+  end
+
   it "accepts only 'Y' or 'N' for deepest" do
     expect{standard.deepest = "Hello"}.to raise_error(ArgumentError)
     %w[Y N].each do |new_val|
@@ -95,6 +101,27 @@ RSpec.describe Standard do
       expect{
         parent.add_child(child1)
       }.to change{child1.parent}.from(nil).to(parent)
+    end
+
+    context "prunes away obsolete children" do
+      it "recursively" do
+        parent.add_child(child1)
+        child1.add_child(child2)
+        child1.status = "Active"
+        child2.status = "Obsolete"
+        expect {
+          parent.remove_obsolete_children
+        }.to change{ child1.children }.from([child2]).to([])
+        expect(parent.children).to match_array([child1])
+      end
+
+      it "even when they have non-obsolete children" do
+        parent.add_child(child1.tap{|c| c.status = "Obsolete"})
+        child1.add_child(child2.tap{|c| c.status = "Active"})
+        expect {
+          parent.remove_obsolete_children
+        }.to change{ parent.children }.from([child1]).to([])
+      end
     end
   end
 

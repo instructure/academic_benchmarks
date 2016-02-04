@@ -66,16 +66,22 @@ module AcademicBenchmarks
         documents(authority: authority.code)
       end
 
-      def authority_tree(authority_or_auth_code_guid_or_desc)
+      def authority_tree(authority_or_auth_code_guid_or_desc, include_obsolete_standards: true)
         authority = auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
         auth_children = search(authority: authority.code)
-        AcademicBenchmarks::Standards::StandardsForest.new(auth_children).consolidate_under_root(authority)
+        AcademicBenchmarks::Standards::StandardsForest.new(
+          auth_children,
+          include_obsoletes: include_obsolete_standards
+        ).consolidate_under_root(authority)
       end
 
-      def document_tree(document_or_guid)
+      def document_tree(document_or_guid, include_obsolete_standards: true)
         document = doc_from_guid(document_or_guid)
         doc_children = search(document: document.guid)
-        AcademicBenchmarks::Standards::StandardsForest.new(doc_children).consolidate_under_root(document)
+        AcademicBenchmarks::Standards::StandardsForest.new(
+          doc_children,
+          include_obsoletes: include_obsolete_standards
+        ).consolidate_under_root(document)
       end
 
       private

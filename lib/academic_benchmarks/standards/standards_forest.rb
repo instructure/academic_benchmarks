@@ -13,7 +13,8 @@ module AcademicBenchmarks
       def initialize(
         data_hash,
         save_guid_to_standard_hash: true,
-        save_initial_data_hash: false
+        save_initial_data_hash: false,
+        include_obsoletes: true
       )
         @data_hash = data_hash.dup.freeze if save_initial_data_hash
         @guid_to_standard = {} # a hash of guids to standards
@@ -21,14 +22,20 @@ module AcademicBenchmarks
         @orphans = []
         process_items(data_hash)
 
+        @trees.delete_if(&:obsolete?) unless include_obsoletes
+
         # upgrade the hash data to a StandardsTree object
         @trees.map! do |item|
-          StandardsTree.new(item, build_item_hash: save_guid_to_standard_hash)
+          StandardsTree.new(
+            item,
+            build_item_hash: save_guid_to_standard_hash,
+            include_obsoletes: include_obsoletes
+          )
         end
 
-        unless save_guid_to_standard_hash
-          remove_instance_variable('@guid_to_standard')
-        end
+        # We will still have the guid-to-standards saved at the Tree level,
+        # so we can safely remove this variable and let the GC free the memory
+        remove_instance_variable('@guid_to_standard')
       end
 
       def consolidate_under_root(root)

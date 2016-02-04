@@ -1,9 +1,11 @@
 require_relative '../lib/inst_vars_to_hash'
+require_relative '../lib/remove_obsolete_children'
 
 module AcademicBenchmarks
   module Standards
     class Document
       include InstVarsToHash
+      include RemoveObsoleteChildren
 
       attr_accessor :title, :guid, :children
 

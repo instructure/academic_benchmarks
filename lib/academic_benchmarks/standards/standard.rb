@@ -1,9 +1,11 @@
 require_relative '../lib/inst_vars_to_hash'
+require_relative '../lib/remove_obsolete_children'
 
 module AcademicBenchmarks
   module Standards
     class Standard
       include InstVarsToHash
+      include RemoveObsoleteChildren
 
       attr_reader :status, :deepest, :children
       attr_writer :grade
@@ -74,6 +76,8 @@ module AcademicBenchmarks
       end
 
       def add_child(child)
+        raise StandardError.new("Tried to add self as a child") if self == child
+
         unless child.is_a?(Standard)
           raise ArgumentError.new("Tried to set child that isn't a Standard")
         end

@@ -10,9 +10,11 @@ module AcademicBenchmarks
       # addition of standards to the tree. since the tree is unordered,
       # adding to it can be expensive without this
 
-      def initialize(root, build_item_hash: true)
+      def initialize(root, build_item_hash: true, include_obsoletes: true)
         @orphans = []
         @root = root
+        prune_obsolete_branches unless include_obsoletes
+
         if build_item_hash
           @item_hash = {}
           go_ahead_and_build_item_hash
@@ -77,6 +79,10 @@ module AcademicBenchmarks
           return child if child.guid == parent_guid
           check_children_for_parent(parent_guid, child) if child.has_children?
         end
+      end
+
+      def prune_obsolete_branches
+        root.remove_obsolete_children
       end
     end
   end
