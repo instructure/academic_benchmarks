@@ -71,7 +71,7 @@ module AcademicBenchmarks
       end
 
       def to_json
-        trees.map(&:to_json)
+        trees.map(&:to_h).to_json
       end
 
       private
