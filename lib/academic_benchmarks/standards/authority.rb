@@ -12,7 +12,11 @@ module AcademicBenchmarks
       alias_method :descr, :description
 
       def self.from_hash(hash)
-        self.new(code: hash["code"], guid: hash["guid"], description: hash["descr"])
+        self.new(
+          code: hash["code"],
+          guid: hash["guid"],
+          description: (hash["descr"] || hash["description"])
+        )
       end
 
       def initialize(code:, guid:, description:, children: [])
