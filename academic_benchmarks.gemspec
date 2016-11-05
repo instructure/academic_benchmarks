@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'academic_benchmarks'
-  s.version     = '0.0.6'
-  s.date        = '2016-02-09'
+  s.version     = '0.0.7'
+  s.date        = '2016-11-06'
   s.summary     = "A ruby api for accessing the Academic Benchmarks API"
   s.description = "A ruby api for accessing the Academic Benchmarks API.  " \
                   "A valid subscription with accompanying credentials " \
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.license     = 'AGPL-3.0'
 
   s.add_runtime_dependency 'httparty', '~> 0.13'
-  s.add_runtime_dependency "activesupport", ">= 3.2.22", "<= 4.2"
+  s.add_runtime_dependency "activesupport", ">= 3.2.22", "< 6.0"
 
   s.add_development_dependency "vcr", "~> 3.0"
   s.add_development_dependency "rspec", "~> 3.4"
