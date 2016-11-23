@@ -3,6 +3,8 @@
 _Brought to you by your friends at
 [Instructure](https://www.instructure.com/)_ :heart:
 
+[![Gem Version](https://badge.fury.io/rb/academic_benchmarks.svg)](https://badge.fury.io/rb/academic_benchmarks)
+
 ## What is Academic Benchmarks?
 
 [Academic Benchmarks](http://academicbenchmarks.com/) provides
