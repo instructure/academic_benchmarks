@@ -1,5 +1,5 @@
-require_relative '../lib/inst_vars_to_hash'
-require_relative '../lib/remove_obsolete_children'
+require 'academic_benchmarks/lib/inst_vars_to_hash'
+require 'academic_benchmarks/lib/remove_obsolete_children'
 
 module AcademicBenchmarks
   module Standards

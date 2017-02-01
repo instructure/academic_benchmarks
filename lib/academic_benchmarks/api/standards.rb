@@ -1,7 +1,7 @@
 require 'active_support/hash_with_indifferent_access'
 
-require_relative 'auth'
-require_relative 'constants'
+require 'academic_benchmarks/api/auth'
+require 'academic_benchmarks/api/constants'
 
 module AcademicBenchmarks
   module Api

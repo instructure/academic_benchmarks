@@ -1,4 +1,4 @@
-require_relative '../lib/inst_vars_to_hash'
+require 'academic_benchmarks/lib/inst_vars_to_hash'
 
 module AcademicBenchmarks
   module Standards

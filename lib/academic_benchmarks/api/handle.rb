@@ -1,5 +1,5 @@
-require_relative 'constants'
-require_relative 'standards'
+require 'academic_benchmarks/api/constants'
+require 'academic_benchmarks/api/standards'
 
 module AcademicBenchmarks
   module Api
