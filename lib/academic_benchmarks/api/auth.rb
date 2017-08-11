@@ -39,7 +39,7 @@ module AcademicBenchmarks
       end
 
       def self.expire_time_in(offset)
-        Time.now.to_i + offset
+        Time.now.to_i + offset.to_i
       end
     end
   end
