@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.license     = 'AGPL-3.0'
 
   s.add_runtime_dependency 'httparty', '~> 0.13'
-  s.add_runtime_dependency "activesupport", ">= 3.2.22", "< 6.0"
+  s.add_runtime_dependency "activesupport", ">= 3.2.22", "< 6.1"
 
   s.add_development_dependency "rake", "~> 12.0"
   s.add_development_dependency "vcr", "~> 3.0"
