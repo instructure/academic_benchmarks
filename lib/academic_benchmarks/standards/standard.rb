@@ -18,6 +18,7 @@ module AcademicBenchmarks
 
       def initialize(data)
         data = data["data"] if data["data"]
+        @seq = data["seq"]
         @guid = data["guid"]
         @grade = attr_to_val_or_nil(Grade, data, "grade")
         @label = data["label"]
