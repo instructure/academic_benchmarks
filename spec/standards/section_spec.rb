@@ -1,4 +1,4 @@
-RSpec.describe Course do
+RSpec.describe Section do
   include ObjectHelper
 
   let(:hash) do
@@ -8,8 +8,13 @@ RSpec.describe Course do
     }
   end
 
+  let(:s) { Section.from_hash(hash) }
+
   it "is instantiable with hash" do
-    h = Course.from_hash(hash)
-    compare_obj_to_hash(h, hash)
+    compare_obj_to_hash(s, hash)
+  end
+
+  it "responds to description alias" do
+    expect(s.description).to eq 'College- and Career-Readiness Anchor Standards'
   end
 end

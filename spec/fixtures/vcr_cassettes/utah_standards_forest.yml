@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.academicbenchmarks.com/rest/v3/standards?auth.expires=1454445552&auth.signature=yK%2BLCYJLESK5rNya0wjPAxDVF6SbIuxOKpp69HYjOwI=&limit=100&list=authority&offset=0&partner.id=devconnect02&user.id=1
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1608575522&auth.signature=EfiqwUCztsCfhJcf7Gzg%2B5gd%2BTaOHPHLJqcoZpHPVig=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect02
     body:
       encoding: US-ASCII
       string: ''
@@ -18,37 +18,52 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Access-Control-Allow-Headers:
-      - content-type,accept,origin,ab-internal
-      Access-Control-Allow-Methods:
-      - GET,POST,DELETE,PUT
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Max-Age:
-      - '86400'
-      Cache-Control:
-      - no-store, no-cache, must-revalidate
+      Date:
+      - Mon, 21 Dec 2020 16:32:02 GMT
       Content-Type:
       - application/json; charset=UTF-8
-      Date:
-      - Tue, 02 Feb 2016 18:39:13 GMT
-      Pragma:
-      - no-cache
-      Server:
-      - Apache/2.4.7 (Ubuntu)
       Content-Length:
-      - '949'
+      - '1326'
       Connection:
       - keep-alive
+      X-Amzn-Requestid:
+      - 05dc19c1-f09b-43b8-9326-59ce47159205
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type,accept,origin,ab-internal
+      X-Amzn-Remapped-Connection:
+      - keep-alive
+      X-Amz-Apigw-Id:
+      - X6UgcGJyIAMFVjA=
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      X-Amzn-Remapped-Server:
+      - Apache/2.4.7 (Ubuntu)
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,PATCH
+      Pragma:
+      - no-cache
+      X-Amzn-Remapped-Date:
+      - Mon, 21 Dec 2020 16:32:02 GMT
+      Access-Control-Max-Age:
+      - '86400'
     body:
       encoding: UTF-8
-      string: '{"status":{"emsg":"","category":"OK","code":200,"imsg":""},"resources":[{"data":{"authority":{"descr":"Achieve","code":"NRC","guid":"095383F6-BBCB-11E1-9321-88419DFF4B22"}}},{"data":{"authority":{"descr":"Alabama","code":"AL","guid":"A8325A6C-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"code":"FL","descr":"Florida","guid":"A832E0B8-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"guid":"A8334A58-901A-11DF-A622-0C319DFF4B22","code":"IN","descr":"Indiana"}}},{"data":{"authority":{"descr":"Kansas","code":"KS","guid":"A833636C-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"guid":"A833C528-901A-11DF-A622-0C319DFF4B22","code":"MD","descr":"Maryland"}}},{"data":{"authority":{"code":"CC","descr":"NGA
-        Center/CCSSO","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22"}}},{"data":{"authority":{"guid":"A834F40C-901A-11DF-A622-0C319DFF4B22","descr":"Ohio","code":"OH"}}}],"count":8,"offset":0,"limit":100,"type":"standard","took":23}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"facets":[{"count":9,"facet":"document.publication.authorities","details":[{"data":{"descr":"Florida
+        DOE","acronym":"FDOE","guid":"9127FF50-F1B9-11E5-862E-0938DC287387"},"count":8562},{"count":5077,"data":{"descr":"Indiana
+        DOE","acronym":null,"guid":"9128B2EC-F1B9-11E5-862E-0938DC287387"}},{"data":{"descr":"Michigan
+        DOE","guid":"91290080-F1B9-11E5-862E-0938DC287387","acronym":"MDE"},"count":2552},{"count":2372,"data":{"guid":"9127A816-F1B9-11E5-862E-0938DC287387","acronym":null,"descr":"Ohio
+        DOE"}},{"count":2372,"data":{"acronym":"CC","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22","descr":"NGA
+        Center/CCSSO"}},{"count":2281,"data":{"guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","acronym":"KSDE","descr":"Kansas
+        State Department of Education"}},{"count":1041,"data":{"acronym":"ALSDE","guid":"912A8036-F1B9-11E5-862E-0938DC287387","descr":"Alabama
+        State Department of Education"}},{"count":571,"data":{"guid":"095383F6-BBCB-11E1-9321-88419DFF4B22","acronym":null,"descr":"Achieve"}},{"count":571,"data":{"guid":"9129D578-F1B9-11E5-862E-0938DC287387","acronym":null,"descr":"Maryland
+        State Department of Education"}}]}],"limit":0,"took":115,"offset":0,"count":25399}}'
     http_version: 
-  recorded_at: Tue, 02 Feb 2016 18:39:12 GMT
+  recorded_at: Mon, 21 Dec 2020 16:32:02 GMT
 - request:
     method: get
-    uri: https://api.academicbenchmarks.com/rest/v3/standards?auth.expires=1454445552&auth.signature=yK%2BLCYJLESK5rNya0wjPAxDVF6SbIuxOKpp69HYjOwI=&limit=100&list=document&offset=0&partner.id=devconnect02&user.id=1
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1608575522&auth.signature=EfiqwUCztsCfhJcf7Gzg%2B5gd%2BTaOHPHLJqcoZpHPVig=&facet=document.publication&limit=0&offset=0&partner.id=devconnect02
     body:
       encoding: US-ASCII
       string: ''
@@ -64,39 +79,56 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Access-Control-Allow-Headers:
-      - content-type,accept,origin,ab-internal
-      Access-Control-Allow-Methods:
-      - GET,POST,DELETE,PUT
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Max-Age:
-      - '86400'
-      Cache-Control:
-      - no-store, no-cache, must-revalidate
+      Date:
+      - Mon, 21 Dec 2020 16:32:03 GMT
       Content-Type:
       - application/json; charset=UTF-8
-      Date:
-      - Tue, 02 Feb 2016 18:39:13 GMT
-      Pragma:
-      - no-cache
-      Server:
-      - Apache/2.4.7 (Ubuntu)
       Content-Length:
-      - '1058'
+      - '2475'
       Connection:
       - keep-alive
+      X-Amzn-Requestid:
+      - ae581484-62dd-476a-a5e5-7cd794fc1156
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type,accept,origin,ab-internal
+      X-Amzn-Remapped-Connection:
+      - keep-alive
+      X-Amz-Apigw-Id:
+      - X6UgjGIuIAMFScg=
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      X-Amzn-Remapped-Server:
+      - Apache/2.4.7 (Ubuntu)
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,PATCH
+      Pragma:
+      - no-cache
+      X-Amzn-Remapped-Date:
+      - Mon, 21 Dec 2020 16:32:03 GMT
+      Access-Control-Max-Age:
+      - '86400'
     body:
       encoding: UTF-8
-      string: '{"status":{"emsg":"","code":200,"category":"OK","imsg":""},"resources":[{"data":{"document":{"title":"Academic
-        Standards","guid":"993690BE-C0DA-11DA-BD64-B7CEA439013B"}}},{"data":{"document":{"title":"College
-        and Career Ready Standards","guid":"1FC58C24-ACC2-11E0-BB03-D6D7D51F4EFC"}}},{"data":{"document":{"title":"Common
-        Core State Standards","guid":"964E0FEE-AD71-11DE-9BF2-C9169DFF4B22"}}},{"data":{"document":{"guid":"9935E84E-C0DA-11DA-844D-F1B58A7EE3C7","title":"Course
-        of Study","acronym":"COS"}}},{"data":{"document":{"guid":"E1D5D8B6-DA22-11E2-95B3-3B359DFF4B22","title":"Learning
-        Standards"}}},{"data":{"document":{"guid":"209823E4-2FB7-11DE-BA91-15719DFF4B22","acronym":"NGSSS","title":"Next
-        Generation Sunshine State Standards"}}},{"data":{"document":{"guid":"c37632ab-f617-4feb-9dcb-74cf8b3dc281","title":"NGSS
-        Arranged by Disciplinary Core Idea (DCI)"}}},{"data":{"document":{"title":"NGSS
-        Arranged by Disciplinary Core Idea (DCI)","guid":"39294526-BF3F-11E1-8A35-552B9DFF4B22"}}}],"count":8,"offset":0,"limit":100,"type":"standard","took":47}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication&limit=0&offset=0"},"data":[],"meta":{"took":127,"limit":0,"facets":[{"details":[{"data":{"guid":"993690BE-C0DA-11DA-BD64-B7CEA439013B","acronym":null,"title":"Academic
+        Standards","descr":"Academic Standards"},"count":5077},{"data":{"acronym":"B.E.S.T.","guid":"ad9c9705-4834-11ea-bb5b-0e20088bb29a","title":"Benchmarks
+        for Excellent Student Thinking Standards","descr":"Benchmarks for Excellent
+        Student Thinking Standards"},"count":3762},{"data":{"acronym":null,"guid":"66A34B00-A702-11E6-B5B6-C37229C466BA","title":"K-12
+        Standards","descr":"K-12 Standards"},"count":2438},{"count":2372,"data":{"title":"Common
+        Core State Standards","descr":"Common Core State Standards","guid":"964E0FEE-AD71-11DE-9BF2-C9169DFF4B22","acronym":"CCSS"}},{"count":2372,"data":{"descr":"Learning
+        Standards","title":"Learning Standards","guid":"E1D5D8B6-DA22-11E2-95B3-3B359DFF4B22","acronym":null}},{"count":2281,"data":{"guid":"1FC58C24-ACC2-11E0-BB03-D6D7D51F4EFC","acronym":"KCCRS","descr":"College
+        and Career Ready Standards","title":"College and Career Ready Standards"}},{"count":2281,"data":{"guid":"e33f747e-e16c-4738-be5b-295aaf677ac8","acronym":null,"descr":"Standards","title":"Standards"}},{"data":{"acronym":"NGSSS","guid":"209823E4-2FB7-11DE-BA91-15719DFF4B22","descr":"Next
+        Generation Sunshine State Standards","title":"Next Generation Sunshine State
+        Standards"},"count":2030},{"count":1041,"data":{"descr":"Course of Study","title":"Course
+        of Study","guid":"9935E84E-C0DA-11DA-844D-F1B58A7EE3C7","acronym":"COS"}},{"count":571,"data":{"guid":"39294526-BF3F-11E1-8A35-552B9DFF4B22","acronym":null,"descr":"NGSS
+        Arranged by Disciplinary Core Idea (DCI)","title":"NGSS Arranged by Disciplinary
+        Core Idea (DCI)"}},{"data":{"descr":"NGSS Arranged by Disciplinary Core Idea
+        (DCI)","title":"NGSS Arranged by Disciplinary Core Idea (DCI)","guid":"c37632ab-f617-4feb-9dcb-74cf8b3dc281","acronym":null},"count":571},{"data":{"guid":"2612CC24-3FAB-11DB-ABAF-F681ADECFD11","acronym":null,"title":"Early
+        Learning and Developmental Standards","descr":"Early Learning and Developmental
+        Standards"},"count":489},{"count":114,"data":{"guid":"3FCB5C0C-A6A4-11DB-ABAF-F681ADECFD11","acronym":null,"descr":"Early
+        Childhood Standards of Quality for Preschool","title":"Early Childhood Standards
+        of Quality for Preschool"}}],"facet":"document.publication","count":13}],"count":25399,"offset":0}}'
     http_version: 
-  recorded_at: Tue, 02 Feb 2016 18:39:13 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Mon, 21 Dec 2020 16:32:03 GMT
+recorded_with: VCR 3.0.3

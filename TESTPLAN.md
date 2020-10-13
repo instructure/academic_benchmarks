@@ -72,10 +72,10 @@ authorities back.  What comes back will depend on your
 subscription.  For a sandbox it might look like this:
 
     ```
-    ab_handle.standards.authorities.to_h
-    {:code=>"IN", :guid=>"A8334A58-901A-11DF-A622-0C319DFF4B22", :description=>"Indiana"}
-    {:code=>"CC", :guid=>"A83297F2-901A-11DF-A622-0C319DFF4B22", :description=>"NGA Center/CCSSO"}
-    {:code=>"OH", :guid=>"A834F40C-901A-11DF-A622-0C319DFF4B22", :description=>"Ohio"}
+    ab_handle.standards.authorities.map(&:to_h)
+    {:acronym=>"FDOE", :guid=>"9127FF50-F1B9-11E5-862E-0938DC287387", :description=>"Florida DOE"}
+    {:acronym=>nil, :guid=>"9128B2EC-F1B9-11E5-862E-0938DC287387", :description=>"Indiana DOE"}
+    {:acronym=>"MDE", :guid=>"91290080-F1B9-11E5-862E-0938DC287387", :description=>"Michigan DOE"}
     ```
 
 1. Now put your credentials into environment variables.
@@ -94,36 +94,33 @@ sure to get the same thing back:
     ab_handle.standards.authorities
     ```
 
+1. Now obtain a list of publications:
+
+    ```
+    ab_handle.standards.publications
+    ```
+
 ### Search for standards
-
-1. Search for some some text within standards:
-
-    ```
-    ab_handle.standards.search(query: "rectangle")
-    ```
-
-    You should get back an array of standards
 
 1. Retrieve all standards from a certain authority
 (Indiana given in the example)
 
     ```
-    ab_handle.standards.search(authority: "IN")
+    ab_handle.standards.search(authority_guid: "9128B2EC-F1B9-11E5-862E-0938DC287387")
     ```
 
     You should get back an array of standards
-    belonging to the Indiana (IN) authority
+    belonging to the Indiana authority
 
-### Retrieve a specified guid
-
-1. Find a guid from a standard in one of the previous
-steps and insert it below:
+1. Retrieve all standards from a certain publication
+(Common Core State Standards given in the example)
 
     ```
-    ab_handle.standards.guid("<some-guid>">)
+    ab_handle.standards.search(authority_guid: "964E0FEE-AD71-11DE-9BF2-C9169DFF4B22")
     ```
 
-    Observe that the appropriate standard is returned
+    You should get back an array of standards
+    belonging to the CCSS publication
 
 ### Retrieve a tree of standards belonging to an Authority
 
@@ -146,49 +143,44 @@ on how many standards are in the tree.
     ```
     auth_tree.class == AcademicBenchmarks::Standards::StandardsTree
     auth_tree.root.class == AcademicBenchmarks::Standards::Authority
-    auth_tree.root.code == <the authority code that you passed in (or guid or description)>
+    auth_tree.root.code == <the code of the authority you passed in, if it has one>
     auth_tree.children.count > 0
-    auth_tree.children.first.class == AcademicBenchmarks::Standards::Standard
+    auth_tree.children.first.class == AcademicBenchmarks::Standards::Publication
     auth_tree.children.first.children.count > 0
+    auth_tree.children.first.children.first.class == AcademicBenchmarks::Standards::Document
+    auth_tree.children.first.children.first.children.count > 0
+    auth_tree.children.first.children.first.children.first.class == AcademicBenchmarks::Standards::Section
+    auth_tree.children.first.children.first.children.first.children.count > 0
+    auth_tree.children.first.children.first.children.first.children.first.class == AcademicBenchmarks::Standards::Standard
     ```
 
-    Additionally:
+### Retrieve a tree of standards belonging to a Publication
 
-    1. `auth_tree.root` looks like the correct Authority object
-    1. `auth_tree.children.first` looks like a sane level 2
-    standard (it has a high-up sounding title/description)
-    1. A leaf node looks like a sane bottom-level standard
-
-### Retrieve a tree of standards belonging to a Document
-
-1. Request the tree.  You can pass either a Document
-object or guid to the `document_tree`
-method and it will find the corresponding Document
+1. Request the tree.  You can pass either a Publication
+object or guid to the `publication_tree`
+method and it will find the corresponding Publication
 object.  Note that this may take some time depending
 on how many standards are in the tree.
 
 
     ```
-    doc_tree = ab_handle.standards.document_tree(document)
+    pub_tree = ab_handle.standards.publication_tree(publication)
     ```
 
-    Observe that doc_tree is a data structure that has a Document
+    Observe that pub_tree is a data structure that has a Publication
     object at the top, with children that have children that have
     children, etc.  Here is a suggestion on how to do it.
     All of these statements should evaluate to true:
 
     ```
-    doc_tree.class == AcademicBenchmarks::Standards::StandardsTree
-    doc_tree.root.class == AcademicBenchmarks::Standards::Document
-    doc_tree.root.guid == <the document guid that you passed in>
-    doc_tree.children.count > 0
-    doc_tree.children.first.class == AcademicBenchmarks::Standards::Standard
-    doc_tree.children.first.children.count > 0
+    pub_tree.class == AcademicBenchmarks::Standards::StandardsTree
+    pub_tree.root.class == AcademicBenchmarks::Standards::Publication
+    pub_tree.root.guid == <the guid of the publication that you passed in>
+    pub_tree.children.count > 0
+    pub_tree.children.first.class == AcademicBenchmarks::Standards::Document
+    pub_tree.children.first.children.count > 0
+
+    pub_tree.children.first.children.first.class == AcademicBenchmarks::Standards::Section
+    pub_tree.children.first.children.first.children.count > 0
+    pub_tree.children.first.children.first.children.first.class == AcademicBenchmarks::Standards::Standard
     ```
-
-    Additionally:
-
-    1. `doc_tree.root` looks like the correct Document object
-    1. `doc_tree.children.first` looks like a sane level 2
-    standard (it has a high-up sounding title/description)
-    1. A leaf node looks like a sane bottom-level standard

@@ -3,7 +3,6 @@ RSpec.describe Subject do
 
   let(:hash) do
     {
-      "broad" => "LANG",
       "code" => "LANG"
     }
   end

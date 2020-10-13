@@ -1,11 +1,13 @@
+require 'academic_benchmarks/lib/attr_to_vals'
 require 'academic_benchmarks/lib/inst_vars_to_hash'
 
 module AcademicBenchmarks
   module Standards
-    class Authority
+    class Publication
+      include AttrToVals
       include InstVarsToHash
 
-      attr_accessor :acronym, :descr, :guid, :children
+      attr_accessor :acronym, :descr, :guid, :authorities, :children
 
       alias_method :code, :acronym
       alias_method :description, :descr
@@ -13,29 +15,30 @@ module AcademicBenchmarks
       def self.from_hash(hash)
         self.new(
           acronym: hash["acronym"],
+          descr: hash["descr"],
           guid: hash["guid"],
-          descr: hash["descr"]
+          authorities: hash["authorities"]
         )
       end
 
-      def initialize(acronym:, guid:, descr:, children: [])
+      def initialize(acronym:, descr:, guid:, authorities:, children: [])
         @acronym = acronym
-        @guid = guid
         @descr = descr
+        @guid = guid
+        @authorities = attr_to_vals(Authority, authorities)
         @children = children
       end
 
       # Children are standards, so rebranch them so we have
       # the following structure:
       #
-      #   Authority -> Publication -> Document -> Section -> Standard
+      #   Publication -> Document -> Section -> Standard
       def rebranch_children
         @seen = Set.new()
         @guid_to_obj = {}
         new_children = []
         @children.each do |child|
-          pub = reparent(child.document.publication, new_children)
-          doc = reparent(child.document, pub.children)
+          doc = reparent(child.document, new_children)
           sec = reparent(child.section, doc.children)
           sec.children.push(child)
         end

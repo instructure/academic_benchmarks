@@ -1,21 +1,6 @@
 RSpec.describe Standards do
   let(:handle) { ApiHelper::Live.new_handle }
 
-  it "rejects search parameters that are not valid" do
-    valid_params = AcademicBenchmarks::Api::Constants.standards_search_params
-    invalid_params = %w[ice hurricane wind snow avalanche tornado tsunami]
-
-    s = Standards.new(nil)
-    invalid_params.each do |p|
-      expect{
-        s.search({p.to_s => 100})
-      }.to raise_error(ArgumentError, /invalid.search.params.*#{p}/i)
-    end
-    expect{
-      s.search(invalid_params.map{|p| [p, 100]}.to_h)
-    }.to raise_error(ArgumentError, /invalid.search.params/i)
-  end
-
   # can also name the cassette: context "something", vcr: { cassette_name: "authorities" } do
   context "authorities", :vcr do
     it "lists authorities properly" do
@@ -28,29 +13,29 @@ RSpec.describe Standards do
     end
   end
 
-  context "documents", :vcr do
-    context "by authority", vcr: { cassette_name: "documents_by_authority" } do
-      it "lists documents by authority" do
+  context "publications", :vcr do
+    context "by authority", vcr: { cassette_name: "publications_by_authority" } do
+      it "lists publications by authority" do
         auth = handle.standards.authorities.find{|a| a.code == "CC"}
         expect(auth).to be_an(Authority)
 
-        auth_docs = handle.standards.authority_documents(auth)
-        expect(auth_docs.count).to eq(1)
-        expect(auth_docs.first.title).to match(/common.core.state.standards/i)
+        auth_pubs = handle.standards.authority_publications(auth)
+        expect(auth_pubs.count).to eq(1)
+        expect(auth_pubs.first.descr).to match(/common.core.state.standards/i)
       end
 
       it "lists by right authority with either code, guid, or auth object" do
         auth = handle.standards.authorities.find{|a| a.code == "CC"}
         expect(auth).to be_an(Authority)
 
-        ad1 = handle.standards.authority_documents(auth)
-        ad2 = handle.standards.authority_documents(auth.code)
+        ap1 = handle.standards.authority_publications(auth)
+        ap2 = handle.standards.authority_publications(auth.code)
 
-        expect(ad1.count).to eq(1)
-        expect(ad2.count).to eq(1)
+        expect(ap1.count).to eq(1)
+        expect(ap2.count).to eq(1)
 
-        expect(ad1.first.title).to eq(ad2.first.title)
-        expect(ad1.first.guid).to eq(ad2.first.guid)
+        expect(ap1.first.descr).to eq(ap2.first.descr)
+        expect(ap1.first.guid).to eq(ap2.first.guid)
       end
     end
   end
@@ -87,12 +72,12 @@ RSpec.describe Standards do
   context "responds to methods" do
     let(:s) { Standards.new(nil) }
 
-    it "provides access to documents" do
-      expect(s).to respond_to(:documents)
-    end
-
     it "provides access to authorities" do
       expect(s).to respond_to(:authorities)
+    end
+
+    it "provides access to publications" do
+      expect(s).to respond_to(:publications)
     end
 
     context "provides trees" do
@@ -100,8 +85,8 @@ RSpec.describe Standards do
         expect(s).to respond_to(:authority_tree)
       end
 
-      it "provides a tree for a document" do
-        expect(s).to respond_to(:document_tree)
+      it "provides a tree for a publication" do
+        expect(s).to respond_to(:publication_tree)
       end
     end
   end
@@ -109,7 +94,7 @@ RSpec.describe Standards do
   context "trees", :vcr do
     context "builds authority trees", vcr: { cassette_name: "api-standards-builds-authority-tree" } do
       it "builds an authority tree" do
-        auth = handle.standards.authorities.first
+        auth = handle.standards.authorities.find {|a| a.acronym == 'CC'}
         expect(auth).to be_a(Authority)
         expect(auth.children.count).to be_zero
         auth_tree = handle.standards.authority_tree(auth)
@@ -119,15 +104,15 @@ RSpec.describe Standards do
       end
     end
 
-    context "builds document tree", vcr: { cassette_name: "api-standards-builds-document-tree" } do
-      it "builds a document tree" do
-        docs = handle.standards.documents.first
-        expect(docs).to be_a(Document)
-        expect(docs.children.count).to be_zero
-        doc_tree = handle.standards.document_tree(docs)
-        expect(doc_tree).to be_a(StandardsTree)
-        expect(doc_tree.root).to be_a(Document)
-        expect(doc_tree.children.count).to be > 0
+    context "builds publication tree", vcr: { cassette_name: "api-standards-builds-publication-tree" } do
+      it "builds a publication tree" do
+        pub = handle.standards.publications.find {|p| p.acronym=='CCSS'}
+        expect(pub).to be_a(Publication)
+        expect(pub.children.count).to be_zero
+        pub_tree = handle.standards.publication_tree(pub)
+        expect(pub_tree).to be_a(StandardsTree)
+        expect(pub_tree.root).to be_a(Publication)
+        expect(pub_tree.children.count).to be > 0
       end
     end
 
@@ -145,13 +130,13 @@ RSpec.describe Standards do
       authority_range.each do |num|
         let(:"authority_#{num}") do
           # Authority will follow this pattern (example given for num == 1)
-          #   code: "BB"
+          #   acronym: "BB"
           #   guid: "1111111111"
-          #   description: "authority '1'"
+          #   descr: "authority '1'"
           Authority.new(
-            code: "#{('A'.ord + num).chr * 2}",
+            acronym: "#{('A'.ord + num).chr * 2}",
             guid: "#{num.to_s * 10}",
-            description: "authority '#{num}'"
+            descr: "authority '#{num}'"
           )
         end
       end
@@ -165,13 +150,13 @@ RSpec.describe Standards do
 
       context "errors searching for authorities" do
         it "errors if multiple authorities match the query" do
-          authority_2.code = authority_1.code
+          authority_2.acronym = authority_1.acronym
           ss = standards_stub.call(
             method: :match_authority,
             retval: [ authority_1, authority_2 ]
           )
           expect{
-            ss.send(:find_type, type: "authority", data: authority_1.code)
+            ss.send(:find_type, type: "authority", data: authority_1.acronym)
           }.to raise_error(StandardError, /more than one/i)
         end
 
@@ -194,43 +179,63 @@ RSpec.describe Standards do
           )
         end
 
-        it "matches authorities by code" do
+        it "matches authorities by acronym" do
           bb = ss_with_auth_array.send(:match_authority, 'BB')
           expect(bb).to be_a(Array)
           expect(bb.count).to eq(1)
-          expect(bb.first.code).to eq('BB')
+          expect(bb.first.acronym).to eq('BB')
         end
 
         it "matches authorities by guid" do
           bb = ss_with_auth_array.send(:match_authority, "#{'4' * 10}")
           expect(bb).to be_a(Array)
           expect(bb.count).to eq(1)
-          expect(bb.first.code).to eq('EE')
+          expect(bb.first.acronym).to eq('EE')
         end
 
         it "matches authorities by description" do
           bb = ss_with_auth_array.send(:match_authority, "authority '6'")
           expect(bb).to be_a(Array)
           expect(bb.count).to eq(1)
-          expect(bb.first.code).to eq('GG')
+          expect(bb.first.acronym).to eq('GG')
         end
       end
     end
 
     it "matches real authority by guid" do
       auths = handle.standards.authorities
-      indiana = auths.find{ |a| a.code == "IN" }
-      expect(indiana).not_to be_nil
-      expect(indiana).to be_an(Authority)
-      expect(indiana.guid).not_to be_nil
-      expect(indiana.guid).to be_a(String)
-      expect(indiana.guid).not_to be_empty
-      matches = handle.standards.send(:match_authority, indiana.guid)
+      common_core = auths.find{ |a| a.code == "CC" }
+      expect(common_core).not_to be_nil
+      expect(common_core).to be_an(Authority)
+      expect(common_core.guid).not_to be_nil
+      expect(common_core.guid).to be_a(String)
+      expect(common_core.guid).not_to be_empty
+      matches = handle.standards.send(:match_authority, common_core.guid)
       expect(matches).to be_an(Array)
       expect(matches.count).to eq(1)
-      expect(matches.first.code).to eq(indiana.code)
-      expect(matches.first.guid).to eq(indiana.guid)
-      expect(matches.first.description).to eq(indiana.description)
+      expect(matches.first.code).to eq(common_core.code)
+      expect(matches.first.guid).to eq(common_core.guid)
+      expect(matches.first.description).to eq(common_core.description)
+    end
+  end
+
+  context "retry" do
+    it "retries once" do
+      mock_once = true
+
+      expect(handle.class).to receive(:get).twice {
+        # return 429 first, then 200 afterwards
+        instance_double(
+          HTTParty::Response,
+          code: mock_once ? 429 : 200,
+          parsed_response: {"data" => [], "meta" => {"facets" => [{"details" => []}]}},
+          headers: {}
+        ).tap do
+          mock_once = false
+        end
+      }
+
+      handle.standards.authorities
     end
   end
 end

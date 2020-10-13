@@ -1,14 +1,15 @@
-RSpec.describe HasRelations do
+RSpec.describe Number do
   include ObjectHelper
 
   let(:hash) do
     {
-      "derivative" => 1
+      "enhanced" => "2.a.i",
+      "raw" => "i."
     }
   end
 
   it "is instantiable with hash" do
-    h = HasRelations.from_hash(hash)
+    h = Number.from_hash(hash)
     compare_obj_to_hash(h, hash)
   end
 end

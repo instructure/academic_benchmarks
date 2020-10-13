@@ -8,10 +8,12 @@ module AcademicBenchmarks
           "partner.id" => partner_id,
           "auth.signature" => signature_for(
             partner_key: partner_key,
-            message: self.message(expires: expires, user_id: user_id)),
-          "auth.expires" => expires,
-          "user.id" => user_id
-        }
+            message: self.message(expires: expires, user_id: user_id)
+          ),
+          "auth.expires" => expires
+        }.tap do |params|
+          params["user.id"] = user_id unless user_id.empty?
+        end
       end
 
       def self.signature_for(partner_key:, message:)

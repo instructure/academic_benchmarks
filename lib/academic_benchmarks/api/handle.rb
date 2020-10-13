@@ -44,28 +44,8 @@ module AcademicBenchmarks
         @user_id = user_id.to_s
       end
 
-      def related(guid:, fields: [])
-        raise StandardError.new("Sorry, not implemented yet!")
-      end
-
       def standards
         Standards.new(self)
-      end
-
-      def assets
-        raise StandardError.new("Sorry, not implemented yet!")
-      end
-
-      def alignments
-        raise StandardError.new("Sorry, not implemented yet!")
-      end
-
-      def topics
-        raise StandardError.new("Sorry, not implemented yet!")
-      end
-
-      def special
-        raise StandardError.new("Sorry, not implemented yet!")
       end
 
       private

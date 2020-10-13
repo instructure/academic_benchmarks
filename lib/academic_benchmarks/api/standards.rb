@@ -8,97 +8,86 @@ module AcademicBenchmarks
     class Standards
       DEFAULT_PER_PAGE = 100
 
+      STANDARDS_FIELDS = %w[
+        guid
+        education_levels.grades.code
+        label
+        level
+        section.guid
+        section.descr
+        number.raw
+        number.enhanced
+        status
+        disciplines.subjects.code
+        document.guid
+        document.descr
+        document.adopt_year
+        document.publication.descr
+        document.publication.guid
+        document.publication.authorities
+        statement.descr
+        parent
+      ]
+
       def initialize(handle)
         @handle = handle
       end
 
-      def search(opts = {})
-        # query: "", authority: "", subject: "", grade: "", subject_doc: "", course: "",
-        # document: "", parent: "", deepest: "", limit: -1, offset: -1, list: "", fields: []
-        invalid_params = invalid_search_params(opts)
-        if invalid_params.empty?
-          raw_search(opts).map do |standard|
-            AcademicBenchmarks::Standards::Standard.new(standard)
-          end
-        else
-          raise ArgumentError.new(
-            "Invalid search params: #{invalid_params.join(', ')}"
-          )
+      # TODO: in the future, support OData filtering for flexible querying
+      def search(authority_guid: nil, publication_guid: nil)
+        raw_search(authority: authority_guid, publication: publication_guid).map do |standard|
+          AcademicBenchmarks::Standards::Standard.new(standard)
         end
       end
 
-      alias_method :where, :search
-
-      def guid(guid, fields: [])
-        query_params = if fields.empty?
-                         auth_query_params
-                       else
-                         auth_query_params.merge({
-                           fields: fields.join(",")
-                         })
-                       end
-        @handle.class.get(
-          "/standards/#{guid}",
-          query: query_params
-        ).parsed_response["resources"].map do |r|
-          AcademicBenchmarks::Standards::Standard.new(r["data"])
+      def authorities
+        raw_facet("document.publication.authorities").map do |a|
+          AcademicBenchmarks::Standards::Authority.from_hash(a["data"])
         end
       end
 
-      def all
-        request_search_pages_and_concat_resources(auth_query_params)
-      end
-
-      def authorities(query_params = {})
-        raw_search({list: "authority"}.merge(query_params)).map do |a|
-          AcademicBenchmarks::Standards::Authority.from_hash(a["data"]["authority"])
+      def publications(authority_guid: nil)
+        raw_facet("document.publication", authority: authority_guid).map do |a|
+          AcademicBenchmarks::Standards::Publication.from_hash(a["data"])
         end
       end
 
-      def documents(query_params = {})
-        raw_search({list: "document"}.merge(query_params)).map do |a|
-          AcademicBenchmarks::Standards::Document.from_hash(a["data"]["document"])
-        end
-      end
-
-      def authority_documents(authority_or_auth_code_guid_or_desc)
+      def authority_publications(authority_or_auth_code_guid_or_desc)
         authority = auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
-        documents(authority: authority.code)
+        publications(authority_guid: authority.guid)
       end
 
       def authority_tree(authority_or_auth_code_guid_or_desc, include_obsolete_standards: true)
         authority = auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
-        auth_children = search(authority: authority.code)
+        auth_children = raw_search(authority: authority.guid, include_obsoletes: include_obsolete_standards)
         AcademicBenchmarks::Standards::StandardsForest.new(
-          auth_children,
-          include_obsoletes: include_obsolete_standards
+          auth_children
         ).consolidate_under_root(authority)
       end
 
-      def document_tree(document_or_guid, include_obsolete_standards: true)
-        document = doc_from_guid(document_or_guid)
-        doc_children = search(document: document.guid)
+      def publication_tree(publication_or_pub_code_guid_or_desc, include_obsolete_standards: true)
+        publication = pub_from_guid(publication_or_pub_code_guid_or_desc)
+        pub_children = raw_search(publication: publication.guid, include_obsoletes: include_obsolete_standards)
         AcademicBenchmarks::Standards::StandardsForest.new(
-          doc_children,
-          include_obsoletes: include_obsolete_standards
-        ).consolidate_under_root(document)
+          pub_children
+        ).consolidate_under_root(publication)
       end
 
       private
-
-      def doc_from_guid(document_or_guid)
-        if document_or_guid.is_a?(AcademicBenchmarks::Standards::Document)
-          document_or_guid
-        else
-          find_type(type: "document", data: document_or_guid)
-        end
-      end
 
       def auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
         if authority_or_auth_code_guid_or_desc.is_a?(AcademicBenchmarks::Standards::Authority)
           authority_or_auth_code_guid_or_desc
         else
           find_type(type: "authority", data: authority_or_auth_code_guid_or_desc)
+        end
+      end
+
+      def pub_from_guid(publication_or_pub_code_guid_or_desc)
+        if publication_or_pub_code_guid_or_desc.is_a?(AcademicBenchmarks::Standards::Publication)
+          publication_or_pub_code_guid_or_desc
+        else
+          find_type(type: "publication", data: publication_or_pub_code_guid_or_desc)
         end
       end
 
@@ -110,7 +99,7 @@ module AcademicBenchmarks
           )
         elsif matches.count > 1
           raise StandardError.new(
-            "Authority code, guid, or description matched more than one authority.  " \
+            "#{type.upcase} code, guid, or description matched more than one #{type}.  " \
             "matched '#{matches.map(&:to_json).join('; ')}'"
           )
         end
@@ -119,22 +108,26 @@ module AcademicBenchmarks
 
       def match_authority(data)
         authorities.select do |auth|
-          auth.code  == data ||
+          auth.acronym  == data ||
           auth.guid  == data ||
           auth.descr == data
         end
       end
 
-      def match_document(data)
-        documents.select { |doc| doc.guid == data }
+      def match_publication(data)
+        publications.select do |pub|
+          pub.acronym == data ||
+          pub.guid == data ||
+          pub.descr == data
+        end
+      end
+
+      def raw_facet(facet, query_params = {})
+        request_facet({facet: facet}.merge(query_params).merge(auth_query_params))
       end
 
       def raw_search(opts = {})
         request_search_pages_and_concat_resources(opts.merge(auth_query_params))
-      end
-
-      def invalid_search_params(opts)
-        opts.keys.map(&:to_s) - AcademicBenchmarks::Api::Constants.standards_search_params
       end
 
       def auth_query_params
@@ -146,7 +139,41 @@ module AcademicBenchmarks
         )
       end
 
+      def odata_filters(query_params)
+        if query_params.key? :authority
+          value = query_params.delete :authority
+          query_params['filter[standards]'] = "document.publication.authorities.guid eq '#{value}'" if value
+        end
+        if query_params.key? :publication
+          value = query_params.delete :publication
+          query_params['filter[standards]'] = "document.publication.guid eq '#{value}'" if value
+        end
+
+        if query_params.key? :include_obsoletes
+          unless query_params.delete :include_obsoletes
+            if query_params.key? 'filter[standards]'
+              query_params['filter[standards]'] += " and status eq 'active'"
+            else
+              query_params['filter[standards]'] = "status eq 'active'"
+            end
+          end
+        end
+      end
+
+      def request_facet(query_params)
+        odata_filters query_params
+        page = request_page(
+          query_params: query_params,
+          limit: 0, # return no standards since facets are separate
+          offset: 0
+        ).parsed_response
+
+        page.dig("meta", "facets", 0, "details")
+      end
+
       def request_search_pages_and_concat_resources(query_params)
+        query_params['fields[standards]'] = STANDARDS_FIELDS.join(',')
+        odata_filters query_params
         query_params.reverse_merge!({limit: DEFAULT_PER_PAGE})
 
         if !query_params[:limit] || query_params[:limit] <= 0
@@ -161,10 +188,9 @@ module AcademicBenchmarks
           offset: 0
         ).parsed_response
 
-        resources = first_page["resources"]
-        count = first_page["count"]
+        resources = first_page["data"]
+        count = first_page["meta"]["count"]
         offset = query_params[:limit]
-
         while offset < count
           page = request_page(
             query_params: query_params,
@@ -172,7 +198,7 @@ module AcademicBenchmarks
             offset: offset
           )
           offset += query_params[:limit]
-          resources.push(page.parsed_response["resources"])
+          resources.push(page.parsed_response["data"])
         end
 
         resources.flatten
@@ -183,19 +209,29 @@ module AcademicBenchmarks
           limit: limit,
           offset: offset,
         })
-        resp = @handle.class.get(
-          '/standards',
-          query: query_params.merge({
-            limit: limit,
-            offset: offset,
-          })
-        )
-        if resp.code != 200
-          raise RuntimeError.new(
-            "Received response '#{resp.code}: #{resp.message}' requesting standards from Academic Benchmarks:"
+        1.times do
+          resp = @handle.class.get(
+            '/standards',
+            query: query_params.merge({
+              limit: limit,
+              offset: offset,
+            })
           )
+          if resp.code == 429
+            sleep retry_after(resp)
+            redo
+          end
+          if resp.code != 200
+            raise RuntimeError.new(
+              "Received response '#{resp.code}: #{resp.message}' requesting standards from Academic Benchmarks:"
+            )
+          end
+          return resp
         end
-        resp
+      end
+
+      def retry_after(response)
+        ENV['ACADEMIC_BENCHMARKS_TOO_MANY_REQUESTS_RETRY']&.to_f || 5
       end
     end
   end

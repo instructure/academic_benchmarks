@@ -2,7 +2,7 @@ require 'securerandom'
 
 module StandardsHelper
   def self.standard_hash
-    JSON.parse(ApiHelper::Fixtures.search_authority_indiana_response).first
+    JSON.parse(ApiHelper::Fixtures.search_authority_indiana_response)['data'].first
   end
 
   def self.standard

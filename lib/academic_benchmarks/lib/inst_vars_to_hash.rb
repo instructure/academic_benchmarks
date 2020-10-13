@@ -19,6 +19,8 @@ module InstVarsToHash
   def to_h(omit_parent: true, omit_empty_children: true)
     retval = {}
     instance_variables.each do |iv|
+      # Don't hashify these attributes, otherwise it can lead to infinite recursion
+      next if %w[@authority @document @publication @section].include? iv.to_s
       if !(skip_parent?(omit_parent, iv) || skip_children?(omit_empty_children, iv))
         retval[iv.to_s.delete('@').to_sym] = elem_to_h(instance_variable_get(iv))
       end

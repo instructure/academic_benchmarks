@@ -1,3 +1,5 @@
+require 'hash_dig_and_collect'
+
 RSpec.describe Standard do
   include ObjectHelper
 
@@ -5,71 +7,66 @@ RSpec.describe Standard do
     JSON.parse(ApiHelper::Fixtures.all_standards_response)
   end
 
-  # poro == plain old ruby object
-  let(:standard) { Standard.new(api_response["resources"].first) }
-  let(:poro_keys) { %w[authority course document grade has_relations parent subject subject_doc] }
-  let(:ignore_keys) { %w[self] }
+  let(:standard) { Standard.new(api_response["data"].first) }
 
-  it "accepts only 'Active' and 'Obsolete' for status" do
-    expect{standard.status = "Hello"}.to raise_error(ArgumentError)
-    %w[Obsolete Active].each do |new_val|
-      expect{standard.status = new_val}.to change{standard.status}.to(new_val)
-      if standard.status == 'Active'
-        expect(standard).to be_active
-        expect(standard).not_to be_obsolete
-      else
-        expect(standard).to be_obsolete
-        expect(standard).not_to be_active
-      end
+  def send_chain(obj, arr)
+    arr.inject(obj) do |o, a|
+      o.is_a?(Array) ? o.map {|i| i.send(a) } : o.send(a)
     end
   end
 
-  it "reports obsolete standards as obsolete" do
-    standard.status = "Obsolete"
-    expect(standard).to be_obsolete
-    expect(standard).not_to be_active
-  end
-
-  it "accepts only 'Y' or 'N' for deepest" do
-    expect{standard.deepest = "Hello"}.to raise_error(ArgumentError)
-    %w[Y N].each do |new_val|
-      expect{standard.deepest = new_val}.to change{standard.deepest}.to(new_val)
-      if standard.deepest == 'Y'
-        expect(standard).to be_deepest
-      else
-        expect(standard).not_to be_deepest
-      end
-    end
+  def compare_obj_to_hash_path(obj, hash, path)
+    # dig_and_collect will return values in array,
+    # even if an intermediate hash value wasn't array,
+    # so coerce the left hand side into an array.
+    expect(Array(send_chain(obj, path)).compact).to eq(hash.dig_and_collect(*path).compact), "failed to match on #{path.join(',')}"
   end
 
   it "is instantiable from hash" do
-    api_response["resources"].each do |resource|
-      s = Standard.new(resource["data"])
+    api_response["data"].each do |resource|
+      attrs = resource['attributes']
+      s = Standard.new(resource)
       expect(s).not_to be_nil
-      compare_obj_to_hash(s, resource["data"], poro_keys.dup.concat(ignore_keys))
-      poro_keys.each { |key| expect(s).to respond_to(key) }
+      compare_obj_to_hash_path(s, attrs, ['guid'])
+      compare_obj_to_hash_path(s, attrs, ['label'])
+      compare_obj_to_hash_path(s, attrs, ['status'])
+      compare_obj_to_hash_path(s, attrs, ['number', 'enhanced'])
+      compare_obj_to_hash_path(s, attrs, ['number', 'raw'])
+      compare_obj_to_hash_path(s, attrs, ['disciplines', 'subjects', 'code'])
+      compare_obj_to_hash_path(s, attrs, ['statement', 'descr'])
+      compare_obj_to_hash_path(s, attrs, ['section', 'guid'])
+      compare_obj_to_hash_path(s, attrs, ['section', 'descr'])
+      compare_obj_to_hash_path(s, attrs, ['education_levels', 'grades', 'code'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'descr'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'adopt_year'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'guid'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'descr'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'guid'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'authorities', 'descr'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'authorities', 'acronym'])
+      compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'authorities', 'guid'])
+      expect(s.parent_guid).to eq resource.dig('relationships', 'parent', 'data', 'id')
     end
   end
 
   it "sets parent_guid to nil when there is no parent in the hash" do
-    hash = api_response["resources"].first["data"]
-    hash.delete("parent")
-    expect(hash).not_to have_key("parent")
+    hash = api_response["data"].first
+    expect(hash["relationships"].delete("parent")).not_to be_nil
     expect(Standard.new(hash).parent_guid).to be_nil
   end
 
   it "properly sets the parent_guid" do
     parent_guid = SecureRandom.uuid
-    hash = api_response["resources"].first
+    hash = api_response["data"].first
     expect(Standard.new(hash).parent_guid).not_to be_nil
-    hash["data"]["parent"]["guid"] = parent_guid
+    hash["relationships"]["parent"]["data"]["id"] = parent_guid
     expect(Standard.new(hash).parent_guid).to eq(parent_guid)
   end
 
   context "children" do
-    let(:parent) { Standard.new(api_response["resources"][0]) }
-    let(:child1) { Standard.new(api_response["resources"][1]) }
-    let(:child2) { Standard.new(api_response["resources"][2]) }
+    let(:parent) { Standard.new(api_response["data"][0]) }
+    let(:child1) { Standard.new(api_response["data"][1]) }
+    let(:child2) { Standard.new(api_response["data"][2]) }
 
     it "can be added to the standard" do
       expect{
@@ -102,50 +99,38 @@ RSpec.describe Standard do
         parent.add_child(child1)
       }.to change{child1.parent}.from(nil).to(parent)
     end
-
-    context "prunes away obsolete children" do
-      it "recursively" do
-        parent.add_child(child1)
-        child1.add_child(child2)
-        child1.status = "Active"
-        child2.status = "Obsolete"
-        expect {
-          parent.remove_obsolete_children
-        }.to change{ child1.children }.from([child2]).to([])
-        expect(parent.children).to match_array([child1])
-      end
-
-      it "even when they have non-obsolete children" do
-        parent.add_child(child1.tap{|c| c.status = "Obsolete"})
-        child1.add_child(child2.tap{|c| c.status = "Active"})
-        expect {
-          parent.remove_obsolete_children
-        }.to change{ parent.children }.from([child1]).to([])
-      end
-    end
   end
 
   context "grades" do
-    let(:grade1) { Grade.new(high: "So high", low: "low man") }
+    let(:ed_levels) do
+      EducationLevels.new(grades: [
+        {
+          code: "low man"
+        },
+        {
+          code: "So high"
+        }
+      ])
+    end
 
     it "cascades grades properly" do
       s1 = StandardsHelper.standard
-      s1.grade = grade1
+      s1.education_levels = ed_levels
       last_standard = s1
       10.times do |i|
         last_standard.add_child(StandardsHelper.standard)
         last_standard = last_standard.children.first
         last_standard.number = i
-        last_standard.grade = nil
+        last_standard.education_levels = nil
       end
       expect(s1).to have_children
-      expect(s1.grade.low).to  eq(grade1.low)
-      expect(s1.grade.high).to eq(grade1.high)
+      expect(s1.education_levels.grades.first).to eq(ed_levels.grades.first)
+      expect(s1.education_levels.grades.last).to eq(ed_levels.grades.last)
       expect(last_standard).not_to have_children
-      expect(last_standard.instance_variable_get("@grade")).to be_nil
-      expect(last_standard.grade).not_to be_nil
-      expect(last_standard.grade.low).to  eq(grade1.low)
-      expect(last_standard.grade.high).to eq(grade1.high)
+      expect(last_standard.instance_variable_get("@education_levels")).to be_nil
+      expect(last_standard.education_levels).not_to be_nil
+      expect(last_standard.education_levels.grades.first).to eq(ed_levels.grades.first)
+      expect(last_standard.education_levels.grades.last).to eq(ed_levels.grades.last)
     end
   end
 end

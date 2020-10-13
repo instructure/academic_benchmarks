@@ -47,6 +47,15 @@ RSpec.describe Auth do
         user_id: ApiHelper::Fixtures::USER_ID
       )).not_to be_empty
     end
+
+    it "excludes user_id if empty" do
+      expect(Auth.auth_query_params(
+        partner_id: ApiHelper::Fixtures::PARTNER_ID,
+        partner_key: ApiHelper::Fixtures::PARTNER_KEY,
+        expires: Time.now.to_i,
+        user_id: ""
+      )).not_to have_key(:user_id)
+    end
   end
 
   context "correct signature" do
@@ -95,8 +104,7 @@ RSpec.describe Auth do
         )).to eq({
           "partner.id" => ApiHelper::Fixtures::PARTNER_ID,
           "auth.signature" => signature,
-          "auth.expires" => expires,
-          "user.id" => ""
+          "auth.expires" => expires
         })
       end
     end

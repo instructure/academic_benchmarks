@@ -16,7 +16,7 @@ an API that allows a user with a subscription to download various
 * So you don't have to implement your own authentication
 * To avoid dealing with raw endpoints
 * Beating the pains of de-pagination
-* For fully constructed and inflated authority and document trees
+* For fully constructed and inflated authority and publication trees
 * Re-using code is smart
 
 ## Get Started
@@ -68,45 +68,21 @@ And instantiate:
 
     ab_handle = AcademicBenchmarks::Api::Handle.init_from_env
 
+### Throttling
+
+The server may throttle requests if it deems too many requests are being sent.
+In that case, by default the handle sleeps for 5 seconds before retrying the request again.
+This can be configured through an environment variable:
+
+    export ACADEMIC_BENCHMARKS_TOO_MANY_REQUESTS_RETRY='1' # wait 1 second before retrying
+
 ### Do Something
 
-Now use the handle to get standards, either by searching
-or using convenience methods:
-
-#### Search for standards
-
-The parameters accepted by the search method mirror
-[the AB API](http://docs.academicbenchmarks.com/#?d=api&f=standards).
-See those docs for an enumeration.
-
-Search for some some text within standards:
-
-    ab_handle.standards.search(query: "my search query")
-
-Retrieve all standards from a certain authority
-(Indiana given in the example)
-
-    ab_handle.standards.search(authority: "IN")
+Now use the handle to get standards, by using convenience methods:
 
 #### List available authorities
 
     ab_handle.standards.authorities
-
-#### Retrieve all standards
-
-NOTE: If you have a lot of standards in your subscription,
-_this will take a really long time_
-
-    ab_handle.standards.all
-
-#### Retrieve a specified guid
-
-    ab_handle.standards.guid("<some-guid>">)
-
-This can be restricted to certain fields.  See
-[the list of all available fields](http://docs.academicbenchmarks.com/#?d=api&f=standards):
-
-    ab_handle.standards.guid("<some-guid>">, fields: %w[descr number version])
 
 ## Running Unit Tests
 

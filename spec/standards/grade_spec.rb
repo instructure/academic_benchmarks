@@ -3,8 +3,7 @@ RSpec.describe Grade do
 
   let(:hash) do
     {
-      "high" => "12",
-      "low" => "K"
+      "code" => "K"
     }
   end
 

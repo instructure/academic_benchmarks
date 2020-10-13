@@ -1,8 +1,6 @@
 # This helper shortens up the namespaced classes to 
 # reduce the amount of typing required
 
-require_relative '../util/tree_hash_generator'
-
 # Api
 Auth = AcademicBenchmarks::Api::Auth
 Constants = AcademicBenchmarks::Api::Constants
@@ -12,15 +10,14 @@ Standards = AcademicBenchmarks::Api::Standards
 
 # Standards
 Authority = AcademicBenchmarks::Standards::Authority
-Course = AcademicBenchmarks::Standards::Course
+Disciplines = AcademicBenchmarks::Standards::Disciplines
 Document = AcademicBenchmarks::Standards::Document
+EducationLevels = AcademicBenchmarks::Standards::EducationLevels
 Grade = AcademicBenchmarks::Standards::Grade
-HasRelations = AcademicBenchmarks::Standards::HasRelations
-Parent = AcademicBenchmarks::Standards::Parent
+Number = AcademicBenchmarks::Standards::Number
+Publication = AcademicBenchmarks::Standards::Publication
+Section = AcademicBenchmarks::Standards::Section
 StandardsForest = AcademicBenchmarks::Standards::StandardsForest
 StandardsTree = AcademicBenchmarks::Standards::StandardsTree
+Statement = AcademicBenchmarks::Standards::Statement
 Subject = AcademicBenchmarks::Standards::Subject
-SubjectDoc = AcademicBenchmarks::Standards::SubjectDoc
-
-# Utils
-TreeHashGenerator = AcademicBenchmarks::Utils::TreeHashGenerator

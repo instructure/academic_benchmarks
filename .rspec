@@ -1,7 +1,6 @@
 --color
 
 --require ./lib/academic_benchmarks
---require ./util/tree_hash_generator
 
 --require spec_helper
 --require config_helper

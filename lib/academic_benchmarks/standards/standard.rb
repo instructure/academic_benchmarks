@@ -1,79 +1,46 @@
 require 'academic_benchmarks/lib/inst_vars_to_hash'
-require 'academic_benchmarks/lib/remove_obsolete_children'
 
 module AcademicBenchmarks
   module Standards
     class Standard
       include InstVarsToHash
-      include RemoveObsoleteChildren
 
-      attr_reader :status, :deepest, :children
-      attr_writer :grade
-      attr_accessor :guid, :description, :number, :stem, :label, :level,
-                    :version, :seq, :adopt_year, :authority, :course,
-                    :document, :has_relations, :subject, :subject_doc,
+      attr_reader :status, :children
+      attr_writer :education_levels
+      attr_accessor :guid,
+                    :statement,
+                    :number, :stem, :label, :level,
+                    :seq,
+                    :section,
+                    :document, :disciplines,
                     :parent, :parent_guid
 
-      alias_method :descr, :description
-
+      # Before standards are rebranched in Authority#rebranch_children
+      # or Document#rebranch_children, they have the following structure.
+      #
+      # Standard
+      # |-> Document
+      # |   |-> Publication
+      # |       |-> Authority
+      # |-> Section
+      #
       def initialize(data)
-        data = data["data"] if data["data"]
-        @guid = data["guid"]
-        @grade = attr_to_val_or_nil(Grade, data, "grade")
-        @label = data["label"]
-        @level = data["level"]
-        @course = attr_to_val_or_nil(Course, data, "course")
-        @number = data["number"]
-        @status = data["status"]
-        @parent = nil
-        @subject = attr_to_val_or_nil(Subject, data, "subject")
-        @deepest = data["deepest"]
-        @version = data["version"]
+        attributes = data["attributes"]
+        @guid = attributes["guid"]
+        @education_levels = attr_to_val_or_nil(EducationLevels, attributes, "education_levels")
+        @label = attributes["label"]
+        @level = attributes["level"]
+        @section = attr_to_val_or_nil(Section, attributes, "section")
+        @number = attr_to_val_or_nil(Number, attributes, "number")
+        @status = attributes["status"]
+        @disciplines = attr_to_val_or_nil(Disciplines, attributes, "disciplines")
         @children = []
-        @document = attr_to_val_or_nil(Document, data, "document")
-        @authority = attr_to_val_or_nil(Authority, data, "authority")
-        @adopt_year = data["adopt_year"]
-        @description = data["descr"]
-        @subject_doc = attr_to_val_or_nil(SubjectDoc, data, "subject_doc")
-        @has_relations = attr_to_val_or_nil(HasRelations, data, "has_relations")
-
-        # Parent guid extraction can be a little more complicated
-        if data["parent"] && data["parent"].is_a?(String)
-          @parent_guid = data["parent"]
-        elsif data["parent"] && data["parent"].is_a?(Hash)
-          @parent_guid = data["parent"]["guid"]
-        end
+        @document = attr_to_val_or_nil(Document, attributes, "document")
+        @statement = attr_to_val_or_nil(Statement, attributes, "statement")
+        @parent_guid = data.dig("relationships", "parent", "data", "id")
       end
 
       alias_method :from_hash, :initialize
-
-      def active?
-        status == "Active"
-      end
-
-      def obsolete?
-        status == "Obsolete"
-      end
-
-      def deepest?
-        deepest == 'Y'
-      end
-
-      def status=(status)
-        unless %w[Active Obsolete].include?(status)
-          raise ArgumentError.new(
-            "Standard status must be either 'Active' or 'Obsolete'"
-          )
-        end
-        @status = status
-      end
-
-      def deepest=(deepest)
-        unless %w[Y N].include?(deepest)
-          raise ArgumentError.new("Standard deepest must be either 'Y' or 'N'")
-        end
-        @deepest = deepest
-      end
 
       def add_child(child)
         raise StandardError.new("Tried to add self as a child") if self == child
@@ -94,17 +61,13 @@ module AcademicBenchmarks
         @children.count > 0
       end
 
-      def leaf?
-        !has_children?
-      end
+      def education_levels
+        return @education_levels if @education_levels
 
-      def grade
-        return @grade if @grade
-
-        # check to see if one of our parents has a grade.  Use that if so
+        # check to see if one of our parents has education levels.  Use that if so
         p = parent
         while p
-          return p.grade if p.grade
+          return p.education_levels if p.education_levels
           p = p.parent
         end
         nil

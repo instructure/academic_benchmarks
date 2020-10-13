@@ -5,15 +5,14 @@ module AcademicBenchmarks
     class Subject
       include InstVarsToHash
 
-      attr_accessor :code, :broad
+      attr_accessor :code
 
       def self.from_hash(hash)
-        self.new(code: hash["code"], broad: hash["broad"], )
+        self.new(code: hash["code"])
       end
 
-      def initialize(code:, broad:)
+      def initialize(code:)
         @code = code
-        @broad = broad
       end
     end
   end

@@ -1,22 +1,29 @@
 require 'academic_benchmarks/lib/inst_vars_to_hash'
-require 'academic_benchmarks/lib/remove_obsolete_children'
 
 module AcademicBenchmarks
   module Standards
     class Document
       include InstVarsToHash
-      include RemoveObsoleteChildren
 
-      attr_accessor :title, :guid, :children
+      attr_accessor :guid, :descr, :publication, :adopt_year, :children
 
       def self.from_hash(hash)
-        self.new(title: hash["title"], guid: hash["guid"])
+        self.new(guid: hash["guid"], descr: hash["descr"], publication: hash["publication"], adopt_year: hash["adopt_year"])
       end
 
-      def initialize(title:, guid:, children: [])
-        @title = title
+      def initialize(guid:, descr:, publication:, adopt_year:, children: [])
         @guid = guid
+        @descr = descr
+        @publication = attr_to_val_or_nil(Publication, publication)
+        @adopt_year = adopt_year
         @children = children
+      end
+
+      private
+
+      def attr_to_val_or_nil(klass, hash)
+        return nil if hash.nil?
+        klass.from_hash(hash)
       end
     end
   end
