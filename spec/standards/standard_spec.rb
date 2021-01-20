@@ -45,6 +45,7 @@ RSpec.describe Standard do
       compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'authorities', 'descr'])
       compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'authorities', 'acronym'])
       compare_obj_to_hash_path(s, attrs, ['document', 'publication', 'authorities', 'guid'])
+      compare_obj_to_hash_path(s, attrs, ['utilizations', 'type'])
       expect(s.parent_guid).to eq resource.dig('relationships', 'parent', 'data', 'id')
     end
   end

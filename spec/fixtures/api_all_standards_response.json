@@ -1,16 +1,50 @@
 {
   "links": {
-    "last": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards?fields%5Bstandards%5D=guid,education_levels.grades.code,label,level,section.guid,section.descr,number.raw,number.enhanced,status,disciplines.subjects.code,document.guid,document.descr,document.adopt_year,document.publication.descr,document.publication.guid,document.publication.authorities,statement.descr,parent&limit=20&offset=1374920",
-    "next": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards?fields%5Bstandards%5D=guid,education_levels.grades.code,label,level,section.guid,section.descr,number.raw,number.enhanced,status,disciplines.subjects.code,document.guid,document.descr,document.adopt_year,document.publication.descr,document.publication.guid,document.publication.authorities,statement.descr,parent&limit=20&offset=20",
-    "self": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards?fields%5Bstandards%5D=guid,education_levels.grades.code,label,level,section.guid,section.descr,number.raw,number.enhanced,status,disciplines.subjects.code,document.guid,document.descr,document.adopt_year,document.publication.descr,document.publication.guid,document.publication.authorities,statement.descr,parent&limit=20"
+    "next": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards?fields%5Bstandards%5D=guid,education_levels.grades.code,label,level,section.guid,section.descr,number.raw,number.enhanced,status,disciplines.subjects.code,document.guid,document.descr,document.adopt_year,document.publication.descr,document.publication.guid,document.publication.authorities,statement.descr,utilizations.type,parent&limit=20&offset=20",
+    "last": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards?fields%5Bstandards%5D=guid,education_levels.grades.code,label,level,section.guid,section.descr,number.raw,number.enhanced,status,disciplines.subjects.code,document.guid,document.descr,document.adopt_year,document.publication.descr,document.publication.guid,document.publication.authorities,statement.descr,utilizations.type,parent&limit=20&offset=14600",
+    "self": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards?fields%5Bstandards%5D=guid,education_levels.grades.code,label,level,section.guid,section.descr,number.raw,number.enhanced,status,disciplines.subjects.code,document.guid,document.descr,document.adopt_year,document.publication.descr,document.publication.guid,document.publication.authorities,statement.descr,utilizations.type,parent&limit=20"
   },
   "data": [
     {
-      "type": "standards",
+      "id": "0003631b-ca53-4985-8963-b7907320f8d9",
       "attributes": {
+        "document": {
+          "adopt_year": "2010",
+          "descr": "Social Studies",
+          "publication": {
+            "guid": "9935E84E-C0DA-11DA-844D-F1B58A7EE3C7",
+            "descr": "Course of Study",
+            "authorities": [
+              {
+                "acronym": "ALSDE",
+                "guid": "912A8036-F1B9-11E5-862E-0938DC287387",
+                "descr": "Alabama State Department of Education"
+              }
+            ]
+          },
+          "guid": "fe79c173-62e4-490b-ad02-a9ee8db932ad"
+        },
         "number": {
-          "enhanced": "PF.SS.C.33.b",
-          "raw": null
+          "raw": null,
+          "enhanced": "8.5"
+        },
+        "guid": "0003631b-ca53-4985-8963-b7907320f8d9",
+        "level": 2,
+        "status": "active",
+        "education_levels": {
+          "grades": [
+            {
+              "code": "5"
+            }
+          ]
+        },
+        "section": {
+          "descr": "Fifth Grade - United States Studies: Beginnings to the Industrial Revolution",
+          "guid": "b6a72362-7ca2-4f00-85ef-6ff44917460b"
+        },
+        "label": null,
+        "statement": {
+          "descr": "Locating on a map major battle sites of the American Revolution, including the battles of Lexington and Concord, Bunker Hill, Saratoga, and Yorktown"
         },
         "disciplines": {
           "subjects": [
@@ -19,14 +53,97 @@
             }
           ]
         },
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ]
+      },
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0003631b-ca53-4985-8963-b7907320f8d9/parent"
+          },
+          "data": {
+            "id": "e248c361-6dd7-40fe-9d3e-0a44e2710e93",
+            "type": "standards"
+          }
+        }
+      }
+    },
+    {
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "standards",
+            "id": "c041ac03-186b-4a0e-a9e5-7de50537124f"
+          },
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00040511-6bf3-4955-8e43-8ce30c0618eb/parent"
+          }
+        }
+      },
+      "attributes": {
+        "section": {
+          "descr": "Grade 3",
+          "guid": "45947e3c-5ce7-4651-a3d4-7183db79df21"
+        },
+        "label": "Standard",
         "education_levels": {
           "grades": [
             {
-              "code": "9"
-            },
+              "code": "3"
+            }
+          ]
+        },
+        "status": "active",
+        "level": 2,
+        "guid": "00040511-6bf3-4955-8e43-8ce30c0618eb",
+        "document": {
+          "guid": "5bc5bcfc-a222-42fd-b471-e616205d4e90",
+          "adopt_year": "2014",
+          "publication": {
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "descr": "Academic Standards",
+            "authorities": [
+              {
+                "acronym": null,
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE"
+              }
+            ]
+          },
+          "descr": "Mathematics"
+        },
+        "number": {
+          "enhanced": "3.C.2",
+          "raw": "3.C.2"
+        },
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "disciplines": {
+          "subjects": [
             {
-              "code": "10"
-            },
+              "code": "MATH"
+            }
+          ]
+        },
+        "statement": {
+          "descr": "Represent the concept of multiplication of whole numbers with the following models: equal-sized groups, arrays, area models, and equal \"jumps\" on a number line. Understand the properties of 0 and 1 in multiplication."
+        }
+      },
+      "id": "00040511-6bf3-4955-8e43-8ce30c0618eb"
+    },
+    {
+      "attributes": {
+        "status": "active",
+        "education_levels": {
+          "grades": [
             {
               "code": "11"
             },
@@ -35,384 +152,86 @@
             }
           ]
         },
-        "status": "active",
-        "document": {
-          "adopt_year": "2016",
-          "descr": "Social Studies",
-          "publication": {
-            "descr": "College- and Career-Readiness Standards",
-            "authorities": [
-              {
-                "acronym": null,
-                "guid": "912F7CEE-F1B9-11E5-862E-0938DC287387",
-                "descr": "West Virginia DOE"
-              }
-            ],
-            "guid": "1C8DF766-D9E6-11E5-803F-A28FE3C00672"
-          },
-          "guid": "9D85340C-592E-11E6-A0F5-48E229C466BA"
-        },
-        "level": 3,
-        "statement": {
-          "descr": "Participate in mock job interviews."
+        "section": {
+          "guid": "a2a28063-e312-43ef-83e7-a4652a0d3e4f",
+          "descr": "Grades 11-12 Literacy: Science/Technical Subjects"
         },
         "label": null,
-        "section": {
-          "guid": "9D845A96-592E-11E6-A0F5-48E229C466BA",
-          "descr": "Civics"
-        },
-        "guid": "00000B3E-5B4B-11E6-9639-EF6EBF03DF2F"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "standards",
-            "id": "0EF54B48-5AAD-11E6-96E6-3696BF03DF2F"
-          },
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00000B3E-5B4B-11E6-9639-EF6EBF03DF2F/parent"
-          }
-        }
-      },
-      "id": "00000B3E-5B4B-11E6-9639-EF6EBF03DF2F"
-    },
-    {
-      "attributes": {
-        "number": {
-          "raw": "1.",
-          "enhanced": "CCSS.ELA-Literacy.RH.9-10.1"
-        },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "LANG"
-            }
-          ]
-        },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "9"
-            },
-            {
-              "code": "10"
-            }
-          ]
-        },
+        "level": 1,
         "document": {
+          "adopt_year": "2014",
+          "descr": "English/Language Arts",
           "publication": {
-            "guid": "E1D806C2-DA22-11E2-95B3-3B359DFF4B22",
             "authorities": [
               {
-                "descr": "South Dakota DOE",
-                "guid": "912E414E-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE",
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
                 "acronym": null
               }
             ],
-            "descr": "Common Core State Standards"
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "descr": "Academic Standards"
           },
-          "descr": "English Language Arts",
-          "adopt_year": "2010",
-          "guid": "E1C9B054-DA22-11E2-95B3-3B359DFF4B22"
+          "guid": "41ba4f1d-2568-4a2b-94d5-85c5d3dc22fc"
         },
-        "status": "obsolete",
-        "statement": {
-          "descr": "Cite specific textual evidence to support analysis of primary and secondary sources, attending to such features as the date and origin of the information."
-        },
-        "level": 3,
-        "label": "Grade Level Standard",
-        "guid": "00000CD0-D9E7-11E2-BBB0-00249DFF4B22",
-        "section": {
-          "descr": "Grades 9-10 Literacy in History/Social Studies",
-          "guid": "E1A0A790-DA22-11E2-95B3-3B359DFF4B22"
-        }
-      },
-      "relationships": {
-        "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00000CD0-D9E7-11E2-BBB0-00249DFF4B22/parent"
-          },
-          "data": {
-            "type": "standards",
-            "id": "FFF54142-D9E6-11E2-BBB0-00249DFF4B22"
-          }
-        }
-      },
-      "id": "00000CD0-D9E7-11E2-BBB0-00249DFF4B22",
-      "type": "standards"
-    },
-    {
-      "id": "000023AE-31A6-11E6-8D85-87D4092D2668",
-      "relationships": {
-        "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/000023AE-31A6-11E6-8D85-87D4092D2668/parent"
-          },
-          "data": {
-            "type": "standards",
-            "id": "9270B188-31A4-11E6-A9BA-04149AAB8BA3"
-          }
-        }
-      },
-      "attributes": {
-        "education_levels": {
-          "grades": [
-            {
-              "code": "6"
-            },
-            {
-              "code": "7"
-            },
-            {
-              "code": "8"
-            }
-          ]
-        },
-        "status": "active",
-        "document": {
-          "publication": {
-            "authorities": [
-              {
-                "guid": "9127FF50-F1B9-11E5-862E-0938DC287387",
-                "acronym": "FDOE",
-                "descr": "Florida DOE"
-              }
-            ],
-            "guid": "209823E4-2FB7-11DE-BA91-15719DFF4B22",
-            "descr": "Next Generation Sunshine State Standards"
-          },
-          "adopt_year": "2008",
-          "descr": "Science",
-          "guid": "C3C7DF24-E1BF-11DC-A10B-B5479DFF4B22"
-        },
-        "label": "Benchmark",
-        "section": {
-          "guid": "FFEAA3BC-3051-11E6-B1BB-E87129C466BA",
-          "descr": "Computer Science Grades 6-8"
-        },
-        "guid": "000023AE-31A6-11E6-8D85-87D4092D2668",
-        "statement": {
-          "descr": "Explain why different file types exist (e.g., formats for word processing, images, music, and three-dimensional drawings)."
-        },
-        "level": 3,
-        "number": {
-          "enhanced": "SC.68.CS-CS.3.1",
-          "raw": "SC.68.CS-CS.3.1:"
-        },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "SCI"
-            }
-          ]
-        }
-      },
-      "type": "standards"
-    },
-    {
-      "type": "standards",
-      "attributes": {
-        "status": "active",
-        "document": {
-          "guid": "7000FD2C-FCEC-11DE-80E0-6A569DFF4B22",
-          "adopt_year": "2010",
-          "descr": "English Language",
-          "publication": {
-            "guid": "19D63A06-2B10-11DE-B51C-AA149DFF4B22",
-            "authorities": [],
-            "descr": "Subject Syllabuses"
-          }
-        },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "1"
-            }
-          ]
-        },
-        "guid": "000024F2-FF3B-11DE-87E0-EE579DFF4B22",
-        "label": null,
-        "section": {
-          "descr": "Primary 1",
-          "guid": "6FFDD05C-FCEC-11DE-80E0-6A569DFF4B22"
-        },
-        "level": 5,
-        "statement": {
-          "descr": "Demonstrate awareness of the features of spoken language:"
-        },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "LANG"
-            }
-          ]
-        },
-        "number": {
-          "enhanced": "S.LO1.1.a",
-          "raw": null
-        }
-      },
-      "relationships": {
-        "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/000024F2-FF3B-11DE-87E0-EE579DFF4B22/parent"
-          },
-          "data": {
-            "id": "FFFFB3A0-FF3A-11DE-87E0-EE579DFF4B22",
-            "type": "standards"
-          }
-        }
-      },
-      "id": "000024F2-FF3B-11DE-87E0-EE579DFF4B22"
-    },
-    {
-      "type": "standards",
-      "attributes": {
         "number": {
           "enhanced": null,
           "raw": null
         },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "HEAL"
-            }
-          ]
-        },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "PK"
-            }
-          ]
-        },
-        "status": "active",
-        "document": {
-          "publication": {
-            "authorities": [
-              {
-                "guid": "408436D9-AC98-11E9-8BB2-0A11CDE56ADE",
-                "acronym": "DECE",
-                "descr": "Alabama Department of Early Childhood Education"
-              }
-            ],
-            "guid": "7879F63F-13F2-11EB-BB5B-0E20088BB29A",
-            "descr": "Standards for Early Learning and Development"
-          },
-          "descr": "Physical Development and Health",
-          "adopt_year": "2020",
-          "guid": "0F3C4264-13F9-11EB-AEFC-AB3BBDB9E5CA"
-        },
-        "statement": {
-          "descr": "Put on pants and shirt"
-        },
-        "level": 4,
-        "label": "Observable Action",
-        "guid": "0000336A-A79D-4EDB-871C-BF5B50A2719F",
-        "section": {
-          "descr": "By 48 months (4 years)",
-          "guid": "CA1952EA-13F9-11EB-BB5B-0E20088BB29A"
-        }
-      },
-      "id": "0000336A-A79D-4EDB-871C-BF5B50A2719F",
-      "relationships": {
-        "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000336A-A79D-4EDB-871C-BF5B50A2719F/parent"
-          },
-          "data": {
-            "type": "standards",
-            "id": "0740FDB8-15B4-4302-8AA7-EDBEB6F5B1B6"
-          }
-        }
-      }
-    },
-    {
-      "attributes": {
-        "section": {
-          "descr": "Grade 7",
-          "guid": "315C6E02-26BB-11E7-B295-949FBF03DF2F"
-        },
-        "label": "Standard",
-        "guid": "00004FFE-2CC2-4C21-923B-6E9D0FC1A7A5",
-        "statement": {
-          "descr": "Analyze the interactions between individuals, events, and ideas in a text."
-        },
-        "level": 4,
-        "education_levels": {
-          "grades": [
-            {
-              "code": "7"
-            }
-          ]
-        },
-        "status": "active",
-        "document": {
-          "guid": "C8EEFD3E-25EE-11E7-A340-AE7DBF03DF2F",
-          "publication": {
-            "descr": "Standard Course of Study",
-            "guid": "9937B002-C0DA-11DA-AA75-DCF8B72ABBB9",
-            "authorities": [
-              {
-                "descr": "North Carolina Department of Public Instruction",
-                "acronym": "NCDPI",
-                "guid": "91294914-F1B9-11E5-862E-0938DC287387"
-              }
-            ]
-          },
-          "adopt_year": "2017",
-          "descr": "English Language Arts"
-        },
-        "number": {
-          "enhanced": "RI.7.3",
-          "raw": "RI.7.3"
-        },
+        "guid": "0007AE84-DE1E-45BC-81D1-F8AFE5786AC6",
         "disciplines": {
           "subjects": [
             {
               "code": "LANG"
             }
           ]
+        },
+        "statement": {
+          "descr": "Structural Elements and Organization (Reading)"
         }
       },
       "relationships": {
         "parent": {
-          "data": {
-            "id": "209e9a51-26c0-11e7-a8cc-0a832fed80a4",
-            "type": "standards"
-          },
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00004FFE-2CC2-4C21-923B-6E9D0FC1A7A5/parent"
-          }
+          "data": {}
         }
       },
-      "id": "00004FFE-2CC2-4C21-923B-6E9D0FC1A7A5",
-      "type": "standards"
+      "type": "standards",
+      "id": "0007AE84-DE1E-45BC-81D1-F8AFE5786AC6"
     },
     {
+      "id": "000fbefb-fa7b-466b-a93b-ce11705deda4",
       "relationships": {
         "parent": {
           "data": {
-            "id": "DE13AABD-3C24-4A3D-AA96-EEA501D8C57C",
-            "type": "standards"
+            "type": "standards",
+            "id": "98e725a3-617e-4e62-a7a9-9b629661fcfd"
           },
           "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/000058B3-C5E3-41C3-8C1A-9CB89FE9825B/parent"
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/000fbefb-fa7b-466b-a93b-ce11705deda4/parent"
           }
         }
       },
-      "id": "000058B3-C5E3-41C3-8C1A-9CB89FE9825B",
+      "type": "standards",
       "attributes": {
-        "number": {
-          "raw": "ES.H.5",
-          "enhanced": "ES.H.5"
-        },
         "disciplines": {
           "subjects": [
             {
-              "code": "WORK"
+              "code": "SOC"
             }
           ]
+        },
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "statement": {
+          "descr": "Describing different approaches for explaining mental illness, including biological and medical, cognitive, and sociocultural models"
+        },
+        "label": null,
+        "section": {
+          "descr": "Psychology",
+          "guid": "0522e215-d5d8-4505-81a8-de2e6ab5945a"
         },
         "education_levels": {
           "grades": [
@@ -430,310 +249,56 @@
             }
           ]
         },
-        "document": {
-          "adopt_year": "2020",
-          "descr": "Career Studies",
-          "publication": {
-            "authorities": [
-              {
-                "descr": "Kentucky DOE",
-                "acronym": null,
-                "guid": "91287D9A-F1B9-11E5-862E-0938DC287387"
-              }
-            ],
-            "guid": "9935922C-C0DA-11DA-8C58-B8D89168EBFF",
-            "descr": "Academic Standards"
-          },
-          "guid": "DB5AEA30-028D-11EB-8AAF-B46FD6092FBC"
-        },
         "status": "active",
-        "label": "Standard",
-        "guid": "000058B3-C5E3-41C3-8C1A-9CB89FE9825B",
-        "section": {
-          "descr": "High School - Grades 9-12",
-          "guid": "1A2D5E3C-028E-11EB-BB5B-0E20088BB29A"
-        },
-        "statement": {
-          "descr": "Evaluate failure as a learning opportunity."
-        },
-        "level": 3
-      },
-      "type": "standards"
-    },
-    {
-      "attributes": {
-        "label": null,
-        "guid": "000059A0-6B79-11DE-A6D7-7A049DFF4B22",
-        "section": {
-          "descr": "Grade 12",
-          "guid": "0312B9EE-6B79-11DE-A6D7-7A049DFF4B22"
-        },
-        "level": 3,
-        "statement": {
-          "descr": "explaining relationships among ideas and information"
-        },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "12"
-            }
-          ]
-        },
-        "status": "obsolete",
-        "document": {
-          "publication": {
-            "authorities": [
-              {
-                "descr": "British Columbia MOE",
-                "acronym": null,
-                "guid": "91398EA0-F1B9-11E5-862E-0938DC287387"
-              }
-            ],
-            "guid": "993DCE42-C0DA-11DA-88F1-E3204814F71E",
-            "descr": "British Columbia Learning Outcomes"
-          },
-          "descr": "English Language Arts",
-          "adopt_year": "2006",
-          "guid": "2C415F62-2162-11DD-983F-2A1D9DFF4B22"
-        },
+        "guid": "000fbefb-fa7b-466b-a93b-ce11705deda4",
         "number": {
           "raw": null,
-          "enhanced": "B10.2"
+          "enhanced": "15.2"
         },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "LANG"
-            }
-          ]
-        }
-      },
-      "id": "000059A0-6B79-11DE-A6D7-7A049DFF4B22",
-      "relationships": {
-        "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/000059A0-6B79-11DE-A6D7-7A049DFF4B22/parent"
+        "document": {
+          "adopt_year": "2010",
+          "descr": "Social Studies",
+          "publication": {
+            "authorities": [
+              {
+                "acronym": "ALSDE",
+                "descr": "Alabama State Department of Education",
+                "guid": "912A8036-F1B9-11E5-862E-0938DC287387"
+              }
+            ],
+            "guid": "9935E84E-C0DA-11DA-844D-F1B58A7EE3C7",
+            "descr": "Course of Study"
           },
-          "data": {
-            "id": "000135A0-6B79-11DE-A6D7-7A049DFF4B22",
-            "type": "standards"
-          }
-        }
-      },
-      "type": "standards"
+          "guid": "fe79c173-62e4-490b-ad02-a9ee8db932ad"
+        },
+        "level": 2
+      }
     },
     {
       "attributes": {
-        "statement": {
-          "descr": "describe the role of modelling, evidence and theory in explaining and understanding the structure, chemical bonding and properties of ionic compounds."
-        },
         "level": 3,
-        "section": {
-          "guid": "02064b92-363c-4676-ab60-1d1b707a8edb",
-          "descr": "Chemistry 20"
-        },
-        "label": "General Outcome",
-        "guid": "00005be1-3228-4c78-bc67-adbe8b8f18b2",
-        "status": "active",
         "document": {
-          "guid": "48a2afd8-910c-47b2-8f58-6883b298a335",
-          "descr": "Science",
-          "adopt_year": "2014",
+          "guid": "5bc5bcfc-a222-42fd-b471-e616205d4e90",
+          "descr": "Mathematics",
           "publication": {
-            "guid": "9946612E-C0DA-11DA-96FC-8A194193682B",
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "descr": "Academic Standards",
             "authorities": [
               {
                 "acronym": null,
-                "guid": "91396308-F1B9-11E5-862E-0938DC287387",
-                "descr": "Alberta MOE"
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE"
               }
-            ],
-            "descr": "Alberta Program of Studies"
-          }
-        },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "11"
-            }
-          ]
-        },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "SCI"
-            }
-          ]
-        },
-        "number": {
-          "raw": "1",
-          "enhanced": "20-A.1"
-        }
-      },
-      "id": "00005be1-3228-4c78-bc67-adbe8b8f18b2",
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "standards",
-            "id": "94a032a9-2ed8-4212-9ee9-2b40719c547d"
+            ]
           },
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00005be1-3228-4c78-bc67-adbe8b8f18b2/parent"
-          }
-        }
-      },
-      "type": "standards"
-    },
-    {
-      "type": "standards",
-      "attributes": {
-        "label": "Standard",
-        "section": {
-          "guid": "5219f1ca-85b4-474b-999e-06dfe81f8e0d",
-          "descr": "Grade 6"
-        },
-        "guid": "00006091-e6c7-4c54-b3fb-fa87406b2b24",
-        "statement": {
-          "descr": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases based on grade 6 reading and content, choosing flexibly from a range of strategies."
-        },
-        "level": 3,
-        "education_levels": {
-          "grades": [
-            {
-              "code": "6"
-            }
-          ]
-        },
-        "status": "active",
-        "document": {
-          "guid": "9173bd91-da77-42ce-900d-c8d2541caab6",
-          "publication": {
-            "authorities": [
-              {
-                "guid": "9127FF50-F1B9-11E5-862E-0938DC287387",
-                "acronym": "FDOE",
-                "descr": "Florida DOE"
-              }
-            ],
-            "guid": "e33f747e-e16c-4738-be5b-295aaf677ac8",
-            "descr": "Standards"
-          },
-          "descr": "Language Arts",
           "adopt_year": "2014"
         },
         "number": {
-          "raw": "LAFS.6.L.3.4",
-          "enhanced": "LAFS.6.L.3.4"
+          "enhanced": "C.I.6.a",
+          "raw": "a."
         },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "LANG"
-            }
-          ]
-        }
-      },
-      "id": "00006091-e6c7-4c54-b3fb-fa87406b2b24",
-      "relationships": {
-        "parent": {
-          "data": {
-            "id": "abadfe13-65d5-4231-9e57-675938a0d6bb",
-            "type": "standards"
-          },
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00006091-e6c7-4c54-b3fb-fa87406b2b24/parent"
-          }
-        }
-      }
-    },
-    {
-      "relationships": {
-        "parent": {
-          "data": {
-            "id": "000024F2-FF3B-11DE-87E0-EE579DFF4B22",
-            "type": "standards"
-          },
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000946E-FF3B-11DE-87E0-EE579DFF4B22/parent"
-          }
-        }
-      },
-      "id": "0000946E-FF3B-11DE-87E0-EE579DFF4B22",
-      "attributes": {
-        "section": {
-          "descr": "Primary 1",
-          "guid": "6FFDD05C-FCEC-11DE-80E0-6A569DFF4B22"
-        },
-        "guid": "0000946E-FF3B-11DE-87E0-EE579DFF4B22",
-        "label": null,
-        "level": 6,
-        "statement": {
-          "descr": "‘orientational’ features of space (e.g., “This is where it is!”) and time (e.g., “I will visit the dentist tomorrow.”)"
-        },
+        "guid": "001cda28-8746-49a8-ba76-042aef80449e",
         "status": "active",
-        "document": {
-          "guid": "7000FD2C-FCEC-11DE-80E0-6A569DFF4B22",
-          "publication": {
-            "descr": "Subject Syllabuses",
-            "guid": "19D63A06-2B10-11DE-B51C-AA149DFF4B22",
-            "authorities": []
-          },
-          "adopt_year": "2010",
-          "descr": "English Language"
-        },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "1"
-            }
-          ]
-        },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "LANG"
-            }
-          ]
-        },
-        "number": {
-          "raw": null,
-          "enhanced": "S.LO1.1.a.1"
-        }
-      },
-      "type": "standards"
-    },
-    {
-      "type": "standards",
-      "id": "00009F32-98B5-4625-8CC7-AFAE1CFC2224",
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "standards",
-            "id": "EAAC7F16-2A78-484F-9715-7B9901E9C4FC"
-          },
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00009F32-98B5-4625-8CC7-AFAE1CFC2224/parent"
-          }
-        }
-      },
-      "attributes": {
-        "status": "obsolete",
-        "document": {
-          "guid": "1E332572-56D3-11E6-915D-30B329C466BA",
-          "adopt_year": "2016",
-          "descr": "English Language Arts",
-          "publication": {
-            "descr": "Academic Standards",
-            "authorities": [
-              {
-                "descr": "Arkansas DOE",
-                "guid": "912AE0E4-F1B9-11E5-862E-0938DC287387",
-                "acronym": null
-              }
-            ],
-            "guid": "EE35132E-A2CD-11E7-842D-CA27CDC8CA83"
-          }
-        },
         "education_levels": {
           "grades": [
             {
@@ -750,174 +315,45 @@
             }
           ]
         },
-        "guid": "00009F32-98B5-4625-8CC7-AFAE1CFC2224",
         "section": {
-          "guid": "D46233CE-E17F-11E6-88BC-11F5CCC8CA83",
-          "descr": "Oral Communication One Year (1 Credit)"
-        },
-        "label": "Student Learning Expectation",
-        "level": 3,
-        "statement": {
-          "descr": "Participate in collaborative discussions in a variety of contexts (e.g., classroom simulations, club meetings, learning teams, civic meetings, co-curricular contests): consensus building, group decision-making process, norms, preparation, questioning techniques, responses to diverse perspectives, roles"
-        },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "LANG"
-            }
-          ]
-        },
-        "number": {
-          "enhanced": "CA.4.OC2S.5",
-          "raw": "CA.4.OC2S.5"
-        }
-      }
-    },
-    {
-      "type": "standards",
-      "id": "0000A87E-A235-11E6-B974-E2E9CCC8CA83",
-      "relationships": {
-        "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000A87E-A235-11E6-B974-E2E9CCC8CA83/parent"
-          },
-          "data": {
-            "id": "5FEEF5A2-A22F-11E6-AC47-1FE1CCC8CA83",
-            "type": "standards"
-          }
-        }
-      },
-      "attributes": {
-        "number": {
-          "enhanced": "1.MS.16.7",
-          "raw": "MS.16.7"
-        },
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "PHYS"
-            },
-            {
-              "code": "HEAL"
-            }
-          ]
-        },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "7"
-            }
-          ]
-        },
-        "document": {
-          "publication": {
-            "descr": "Academic Standards",
-            "guid": "811018EA-2DF6-11E6-9A9A-B5A329C466BA",
-            "authorities": [
-              {
-                "descr": "Tennessee DOE",
-                "guid": "912E6516-F1B9-11E5-862E-0938DC287387",
-                "acronym": null
-              }
-            ]
-          },
-          "descr": "Physical Education",
-          "adopt_year": "2016",
-          "guid": "33C07864-999E-11E6-80C5-05AD29C466BA"
-        },
-        "status": "active",
-        "section": {
-          "guid": "8804FC38-994E-11E6-B4C1-2EDECCC8CA83",
-          "descr": "Grade 7"
-        },
-        "guid": "0000A87E-A235-11E6-B974-E2E9CCC8CA83",
-        "label": "Standard",
-        "level": 4,
-        "statement": {
-          "descr": "Catch (field) an object from different directions and force."
-        }
-      }
-    },
-    {
-      "attributes": {
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "SCI"
-            }
-          ]
-        },
-        "number": {
-          "raw": null,
-          "enhanced": "2"
-        },
-        "document": {
-          "publication": {
-            "guid": "166c13e3-0d63-456b-b16d-622eed9e19d7",
-            "authorities": [
-              {
-                "acronym": null,
-                "guid": "91398EA0-F1B9-11E5-862E-0938DC287387",
-                "descr": "British Columbia MOE"
-              }
-            ],
-            "descr": "British Columbia Learning Standards"
-          },
-          "adopt_year": "2016",
-          "descr": "Science",
-          "guid": "15909A24-731D-11E6-83BA-7C7E29C466BA"
-        },
-        "status": "active",
-        "education_levels": {
-          "grades": [
-            {
-              "code": "1"
-            }
-          ]
+          "guid": "ffd04540-d91d-42c0-ab5e-ce890635c083",
+          "descr": "Calculus"
         },
         "label": null,
-        "guid": "0000B7C8-7441-11E6-BDED-66FFCCC8CA83",
-        "section": {
-          "guid": "1586410A-731D-11E6-83BA-7C7E29C466BA",
-          "descr": "Grade 1"
-        },
         "statement": {
-          "descr": "Planning and conducting"
+          "descr": "∫(from 𝑎 to 𝑏) [𝑓(𝑥) + 𝑔(𝑥)]𝑑𝑥 = ∫(from 𝑎 to 𝑏) 𝑓(𝑥)𝑑𝑥 + ∫(from 𝑎 to 𝑏) 𝑔(𝑥)𝑑𝑥"
         },
-        "level": 2
-      },
-      "relationships": {
-        "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000B7C8-7441-11E6-BDED-66FFCCC8CA83/parent"
-          },
-          "data": {
-            "id": "361AD5B8-6152-4B79-9EDA-B73749A60303",
-            "type": "standards"
+        "utilizations": [
+          {
+            "type": "alignable"
           }
+        ],
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "MATH"
+            }
+          ]
         }
       },
-      "id": "0000B7C8-7441-11E6-BDED-66FFCCC8CA83",
-      "type": "standards"
-    },
-    {
       "type": "standards",
       "relationships": {
         "parent": {
           "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000C52C-DA6D-11E2-B055-E63F9DFF4B22/parent"
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/001cda28-8746-49a8-ba76-042aef80449e/parent"
           },
           "data": {
-            "id": "FFD71C5E-DA6C-11E2-B055-E63F9DFF4B22",
-            "type": "standards"
+            "type": "standards",
+            "id": "d19c22f8-c106-491d-8202-b22c6bbcdce2"
           }
         }
       },
-      "id": "0000C52C-DA6D-11E2-B055-E63F9DFF4B22",
+      "id": "001cda28-8746-49a8-ba76-042aef80449e"
+    },
+    {
       "attributes": {
-        "number": {
-          "raw": "2.",
-          "enhanced": "Math.Content.6.NS.B.2"
+        "statement": {
+          "descr": "Number Sense, Expressions, and Computation"
         },
         "disciplines": {
           "subjects": [
@@ -926,48 +362,105 @@
             }
           ]
         },
-        "statement": {
-          "descr": "Fluently divide multi-digit numbers using the standard algorithm."
+        "level": 1,
+        "guid": "00259A1C-BDD5-4EF7-97EE-7F9284190854",
+        "document": {
+          "adopt_year": "2014",
+          "publication": {
+            "descr": "Academic Standards",
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "authorities": [
+              {
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE",
+                "acronym": null
+              }
+            ]
+          },
+          "descr": "Mathematics",
+          "guid": "5bc5bcfc-a222-42fd-b471-e616205d4e90"
         },
-        "level": 3,
-        "label": "Standard",
+        "number": {
+          "raw": null,
+          "enhanced": "MA10.NSEC"
+        },
         "section": {
-          "descr": "Grade 6",
-          "guid": "96621340-DAA4-11E2-88F2-3595D8FDF33C"
+          "guid": "77120CF2-5831-11E7-B7A9-F940CDC8CA83",
+          "descr": "Math 10"
         },
-        "guid": "0000C52C-DA6D-11E2-B055-E63F9DFF4B22",
+        "label": "Strand",
+        "status": "obsolete",
         "education_levels": {
           "grades": [
             {
-              "code": "6"
+              "code": "9"
+            },
+            {
+              "code": "10"
+            },
+            {
+              "code": "11"
+            },
+            {
+              "code": "12"
             }
           ]
-        },
-        "document": {
-          "publication": {
-            "guid": "99389D0A-C0DA-11DA-866A-8318D7DE6D2B",
-            "authorities": [
-              {
-                "acronym": "USBE",
-                "guid": "912E8D02-F1B9-11E5-862E-0938DC287387",
-                "descr": "Utah State Board of Education"
-              }
-            ],
-            "descr": "Core Standards"
-          },
-          "descr": "Mathematics",
-          "adopt_year": "2010",
-          "guid": "967F345C-DAA4-11E2-88F2-3595D8FDF33C"
-        },
-        "status": "obsolete"
-      }
+        }
+      },
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "data": {}
+        }
+      },
+      "id": "00259A1C-BDD5-4EF7-97EE-7F9284190854"
     },
     {
       "attributes": {
+        "status": "active",
+        "education_levels": {
+          "grades": [
+            {
+              "code": "9"
+            },
+            {
+              "code": "10"
+            },
+            {
+              "code": "11"
+            },
+            {
+              "code": "12"
+            }
+          ]
+        },
+        "label": null,
+        "section": {
+          "descr": "Mass Media",
+          "guid": "ED0C8707-C6DE-11EA-BB5B-0E20088BB29A"
+        },
+        "document": {
+          "adopt_year": "2014",
+          "descr": "English/Language Arts",
+          "publication": {
+            "descr": "Academic Standards",
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "authorities": [
+              {
+                "descr": "Indiana DOE",
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "acronym": null
+              }
+            ]
+          },
+          "guid": "41ba4f1d-2568-4a2b-94d5-85c5d3dc22fc"
+        },
         "number": {
-          "enhanced": "B10.1",
+          "enhanced": null,
           "raw": null
         },
+        "guid": "0027B659-9D17-4DB4-85C2-B7AFB2D2E461",
+        "level": 2,
         "disciplines": {
           "subjects": [
             {
@@ -975,116 +468,77 @@
             }
           ]
         },
-        "education_levels": {
-          "grades": [
-            {
-              "code": "12"
-            }
-          ]
-        },
-        "status": "obsolete",
-        "document": {
-          "guid": "2C415F62-2162-11DD-983F-2A1D9DFF4B22",
-          "adopt_year": "2006",
-          "descr": "English Language Arts",
-          "publication": {
-            "guid": "993DCE42-C0DA-11DA-88F1-E3204814F71E",
-            "authorities": [
-              {
-                "descr": "British Columbia MOE",
-                "guid": "91398EA0-F1B9-11E5-862E-0938DC287387",
-                "acronym": null
-              }
-            ],
-            "descr": "British Columbia Learning Outcomes"
-          }
-        },
-        "level": 3,
         "statement": {
-          "descr": "personalizing ideas and information"
-        },
-        "section": {
-          "guid": "0312B9EE-6B79-11DE-A6D7-7A049DFF4B22",
-          "descr": "Grade 12"
-        },
-        "guid": "0000C598-6B79-11DE-A6D7-7A049DFF4B22",
-        "label": null
+          "descr": "Learning Outcome"
+        }
       },
       "relationships": {
         "parent": {
           "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000C598-6B79-11DE-A6D7-7A049DFF4B22/parent"
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0027B659-9D17-4DB4-85C2-B7AFB2D2E461/parent"
           },
           "data": {
-            "id": "000135A0-6B79-11DE-A6D7-7A049DFF4B22",
+            "id": "45133D7B-54E3-4D75-80E6-66E29B6CAEC2",
             "type": "standards"
           }
         }
       },
-      "id": "0000C598-6B79-11DE-A6D7-7A049DFF4B22",
-      "type": "standards"
+      "type": "standards",
+      "id": "0027B659-9D17-4DB4-85C2-B7AFB2D2E461"
     },
     {
       "type": "standards",
-      "id": "0000DCD0-29EA-11D8-9FE4-9DA19A7C2CB3",
       "relationships": {
         "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000DCD0-29EA-11D8-9FE4-9DA19A7C2CB3/parent"
-          },
           "data": {
-            "id": "D0EFC1FE-29E9-11D8-A3A2-B5099F3F773C",
+            "id": "AF438618-CCB8-11DD-A7C8-69619DFF4B22",
             "type": "standards"
+          },
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0027f904-ca1f-4559-826d-cc5962dbf3a3/parent"
           }
         }
       },
       "attributes": {
-        "status": "active",
+        "statement": {
+          "descr": "Examples may include, but are not limited to, 100 Percent Americanism."
+        },
+        "utilizations": [
+          {
+            "type": "example"
+          }
+        ],
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "SOC"
+            }
+          ]
+        },
+        "level": 4,
+        "number": {
+          "enhanced": null,
+          "raw": "Remarks/Examples:"
+        },
         "document": {
-          "descr": "Foreign Language",
-          "adopt_year": "2001",
+          "guid": "B8D35264-C801-11DD-B8FE-F90E9DFF4B22",
+          "adopt_year": "2008",
+          "descr": "Social Studies",
           "publication": {
-            "descr": "Content Standards",
+            "guid": "209823E4-2FB7-11DE-BA91-15719DFF4B22",
+            "descr": "Next Generation Sunshine State Standards",
             "authorities": [
               {
-                "descr": "North Dakota Department of Public Instruction",
-                "guid": "912DCC82-F1B9-11E5-862E-0938DC287387",
-                "acronym": "NDDPI"
+                "acronym": "FDOE",
+                "guid": "9127FF50-F1B9-11E5-862E-0938DC287387",
+                "descr": "Florida DOE"
               }
-            ],
-            "guid": "9937D0E6-C0DA-11DA-9B96-9E5462021F5E"
-          },
-          "guid": "E3E81474-FC32-11D9-8407-9AE6FB2C8371"
+            ]
+          }
         },
+        "guid": "0027f904-ca1f-4559-826d-cc5962dbf3a3",
         "education_levels": {
           "grades": [
-            {
-              "code": "K"
-            },
-            {
-              "code": "1"
-            },
-            {
-              "code": "2"
-            },
-            {
-              "code": "3"
-            },
-            {
-              "code": "4"
-            },
-            {
-              "code": "5"
-            },
-            {
-              "code": "6"
-            },
-            {
-              "code": "7"
-            },
-            {
-              "code": "8"
-            },
             {
               "code": "9"
             },
@@ -1099,77 +553,177 @@
             }
           ]
         },
-        "level": 3,
-        "statement": {
-          "descr": "Analyze impact of non-verbal communication cues (e.g., view a target language film or video without the sound and analyze the gestures and other non-verbal cues to determine meaning and context)."
-        },
-        "guid": "0000DCD0-29EA-11D8-9FE4-9DA19A7C2CB3",
+        "status": "active",
+        "label": null,
         "section": {
-          "descr": "Pre-Advanced Level",
-          "guid": "111A8F40-2A74-11D8-95E7-BA4AD009AF27"
-        },
-        "label": "Benchmark",
-        "disciplines": {
-          "subjects": [
-            {
-              "code": "FORN"
-            }
-          ]
-        },
-        "number": {
-          "enhanced": "4.2.7",
-          "raw": "4.2.7"
+          "descr": "Grades: 9-12 Revised February 2014",
+          "guid": "B8D25062-C801-11DD-B8FE-F90E9DFF4B22"
         }
-      }
+      },
+      "id": "0027f904-ca1f-4559-826d-cc5962dbf3a3"
     },
     {
+      "type": "standards",
       "relationships": {
         "parent": {
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000F058-6933-11E6-BF56-EED5CCC8CA83/parent"
-          },
           "data": {
-            "id": "9A77481A-6930-11E6-8193-84D1CCC8CA83",
-            "type": "standards"
+            "type": "standards",
+            "id": "2ea8a798-6843-4fd6-a26e-5d45520fccbc"
+          },
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0032f165-b77a-45ad-b69d-cab9048f7dc9/parent"
           }
         }
       },
-      "id": "0000F058-6933-11E6-BF56-EED5CCC8CA83",
       "attributes": {
         "level": 4,
-        "statement": {
-          "descr": "Ability to analyze graphs, answer questions about the data, and make decisions based on the data"
-        },
-        "section": {
-          "guid": "EDE45772-68E5-11E6-9AA1-76D229C466BA",
-          "descr": "Grade 2"
-        },
-        "label": "Essential Skill and Knowledge",
-        "guid": "0000F058-6933-11E6-BF56-EED5CCC8CA83",
         "document": {
+          "guid": "B8D35264-C801-11DD-B8FE-F90E9DFF4B22",
           "publication": {
-            "descr": "College and Career-Ready Frameworks",
-            "guid": "EDE619B8-68E5-11E6-9AA1-76D229C466BA",
             "authorities": [
               {
-                "descr": "Maryland State Department of Education",
-                "acronym": null,
-                "guid": "9129D578-F1B9-11E5-862E-0938DC287387"
+                "acronym": "FDOE",
+                "guid": "9127FF50-F1B9-11E5-862E-0938DC287387",
+                "descr": "Florida DOE"
               }
-            ]
+            ],
+            "descr": "Next Generation Sunshine State Standards",
+            "guid": "209823E4-2FB7-11DE-BA91-15719DFF4B22"
           },
-          "descr": "Mathematics",
-          "adopt_year": "2015",
-          "guid": "EDE5D35E-68E5-11E6-9AA1-76D229C466BA"
+          "descr": "Social Studies",
+          "adopt_year": "2008"
         },
+        "number": {
+          "raw": "Remarks/Examples:",
+          "enhanced": null
+        },
+        "guid": "0032f165-b77a-45ad-b69d-cab9048f7dc9",
         "status": "active",
         "education_levels": {
           "grades": [
             {
-              "code": "2"
+              "code": "9"
+            },
+            {
+              "code": "10"
+            },
+            {
+              "code": "11"
+            },
+            {
+              "code": "12"
             }
           ]
         },
+        "section": {
+          "guid": "B8D25062-C801-11DD-B8FE-F90E9DFF4B22",
+          "descr": "Grades: 9-12 Revised February 2014"
+        },
+        "label": null,
+        "statement": {
+          "descr": "Write a paragraph explaining why a store might advertise the price of a flat screen TV expressed as an amount per day or week rather than the actual full price."
+        },
+        "utilizations": [
+          {
+            "type": "example"
+          }
+        ],
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "SOC"
+            }
+          ]
+        }
+      },
+      "id": "0032f165-b77a-45ad-b69d-cab9048f7dc9"
+    },
+    {
+      "id": "003cd2e5-688e-4c25-b63a-56000822ec18",
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/003cd2e5-688e-4c25-b63a-56000822ec18/parent"
+          },
+          "data": {
+            "type": "standards",
+            "id": "cbef5738-b35c-4237-987c-68997fbd6365"
+          }
+        }
+      },
+      "attributes": {
+        "section": {
+          "guid": "14e063e8-4bdb-4561-a4d1-055e97d4284c",
+          "descr": "Grade 1"
+        },
+        "label": null,
+        "status": "active",
+        "education_levels": {
+          "grades": [
+            {
+              "code": "1"
+            }
+          ]
+        },
+        "guid": "003cd2e5-688e-4c25-b63a-56000822ec18",
+        "document": {
+          "guid": "41ba4f1d-2568-4a2b-94d5-85c5d3dc22fc",
+          "adopt_year": "2014",
+          "publication": {
+            "authorities": [
+              {
+                "acronym": null,
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE"
+              }
+            ],
+            "descr": "Academic Standards",
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B"
+          },
+          "descr": "English/Language Arts"
+        },
+        "number": {
+          "raw": "1.W.6.2b",
+          "enhanced": "1.W.6.2b"
+        },
+        "level": 4,
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "LANG"
+            }
+          ]
+        },
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "statement": {
+          "descr": "Punctuation"
+        }
+      }
+    },
+    {
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "standards",
+            "id": "c8d13204-4b92-482e-833e-255459ef8319"
+          },
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00461fc5-3b6b-4d34-9e01-e1f46f200e90/parent"
+          }
+        }
+      },
+      "attributes": {
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
         "disciplines": {
           "subjects": [
             {
@@ -1177,32 +731,15 @@
             }
           ]
         },
-        "number": {
-          "raw": null,
-          "enhanced": "2.MD.D.10.c"
-        }
-      },
-      "type": "standards"
-    },
-    {
-      "attributes": {
-        "status": "active",
-        "document": {
-          "guid": "CDF60B98-6381-11E8-A306-CCDBDA11817A",
-          "publication": {
-            "descr": "NGSS with Three Dimensions",
-            "authorities": [
-              {
-                "descr": "California DOE",
-                "guid": "91285B44-F1B9-11E5-862E-0938DC287387",
-                "acronym": "CDE"
-              }
-            ],
-            "guid": "AF8421F4-6381-11E8-B9CD-8C5F635E9876"
-          },
-          "adopt_year": "2013",
-          "descr": "Science"
+        "statement": {
+          "descr": "Identify the value of a penny, nickel, dime, and a collection of pennies, nickels, and dimes."
         },
+        "section": {
+          "guid": "341d2c67-5cb1-4370-93f8-c9467c5b85fd",
+          "descr": "Grade 1"
+        },
+        "label": "Standard",
+        "status": "active",
         "education_levels": {
           "grades": [
             {
@@ -1210,16 +747,49 @@
             }
           ]
         },
+        "level": 2,
+        "guid": "00461fc5-3b6b-4d34-9e01-e1f46f200e90",
+        "document": {
+          "adopt_year": "2014",
+          "descr": "Mathematics",
+          "publication": {
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "descr": "Academic Standards",
+            "authorities": [
+              {
+                "acronym": null,
+                "descr": "Indiana DOE",
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387"
+              }
+            ]
+          },
+          "guid": "5bc5bcfc-a222-42fd-b471-e616205d4e90"
+        },
+        "number": {
+          "raw": "1.M.3",
+          "enhanced": "1.M.3"
+        }
+      },
+      "id": "00461fc5-3b6b-4d34-9e01-e1f46f200e90"
+    },
+    {
+      "id": "00492524-7211-4dbe-9db2-428d584ac49a",
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00492524-7211-4dbe-9db2-428d584ac49a/parent"
+          },
+          "data": {
+            "type": "standards",
+            "id": "88ee74f2-7f80-4289-bc59-6a093fc4df66"
+          }
+        }
+      },
+      "attributes": {
         "statement": {
-          "descr": "The Universe and its Stars"
+          "descr": "Plan and conduct an investigation to describe and classify different kinds of materials by their observable properties."
         },
-        "level": 3,
-        "guid": "0000FD6E-73D2-496A-A98F-1978F59D8965",
-        "section": {
-          "guid": "70D54A18-6382-11E8-9768-E9E81373445A",
-          "descr": "Grade 1"
-        },
-        "label": "DCI Component",
         "disciplines": {
           "subjects": [
             {
@@ -1227,90 +797,309 @@
             }
           ]
         },
-        "number": {
-          "raw": "ESS1.A:",
-          "enhanced": "ESS1.A"
-        }
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "standards",
-            "id": "93E343DE-6382-11E8-86F4-E20A82BA7E87"
-          },
-          "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000FD6E-73D2-496A-A98F-1978F59D8965/parent"
+        "utilizations": [
+          {
+            "type": "alignable"
           }
-        }
-      },
-      "id": "0000FD6E-73D2-496A-A98F-1978F59D8965",
-      "type": "standards"
+        ],
+        "document": {
+          "publication": {
+            "authorities": [
+              {
+                "acronym": "KSDE",
+                "descr": "Kansas State Department of Education",
+                "guid": "9129A0F8-F1B9-11E5-862E-0938DC287387"
+              }
+            ],
+            "descr": "College and Career Ready Standards",
+            "guid": "1FC58C24-ACC2-11E0-BB03-D6D7D51F4EFC"
+          },
+          "descr": "Science Arranged by Disciplinary Core Idea (DCI)",
+          "adopt_year": "2013",
+          "guid": "93f0db56-3a57-4177-ac9d-118ea7e442a6"
+        },
+        "number": {
+          "raw": "2-PS1-1.",
+          "enhanced": "2-PS1-1"
+        },
+        "guid": "00492524-7211-4dbe-9db2-428d584ac49a",
+        "level": 2,
+        "education_levels": {
+          "grades": [
+            {
+              "code": "2"
+            }
+          ]
+        },
+        "status": "active",
+        "section": {
+          "guid": "e08b472d-7179-41a2-88ef-4fc87b16d77a",
+          "descr": "Second Grade"
+        },
+        "label": "Performance Expectation"
+      }
     },
     {
-      "type": "standards",
-      "id": "0000edc1-f7a3-410b-a9ce-2f941b86ed64",
       "relationships": {
         "parent": {
-          "data": {
-            "id": "ca397d5f-5188-4c74-acdb-053e42a4624f",
-            "type": "standards"
+          "data": {}
+        }
+      },
+      "type": "standards",
+      "attributes": {
+        "education_levels": {
+          "grades": [
+            {
+              "code": "1"
+            }
+          ]
+        },
+        "status": "active",
+        "label": "Strand",
+        "section": {
+          "descr": "Grade 1",
+          "guid": "14e063e8-4bdb-4561-a4d1-055e97d4284c"
+        },
+        "number": {
+          "enhanced": "1.SL",
+          "raw": null
+        },
+        "document": {
+          "descr": "English/Language Arts",
+          "publication": {
+            "authorities": [
+              {
+                "descr": "Indiana DOE",
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "acronym": null
+              }
+            ],
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "descr": "Academic Standards"
           },
+          "adopt_year": "2014",
+          "guid": "41ba4f1d-2568-4a2b-94d5-85c5d3dc22fc"
+        },
+        "guid": "0049f491-c381-423e-b6b0-c709c87d0a85",
+        "level": 1,
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "LANG"
+            }
+          ]
+        },
+        "statement": {
+          "descr": "Speaking and Listening"
+        }
+      },
+      "id": "0049f491-c381-423e-b6b0-c709c87d0a85"
+    },
+    {
+      "id": "0050fcd8-7067-4d68-8eb9-88130acf8db9",
+      "type": "standards",
+      "relationships": {
+        "parent": {
           "links": {
-            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0000edc1-f7a3-410b-a9ce-2f941b86ed64/parent"
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0050fcd8-7067-4d68-8eb9-88130acf8db9/parent"
+          },
+          "data": {
+            "id": "2a1a7c82-164b-46b2-b438-869bd44839d3",
+            "type": "standards"
           }
         }
       },
       "attributes": {
-        "number": {
-          "raw": "2.",
-          "enhanced": "SIV.10.2"
+        "statement": {
+          "descr": "Explaining rational decision making as the comparison between marginal benefits and marginal costs of an action"
         },
         "disciplines": {
           "subjects": [
             {
-              "code": "FORN"
+              "code": "SOC"
             }
           ]
         },
-        "label": "Indicator",
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "guid": "0050fcd8-7067-4d68-8eb9-88130acf8db9",
+        "number": {
+          "enhanced": "2.2",
+          "raw": null
+        },
+        "document": {
+          "adopt_year": "2010",
+          "descr": "Social Studies",
+          "publication": {
+            "descr": "Course of Study",
+            "guid": "9935E84E-C0DA-11DA-844D-F1B58A7EE3C7",
+            "authorities": [
+              {
+                "descr": "Alabama State Department of Education",
+                "guid": "912A8036-F1B9-11E5-862E-0938DC287387",
+                "acronym": "ALSDE"
+              }
+            ]
+          },
+          "guid": "fe79c173-62e4-490b-ad02-a9ee8db932ad"
+        },
+        "level": 2,
         "section": {
-          "descr": "Spanish IV",
-          "guid": "c1734cea-5cd5-475f-bbec-8e9802d4f1cd"
+          "guid": "55be7afb-9fee-4f3f-8770-067faf94d574",
+          "descr": "Twelfth Grade - Economics"
         },
-        "guid": "0000edc1-f7a3-410b-a9ce-2f941b86ed64",
-        "statement": {
-          "descr": "Use Spanish resources, such as individuals and organizations in the community or accessible through technology, to increase cultural understanding."
-        },
-        "level": 3,
+        "label": null,
+        "status": "active",
         "education_levels": {
           "grades": [
             {
-              "code": "K"
-            },
+              "code": "12"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "00563b63-efb3-491e-bcc0-e77520c4b946",
+      "attributes": {
+        "statement": {
+          "descr": "cost of gasoline during oil shortages, price and expiration date of perishable foods"
+        },
+        "utilizations": [
+          {
+            "type": "example"
+          }
+        ],
+        "disciplines": {
+          "subjects": [
             {
-              "code": "1"
-            },
+              "code": "SOC"
+            }
+          ]
+        },
+        "level": 2,
+        "guid": "00563b63-efb3-491e-bcc0-e77520c4b946",
+        "document": {
+          "guid": "fe79c173-62e4-490b-ad02-a9ee8db932ad",
+          "publication": {
+            "guid": "9935E84E-C0DA-11DA-844D-F1B58A7EE3C7",
+            "descr": "Course of Study",
+            "authorities": [
+              {
+                "descr": "Alabama State Department of Education",
+                "guid": "912A8036-F1B9-11E5-862E-0938DC287387",
+                "acronym": "ALSDE"
+              }
+            ]
+          },
+          "descr": "Social Studies",
+          "adopt_year": "2010"
+        },
+        "number": {
+          "raw": "Examples:",
+          "enhanced": null
+        },
+        "section": {
+          "descr": "Second Grade",
+          "guid": "0d7d88af-5d86-4000-94a8-199f9d86487d"
+        },
+        "label": null,
+        "education_levels": {
+          "grades": [
             {
               "code": "2"
-            },
+            }
+          ]
+        },
+        "status": "active"
+      },
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00563b63-efb3-491e-bcc0-e77520c4b946/parent"
+          },
+          "data": {
+            "id": "0b2bf947-2fee-4270-be42-a113ca12d194",
+            "type": "standards"
+          }
+        }
+      }
+    },
+    {
+      "id": "0067b578-3ba0-48b1-9114-d00a343403c4",
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "standards",
+            "id": "3ddb12af-1ce3-447f-8be2-31c51d95528c"
+          },
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0067b578-3ba0-48b1-9114-d00a343403c4/parent"
+          }
+        }
+      },
+      "attributes": {
+        "education_levels": {
+          "grades": [
             {
-              "code": "3"
-            },
+              "code": "12"
+            }
+          ]
+        },
+        "status": "active",
+        "section": {
+          "descr": "Global Economics",
+          "guid": "b5fb841a-3f99-42ad-917d-3a4a636e243c"
+        },
+        "label": "Standard",
+        "level": 3,
+        "document": {
+          "publication": {
+            "authorities": [
+              {
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE",
+                "acronym": null
+              }
+            ],
+            "descr": "Academic Standards",
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B"
+          },
+          "descr": "Social Studies",
+          "adopt_year": "2014",
+          "guid": "780ed194-ebdf-411d-8b66-9cedde903bbf"
+        },
+        "number": {
+          "raw": "GE.7.4",
+          "enhanced": "GE.7.4"
+        },
+        "guid": "0067b578-3ba0-48b1-9114-d00a343403c4",
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "disciplines": {
+          "subjects": [
             {
-              "code": "4"
-            },
-            {
-              "code": "5"
-            },
-            {
-              "code": "6"
-            },
-            {
-              "code": "7"
-            },
-            {
-              "code": "8"
-            },
+              "code": "SOC"
+            }
+          ]
+        },
+        "statement": {
+          "descr": "Evaluate the impact of sociological, economic and technological changes on future careers"
+        }
+      }
+    },
+    {
+      "attributes": {
+        "education_levels": {
+          "grades": [
             {
               "code": "9"
             },
@@ -1325,30 +1114,280 @@
             }
           ]
         },
+        "status": "active",
+        "section": {
+          "guid": "B8D25062-C801-11DD-B8FE-F90E9DFF4B22",
+          "descr": "Grades: 9-12 Revised February 2014"
+        },
+        "label": "Benchmark",
+        "level": 4,
         "document": {
+          "adopt_year": "2008",
+          "descr": "Social Studies",
           "publication": {
-            "descr": "Standards of Learning",
-            "guid": "9938C028-C0DA-11DA-BC96-ACAA3BF4A17E",
+            "descr": "Next Generation Sunshine State Standards",
+            "guid": "209823E4-2FB7-11DE-BA91-15719DFF4B22",
             "authorities": [
               {
-                "descr": "Virginia DOE",
-                "guid": "912F0480-F1B9-11E5-862E-0938DC287387",
-                "acronym": "VDOE"
+                "guid": "9127FF50-F1B9-11E5-862E-0938DC287387",
+                "descr": "Florida DOE",
+                "acronym": "FDOE"
+              }
+            ]
+          },
+          "guid": "B8D35264-C801-11DD-B8FE-F90E9DFF4B22"
+        },
+        "number": {
+          "enhanced": "SS.912.P.11.2",
+          "raw": "SS.912.P.11.2"
+        },
+        "guid": "007c8a71-ecaa-4e50-87f8-129a8a0025eb",
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "SOC"
+            }
+          ]
+        },
+        "statement": {
+          "descr": "Characterize the difference between shallow (surface) and deep (elaborate) processing."
+        }
+      },
+      "relationships": {
+        "parent": {
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/007c8a71-ecaa-4e50-87f8-129a8a0025eb/parent"
+          },
+          "data": {
+            "type": "standards",
+            "id": "fc102b17-a6f0-4889-90f4-a180e76f18cc"
+          }
+        }
+      },
+      "type": "standards",
+      "id": "007c8a71-ecaa-4e50-87f8-129a8a0025eb"
+    },
+    {
+      "id": "007da077-c40b-4e03-a477-7d8847598176",
+      "attributes": {
+        "label": null,
+        "section": {
+          "descr": "Grade 1",
+          "guid": "14e063e8-4bdb-4561-a4d1-055e97d4284c"
+        },
+        "education_levels": {
+          "grades": [
+            {
+              "code": "1"
+            }
+          ]
+        },
+        "status": "active",
+        "level": 2,
+        "guid": "007da077-c40b-4e03-a477-7d8847598176",
+        "document": {
+          "descr": "English/Language Arts",
+          "publication": {
+            "descr": "Academic Standards",
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "authorities": [
+              {
+                "descr": "Indiana DOE",
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "acronym": null
               }
             ]
           },
           "adopt_year": "2014",
-          "descr": "Foreign Language",
-          "guid": "007016be-a1fc-4796-9a40-cf8d303c41e3"
+          "guid": "41ba4f1d-2568-4a2b-94d5-85c5d3dc22fc"
+        },
+        "number": {
+          "raw": null,
+          "enhanced": "1.RF.1"
+        },
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "LANG"
+            }
+          ]
+        },
+        "statement": {
+          "descr": "Learning Outcome"
+        }
+      },
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/007da077-c40b-4e03-a477-7d8847598176/parent"
+          },
+          "data": {
+            "id": "81ce1544-ff83-42d4-bb3b-f0b8b1078e21",
+            "type": "standards"
+          }
+        }
+      }
+    },
+    {
+      "id": "00929C26-E2ED-47FD-9B55-10E349C6B001",
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "standards",
+            "id": "21B2008C-AE75-4EA2-85D5-C5C3C278EED9"
+          },
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/00929C26-E2ED-47FD-9B55-10E349C6B001/parent"
+          }
+        }
+      },
+      "attributes": {
+        "statement": {
+          "descr": "Identify and examine the impact that sports have had on the state of Indiana."
+        },
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "SOC"
+            }
+          ]
+        },
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "guid": "00929C26-E2ED-47FD-9B55-10E349C6B001",
+        "number": {
+          "raw": "IS.5.6",
+          "enhanced": "IS.5.6"
+        },
+        "document": {
+          "guid": "780ed194-ebdf-411d-8b66-9cedde903bbf",
+          "adopt_year": "2014",
+          "publication": {
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "descr": "Academic Standards",
+            "authorities": [
+              {
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE",
+                "acronym": null
+              }
+            ]
+          },
+          "descr": "Social Studies"
+        },
+        "level": 2,
+        "label": "Standard",
+        "section": {
+          "descr": "Indiana Studies",
+          "guid": "C8330A90-A160-11E8-BB77-CC17E31E7476"
+        },
+        "education_levels": {
+          "grades": [
+            {
+              "code": "9"
+            },
+            {
+              "code": "10"
+            },
+            {
+              "code": "11"
+            },
+            {
+              "code": "12"
+            }
+          ]
         },
         "status": "active"
       }
+    },
+    {
+      "attributes": {
+        "label": "Standard",
+        "section": {
+          "descr": "Grades 6-8 Literacy: History/Social Studies",
+          "guid": "62333361-a148-46f4-87b8-60f22260290b"
+        },
+        "status": "active",
+        "education_levels": {
+          "grades": [
+            {
+              "code": "6"
+            },
+            {
+              "code": "7"
+            },
+            {
+              "code": "8"
+            }
+          ]
+        },
+        "guid": "0094e7b1-ea9a-4610-90ba-8b7f7a000b2c",
+        "document": {
+          "guid": "41ba4f1d-2568-4a2b-94d5-85c5d3dc22fc",
+          "publication": {
+            "authorities": [
+              {
+                "acronym": null,
+                "guid": "9128B2EC-F1B9-11E5-862E-0938DC287387",
+                "descr": "Indiana DOE"
+              }
+            ],
+            "guid": "993690BE-C0DA-11DA-BD64-B7CEA439013B",
+            "descr": "Academic Standards"
+          },
+          "descr": "English/Language Arts",
+          "adopt_year": "2014"
+        },
+        "number": {
+          "enhanced": "6-8.LH.3.2",
+          "raw": "6-8.LH.3.2:"
+        },
+        "level": 3,
+        "disciplines": {
+          "subjects": [
+            {
+              "code": "LANG"
+            }
+          ]
+        },
+        "utilizations": [
+          {
+            "type": "alignable"
+          }
+        ],
+        "statement": {
+          "descr": "Describe how a text presents information (Examples: sequentially, comparatively, causally)."
+        }
+      },
+      "type": "standards",
+      "relationships": {
+        "parent": {
+          "links": {
+            "related": "https://api.abconnect.certicaconnect.com/rest/v4.1/standards/0094e7b1-ea9a-4610-90ba-8b7f7a000b2c/parent"
+          },
+          "data": {
+            "id": "8b07ebd0-8b39-47f0-8604-3aeba8025b2f",
+            "type": "standards"
+          }
+        }
+      },
+      "id": "0094e7b1-ea9a-4610-90ba-8b7f7a000b2c"
     }
   ],
   "meta": {
-    "count": 1374935,
+    "count": 14601,
+    "limit": 20,
     "offset": 0,
-    "took": 231,
-    "limit": 20
+    "took": 93
   }
 }

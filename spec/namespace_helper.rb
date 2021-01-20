@@ -21,3 +21,4 @@ StandardsForest = AcademicBenchmarks::Standards::StandardsForest
 StandardsTree = AcademicBenchmarks::Standards::StandardsTree
 Statement = AcademicBenchmarks::Standards::Statement
 Subject = AcademicBenchmarks::Standards::Subject
+Utilizations = AcademicBenchmarks::Standards::Utilizations

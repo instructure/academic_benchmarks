@@ -26,6 +26,7 @@ module AcademicBenchmarks
         document.publication.guid
         document.publication.authorities
         statement.descr
+        utilizations.type
         parent
       ]
 
@@ -57,17 +58,17 @@ module AcademicBenchmarks
         publications(authority_guid: authority.guid)
       end
 
-      def authority_tree(authority_or_auth_code_guid_or_desc, include_obsolete_standards: true)
+      def authority_tree(authority_or_auth_code_guid_or_desc, include_obsolete_standards: true, exclude_examples: false)
         authority = auth_from_code_guid_or_desc(authority_or_auth_code_guid_or_desc)
-        auth_children = raw_search(authority: authority.guid, include_obsoletes: include_obsolete_standards)
+        auth_children = raw_search(authority: authority.guid, include_obsoletes: include_obsolete_standards, exclude_examples: exclude_examples)
         AcademicBenchmarks::Standards::StandardsForest.new(
           auth_children
         ).consolidate_under_root(authority)
       end
 
-      def publication_tree(publication_or_pub_code_guid_or_desc, include_obsolete_standards: true)
+      def publication_tree(publication_or_pub_code_guid_or_desc, include_obsolete_standards: true, exclude_examples: false)
         publication = pub_from_guid(publication_or_pub_code_guid_or_desc)
-        pub_children = raw_search(publication: publication.guid, include_obsoletes: include_obsolete_standards)
+        pub_children = raw_search(publication: publication.guid, include_obsoletes: include_obsolete_standards, exclude_examples: exclude_examples)
         AcademicBenchmarks::Standards::StandardsForest.new(
           pub_children
         ).consolidate_under_root(publication)
@@ -156,6 +157,14 @@ module AcademicBenchmarks
             else
               query_params['filter[standards]'] = "status eq 'active'"
             end
+          end
+        end
+
+        if query_params.delete :exclude_examples
+          if query_params.key? 'filter[standards]'
+            query_params['filter[standards]'] += " and utilizations.type not eq 'example'"
+          else
+            query_params['filter[standards]'] = "utilizations.type not eq 'example'"
           end
         end
       end

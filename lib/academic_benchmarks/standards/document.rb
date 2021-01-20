@@ -6,6 +6,7 @@ module AcademicBenchmarks
       include InstVarsToHash
 
       attr_accessor :guid, :descr, :publication, :adopt_year, :children
+      alias_method :description, :descr
 
       def self.from_hash(hash)
         self.new(guid: hash["guid"], descr: hash["descr"], publication: hash["publication"], adopt_year: hash["adopt_year"])

@@ -1,8 +1,10 @@
+require 'academic_benchmarks/lib/attr_to_vals'
 require 'academic_benchmarks/lib/inst_vars_to_hash'
 
 module AcademicBenchmarks
   module Standards
     class Standard
+      include AttrToVals
       include InstVarsToHash
 
       attr_reader :status, :children
@@ -13,6 +15,7 @@ module AcademicBenchmarks
                     :seq,
                     :section,
                     :document, :disciplines,
+                    :utilizations,
                     :parent, :parent_guid
 
       # Before standards are rebranched in Authority#rebranch_children
@@ -37,6 +40,7 @@ module AcademicBenchmarks
         @children = []
         @document = attr_to_val_or_nil(Document, attributes, "document")
         @statement = attr_to_val_or_nil(Statement, attributes, "statement")
+        @utilizations = attr_to_vals(Utilizations, attributes["utilizations"])
         @parent_guid = data.dig("relationships", "parent", "data", "id")
       end
 

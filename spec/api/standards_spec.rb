@@ -1,6 +1,9 @@
 RSpec.describe Standards do
   let(:handle) { ApiHelper::Live.new_handle }
 
+  CC_STDS_COUNT_WITH_EXAMPLES = 2372
+  CC_STDS_COUNT_WITHOUT_EXAMPLES = 2251
+
   # can also name the cassette: context "something", vcr: { cassette_name: "authorities" } do
   context "authorities", :vcr do
     it "lists authorities properly" do
@@ -92,6 +95,17 @@ RSpec.describe Standards do
   end
 
   context "trees", :vcr do
+    def count_standards(tree)
+      count = 0
+      children = tree.children.dup
+      while !children.empty? do
+        child = children.pop
+        count +=1 if child.is_a? Standard
+        children.push(*child.children)
+      end
+      count
+    end
+
     context "builds authority trees", vcr: { cassette_name: "api-standards-builds-authority-tree" } do
       it "builds an authority tree" do
         auth = handle.standards.authorities.find {|a| a.acronym == 'CC'}
@@ -100,8 +114,14 @@ RSpec.describe Standards do
         auth_tree = handle.standards.authority_tree(auth)
         expect(auth_tree).to be_a(StandardsTree)
         expect(auth_tree.root).to be_a(Authority)
-        expect(auth_tree.children.count).to be > 0
+        expect(count_standards(auth_tree)).to eq CC_STDS_COUNT_WITH_EXAMPLES
       end
+    end
+
+    it "excludes example standards in authority tree" do
+      auth = handle.standards.authorities.find {|a| a.acronym == 'CC'}
+      auth_tree = handle.standards.authority_tree(auth, exclude_examples: true)
+      expect(count_standards(auth_tree)).to eq CC_STDS_COUNT_WITHOUT_EXAMPLES
     end
 
     context "builds publication tree", vcr: { cassette_name: "api-standards-builds-publication-tree" } do
@@ -112,8 +132,14 @@ RSpec.describe Standards do
         pub_tree = handle.standards.publication_tree(pub)
         expect(pub_tree).to be_a(StandardsTree)
         expect(pub_tree.root).to be_a(Publication)
-        expect(pub_tree.children.count).to be > 0
+        expect(count_standards(pub_tree)).to eq CC_STDS_COUNT_WITH_EXAMPLES
       end
+    end
+
+    it "excludes example standards in publication tree" do
+      pub = handle.standards.publications.find {|p| p.acronym == 'CCSS'}
+      pub_tree = handle.standards.publication_tree(pub, exclude_examples: true)
+      expect(count_standards(pub_tree)).to eq CC_STDS_COUNT_WITHOUT_EXAMPLES
     end
 
     context "searching and matching authorities" do

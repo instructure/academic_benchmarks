@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1608578221&auth.signature=o36yfINRar0DOmMLopC/LyNeLgMJNRgOKMuMgqiqisk=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect02
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1611120643&auth.signature=ft5hETjrHUeaa/ScN6s0b7bCKfOgZAU3e4DYq1CTp2I=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect01
     body:
       encoding: US-ASCII
       string: ''
@@ -19,15 +19,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 21 Dec 2020 17:17:02 GMT
+      - Wed, 20 Jan 2021 03:30:44 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
-      - '1326'
+      - '1084'
       Connection:
       - keep-alive
       X-Amzn-Requestid:
-      - b5e863de-39fb-45aa-82e5-2b4c199b8dd1
+      - 6307559e-ee9b-4c15-9b9a-22b168d828ed
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Headers:
@@ -35,7 +35,7 @@ http_interactions:
       X-Amzn-Remapped-Connection:
       - keep-alive
       X-Amz-Apigw-Id:
-      - X6bGMFWYIAMF3Kw=
+      - ZbaLpGtEoAMFf1Q=
       Cache-Control:
       - no-store, no-cache, must-revalidate
       X-Amzn-Remapped-Server:
@@ -45,24 +45,21 @@ http_interactions:
       Pragma:
       - no-cache
       X-Amzn-Remapped-Date:
-      - Mon, 21 Dec 2020 17:17:02 GMT
+      - Wed, 20 Jan 2021 03:30:44 GMT
       Access-Control-Max-Age:
       - '86400'
     body:
       encoding: UTF-8
-      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"offset":0,"facets":[{"count":9,"details":[{"count":8562,"data":{"descr":"Florida
-        DOE","guid":"9127FF50-F1B9-11E5-862E-0938DC287387","acronym":"FDOE"}},{"count":5077,"data":{"descr":"Indiana
-        DOE","guid":"9128B2EC-F1B9-11E5-862E-0938DC287387","acronym":null}},{"data":{"descr":"Michigan
-        DOE","guid":"91290080-F1B9-11E5-862E-0938DC287387","acronym":"MDE"},"count":2552},{"data":{"acronym":null,"guid":"9127A816-F1B9-11E5-862E-0938DC287387","descr":"Ohio
-        DOE"},"count":2372},{"data":{"descr":"NGA Center/CCSSO","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22","acronym":"CC"},"count":2372},{"count":2281,"data":{"descr":"Kansas
-        State Department of Education","guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","acronym":"KSDE"}},{"count":1041,"data":{"acronym":"ALSDE","guid":"912A8036-F1B9-11E5-862E-0938DC287387","descr":"Alabama
-        State Department of Education"}},{"data":{"descr":"Achieve","acronym":null,"guid":"095383F6-BBCB-11E1-9321-88419DFF4B22"},"count":571},{"count":571,"data":{"guid":"9129D578-F1B9-11E5-862E-0938DC287387","acronym":null,"descr":"Maryland
-        State Department of Education"}}],"facet":"document.publication.authorities"}],"count":25399,"took":102,"limit":0}}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"facets":[{"details":[{"data":{"guid":"9128B2EC-F1B9-11E5-862E-0938DC287387","descr":"Indiana
+        DOE","acronym":null},"count":5079},{"count":2372,"data":{"descr":"Ohio DOE","guid":"9127A816-F1B9-11E5-862E-0938DC287387","acronym":null}},{"data":{"acronym":"CC","descr":"NGA
+        Center/CCSSO","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22"},"count":2372},{"count":2030,"data":{"guid":"9127FF50-F1B9-11E5-862E-0938DC287387","descr":"Florida
+        DOE","acronym":"FDOE"}},{"data":{"descr":"Kansas State Department of Education","guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","acronym":"KSDE"},"count":1136},{"count":1041,"data":{"acronym":"ALSDE","guid":"912A8036-F1B9-11E5-862E-0938DC287387","descr":"Alabama
+        State Department of Education"}},{"count":571,"data":{"guid":"095383F6-BBCB-11E1-9321-88419DFF4B22","descr":"Achieve","acronym":null}}],"facet":"document.publication.authorities","count":7}],"took":120,"limit":0,"offset":0,"count":14601}}'
     http_version: 
-  recorded_at: Mon, 21 Dec 2020 17:17:02 GMT
+  recorded_at: Wed, 20 Jan 2021 03:30:44 GMT
 - request:
     method: get
-    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1608578222&auth.signature=sswsCFdK3PhFCaUtxMa4hCuYEPyY5wLx0Dqoq3crTus=&facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid%20eq%20%27A83297F2-901A-11DF-A622-0C319DFF4B22%27&limit=0&offset=0&partner.id=devconnect02
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1611120644&auth.signature=0hraPg/%2BCaEGhDUtx0vKam36qEvXGHxdNAJ89JDE2zo=&facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid%20eq%20%27A83297F2-901A-11DF-A622-0C319DFF4B22%27&limit=0&offset=0&partner.id=devconnect01
     body:
       encoding: US-ASCII
       string: ''
@@ -79,7 +76,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 21 Dec 2020 17:17:02 GMT
+      - Wed, 20 Jan 2021 03:30:44 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
@@ -87,7 +84,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Amzn-Requestid:
-      - a36abeb7-7896-40fc-b5c1-8acd233b277d
+      - c7781793-8414-41ce-a4a8-6e419ff3823e
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Headers:
@@ -95,7 +92,7 @@ http_interactions:
       X-Amzn-Remapped-Connection:
       - keep-alive
       X-Amz-Apigw-Id:
-      - X6bGTHtDIAMFr1A=
+      - ZbaLwHb7oAMFS5g=
       Cache-Control:
       - no-store, no-cache, must-revalidate
       X-Amzn-Remapped-Server:
@@ -105,18 +102,19 @@ http_interactions:
       Pragma:
       - no-cache
       X-Amzn-Remapped-Date:
-      - Mon, 21 Dec 2020 17:17:02 GMT
+      - Wed, 20 Jan 2021 03:30:44 GMT
       Access-Control-Max-Age:
       - '86400'
     body:
       encoding: UTF-8
-      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid+eq+''A83297F2-901A-11DF-A622-0C319DFF4B22''&limit=0&offset=0"},"data":[],"meta":{"facets":[{"details":[{"data":{"descr":"Common
-        Core State Standards","title":"Common Core State Standards","acronym":"CCSS","guid":"964E0FEE-AD71-11DE-9BF2-C9169DFF4B22"},"count":2372}],"facet":"document.publication","count":1}],"limit":0,"took":129,"offset":0,"count":2372}}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid+eq+''A83297F2-901A-11DF-A622-0C319DFF4B22''&limit=0&offset=0"},"data":[],"meta":{"offset":0,"limit":0,"facets":[{"details":[{"data":{"title":"Common
+        Core State Standards","guid":"964E0FEE-AD71-11DE-9BF2-C9169DFF4B22","descr":"Common
+        Core State Standards","acronym":"CCSS"},"count":2372}],"facet":"document.publication","count":1}],"count":2372,"took":107}}'
     http_version: 
-  recorded_at: Mon, 21 Dec 2020 17:17:02 GMT
+  recorded_at: Wed, 20 Jan 2021 03:30:44 GMT
 - request:
     method: get
-    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1608578805&auth.signature=aIROaBdizrFWzm1aqzabk05H509JAnIfC7TKdb3PW%2Bw=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect02
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1611120644&auth.signature=0hraPg/%2BCaEGhDUtx0vKam36qEvXGHxdNAJ89JDE2zo=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect01
     body:
       encoding: US-ASCII
       string: ''
@@ -133,15 +131,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 21 Dec 2020 17:26:45 GMT
+      - Wed, 20 Jan 2021 03:30:45 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
-      - '1326'
+      - '1084'
       Connection:
       - keep-alive
       X-Amzn-Requestid:
-      - 77b5322c-ff95-4edd-a004-0a91f741bdbb
+      - a19f0035-2c58-4564-bd0d-acc54aeacc8c
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Headers:
@@ -149,7 +147,7 @@ http_interactions:
       X-Amzn-Remapped-Connection:
       - keep-alive
       X-Amz-Apigw-Id:
-      - X6chZF00IAMFYhg=
+      - ZbaL3Gs5oAMF5Ow=
       Cache-Control:
       - no-store, no-cache, must-revalidate
       X-Amzn-Remapped-Server:
@@ -159,24 +157,21 @@ http_interactions:
       Pragma:
       - no-cache
       X-Amzn-Remapped-Date:
-      - Mon, 21 Dec 2020 17:26:45 GMT
+      - Wed, 20 Jan 2021 03:30:45 GMT
       Access-Control-Max-Age:
       - '86400'
     body:
       encoding: UTF-8
-      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"facets":[{"details":[{"data":{"acronym":"FDOE","guid":"9127FF50-F1B9-11E5-862E-0938DC287387","descr":"Florida
-        DOE"},"count":8562},{"data":{"descr":"Indiana DOE","guid":"9128B2EC-F1B9-11E5-862E-0938DC287387","acronym":null},"count":5077},{"count":2552,"data":{"acronym":"MDE","guid":"91290080-F1B9-11E5-862E-0938DC287387","descr":"Michigan
-        DOE"}},{"count":2372,"data":{"guid":"9127A816-F1B9-11E5-862E-0938DC287387","acronym":null,"descr":"Ohio
-        DOE"}},{"count":2372,"data":{"acronym":"CC","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22","descr":"NGA
-        Center/CCSSO"}},{"count":2281,"data":{"guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","acronym":"KSDE","descr":"Kansas
-        State Department of Education"}},{"count":1041,"data":{"acronym":"ALSDE","guid":"912A8036-F1B9-11E5-862E-0938DC287387","descr":"Alabama
-        State Department of Education"}},{"data":{"acronym":null,"guid":"095383F6-BBCB-11E1-9321-88419DFF4B22","descr":"Achieve"},"count":571},{"data":{"acronym":null,"guid":"9129D578-F1B9-11E5-862E-0938DC287387","descr":"Maryland
-        State Department of Education"},"count":571}],"facet":"document.publication.authorities","count":9}],"limit":0,"took":111,"offset":0,"count":25399}}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"took":119,"facets":[{"facet":"document.publication.authorities","details":[{"count":5079,"data":{"acronym":null,"guid":"9128B2EC-F1B9-11E5-862E-0938DC287387","descr":"Indiana
+        DOE"}},{"data":{"descr":"Ohio DOE","guid":"9127A816-F1B9-11E5-862E-0938DC287387","acronym":null},"count":2372},{"data":{"acronym":"CC","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22","descr":"NGA
+        Center/CCSSO"},"count":2372},{"data":{"descr":"Florida DOE","guid":"9127FF50-F1B9-11E5-862E-0938DC287387","acronym":"FDOE"},"count":2030},{"count":1136,"data":{"descr":"Kansas
+        State Department of Education","guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","acronym":"KSDE"}},{"data":{"acronym":"ALSDE","guid":"912A8036-F1B9-11E5-862E-0938DC287387","descr":"Alabama
+        State Department of Education"},"count":1041},{"count":571,"data":{"acronym":null,"descr":"Achieve","guid":"095383F6-BBCB-11E1-9321-88419DFF4B22"}}],"count":7}],"offset":0,"limit":0,"count":14601}}'
     http_version: 
-  recorded_at: Mon, 21 Dec 2020 17:26:45 GMT
+  recorded_at: Wed, 20 Jan 2021 03:30:45 GMT
 - request:
     method: get
-    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1608578805&auth.signature=aIROaBdizrFWzm1aqzabk05H509JAnIfC7TKdb3PW%2Bw=&facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid%20eq%20%27A83297F2-901A-11DF-A622-0C319DFF4B22%27&limit=0&offset=0&partner.id=devconnect02
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1611120645&auth.signature=u5dMWoOxOZK3j0qjaQvOUkwNgr9BDR5PQwoeDr2usw8=&facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid%20eq%20%27A83297F2-901A-11DF-A622-0C319DFF4B22%27&limit=0&offset=0&partner.id=devconnect01
     body:
       encoding: US-ASCII
       string: ''
@@ -193,7 +188,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 21 Dec 2020 17:26:46 GMT
+      - Wed, 20 Jan 2021 03:30:46 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
@@ -201,7 +196,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Amzn-Requestid:
-      - b6cfa672-721b-4496-9a34-e7d4ceacbd1b
+      - 7ce961b0-65d3-4d5a-92e0-bac6720714cb
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Headers:
@@ -209,7 +204,7 @@ http_interactions:
       X-Amzn-Remapped-Connection:
       - keep-alive
       X-Amz-Apigw-Id:
-      - X6chfHgeoAMFoVA=
+      - ZbaL9FuDIAMFnvw=
       Cache-Control:
       - no-store, no-cache, must-revalidate
       X-Amzn-Remapped-Server:
@@ -219,13 +214,14 @@ http_interactions:
       Pragma:
       - no-cache
       X-Amzn-Remapped-Date:
-      - Mon, 21 Dec 2020 17:26:46 GMT
+      - Wed, 20 Jan 2021 03:30:46 GMT
       Access-Control-Max-Age:
       - '86400'
     body:
       encoding: UTF-8
-      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid+eq+''A83297F2-901A-11DF-A622-0C319DFF4B22''&limit=0&offset=0"},"data":[],"meta":{"facets":[{"details":[{"data":{"title":"Common
-        Core State Standards","descr":"Common Core State Standards","guid":"964E0FEE-AD71-11DE-9BF2-C9169DFF4B22","acronym":"CCSS"},"count":2372}],"facet":"document.publication","count":1}],"limit":0,"took":125,"offset":0,"count":2372}}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication&filter%5Bstandards%5D=document.publication.authorities.guid+eq+''A83297F2-901A-11DF-A622-0C319DFF4B22''&limit=0&offset=0"},"data":[],"meta":{"took":119,"count":2372,"facets":[{"details":[{"count":2372,"data":{"acronym":"CCSS","descr":"Common
+        Core State Standards","guid":"964E0FEE-AD71-11DE-9BF2-C9169DFF4B22","title":"Common
+        Core State Standards"}}],"facet":"document.publication","count":1}],"limit":0,"offset":0}}'
     http_version: 
-  recorded_at: Mon, 21 Dec 2020 17:26:46 GMT
+  recorded_at: Wed, 20 Jan 2021 03:30:46 GMT
 recorded_with: VCR 3.0.3
