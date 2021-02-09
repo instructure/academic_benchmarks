@@ -5,18 +5,16 @@ module AcademicBenchmarks
     class Number
       include InstVarsToHash
 
-      attr_accessor :enhanced, :raw
+      attr_accessor :prefix_enhanced
 
       def self.from_hash(hash)
         self.new(
-          enhanced: hash["enhanced"],
-          raw: hash["raw"]
+          prefix_enhanced: hash["prefix_enhanced"]
         )
       end
 
-      def initialize(enhanced:, raw:)
-        @enhanced = enhanced
-        @raw = raw
+      def initialize(prefix_enhanced:)
+        @prefix_enhanced = prefix_enhanced
       end
     end
   end

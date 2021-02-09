@@ -1,8 +1,8 @@
 RSpec.describe Standards do
   let(:handle) { ApiHelper::Live.new_handle }
 
-  CC_STDS_COUNT_WITH_EXAMPLES = 2372
-  CC_STDS_COUNT_WITHOUT_EXAMPLES = 2251
+  CC_STDS_COUNT_WITH_EXAMPLES = 2454
+  CC_STDS_COUNT_WITHOUT_EXAMPLES = 2333
 
   # can also name the cassette: context "something", vcr: { cassette_name: "authorities" } do
   context "authorities", :vcr do

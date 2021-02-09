@@ -3,8 +3,7 @@ RSpec.describe Number do
 
   let(:hash) do
     {
-      "enhanced" => "2.a.i",
-      "raw" => "i."
+      "prefix_enhanced" => "LA.9-12.3.0"
     }
   end
 

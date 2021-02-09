@@ -15,8 +15,7 @@ module AcademicBenchmarks
         level
         section.guid
         section.descr
-        number.raw
-        number.enhanced
+        number.prefix_enhanced
         status
         disciplines.subjects.code
         document.guid

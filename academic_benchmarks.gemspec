@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'academic_benchmarks'
-  s.version     = '1.0.1'
+  s.version     = '1.1.0'
   s.date        = '2016-11-23'
   s.summary     = "A ruby api for accessing the Academic Benchmarks API"
   s.description = "A ruby api for accessing the Academic Benchmarks API.  " \

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1611122997&auth.signature=jnMFqslxnlcfjUFzaqNejmamxF0oA9LrtDCsnRvqKCA=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect01
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1612925375&auth.signature=y0CRrc/eRbVwajXaXpPPkOeU/j98w6uPFGwzJ3hFGAU=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect01
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 20 Jan 2021 04:09:57 GMT
+      - Wed, 10 Feb 2021 00:49:36 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
@@ -27,7 +27,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Amzn-Requestid:
-      - 2d67a113-ad16-450f-9f37-b9d89e96844e
+      - 40297dbe-2160-4071-b07b-b94e98a484a9
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Headers:
@@ -35,7 +35,7 @@ http_interactions:
       X-Amzn-Remapped-Connection:
       - keep-alive
       X-Amz-Apigw-Id:
-      - Zbf7aGolIAMFgYg=
+      - agQRBEmRIAMFjmQ=
       Cache-Control:
       - no-store, no-cache, must-revalidate
       X-Amzn-Remapped-Server:
@@ -45,23 +45,22 @@ http_interactions:
       Pragma:
       - no-cache
       X-Amzn-Remapped-Date:
-      - Wed, 20 Jan 2021 04:09:57 GMT
+      - Wed, 10 Feb 2021 00:49:36 GMT
       Access-Control-Max-Age:
       - '86400'
     body:
       encoding: UTF-8
-      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"took":116,"facets":[{"details":[{"count":5079,"data":{"descr":"Indiana
-        DOE","guid":"9128B2EC-F1B9-11E5-862E-0938DC287387","acronym":null}},{"data":{"acronym":null,"descr":"Ohio
-        DOE","guid":"9127A816-F1B9-11E5-862E-0938DC287387"},"count":2372},{"data":{"descr":"NGA
-        Center/CCSSO","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22","acronym":"CC"},"count":2372},{"count":2030,"data":{"descr":"Florida
-        DOE","guid":"9127FF50-F1B9-11E5-862E-0938DC287387","acronym":"FDOE"}},{"data":{"descr":"Kansas
-        State Department of Education","guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","acronym":"KSDE"},"count":1136},{"count":1041,"data":{"guid":"912A8036-F1B9-11E5-862E-0938DC287387","descr":"Alabama
-        State Department of Education","acronym":"ALSDE"}},{"count":571,"data":{"acronym":null,"guid":"095383F6-BBCB-11E1-9321-88419DFF4B22","descr":"Achieve"}}],"facet":"document.publication.authorities","count":7}],"offset":0,"limit":0,"count":14601}}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"facets":[{"count":7,"facet":"document.publication.authorities","details":[{"data":{"guid":"9128B2EC-F1B9-11E5-862E-0938DC287387","descr":"Indiana
+        DOE","acronym":null},"count":5079},{"count":2454,"data":{"guid":"A83297F2-901A-11DF-A622-0C319DFF4B22","descr":"NGA
+        Center/CCSSO","acronym":"CC"}},{"count":2372,"data":{"guid":"9127A816-F1B9-11E5-862E-0938DC287387","acronym":null,"descr":"Ohio
+        DOE"}},{"count":2030,"data":{"descr":"Florida DOE","acronym":"FDOE","guid":"9127FF50-F1B9-11E5-862E-0938DC287387"}},{"data":{"guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","descr":"Kansas
+        State Department of Education","acronym":"KSDE"},"count":1136},{"data":{"guid":"912A8036-F1B9-11E5-862E-0938DC287387","acronym":"ALSDE","descr":"Alabama
+        State Department of Education"},"count":1041},{"count":571,"data":{"guid":"095383F6-BBCB-11E1-9321-88419DFF4B22","descr":"Achieve","acronym":null}}]}],"took":104,"offset":0,"limit":0,"count":14683}}'
     http_version: 
-  recorded_at: Wed, 20 Jan 2021 04:09:57 GMT
+  recorded_at: Wed, 10 Feb 2021 00:49:36 GMT
 - request:
     method: get
-    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1611122997&auth.signature=jnMFqslxnlcfjUFzaqNejmamxF0oA9LrtDCsnRvqKCA=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect01
+    uri: https://api.abconnect.certicaconnect.com/rest/v4.1/standards?auth.expires=1612925376&auth.signature=YjIZqdpImG1gvjrlPb4foWEORrpohKPOUcCOLV7h1sw=&facet=document.publication.authorities&limit=0&offset=0&partner.id=devconnect01
     body:
       encoding: US-ASCII
       string: ''
@@ -78,7 +77,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 20 Jan 2021 04:09:58 GMT
+      - Wed, 10 Feb 2021 00:49:36 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
@@ -86,7 +85,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Amzn-Requestid:
-      - 589555c0-3a02-4d8e-84b4-7b263a3eb49d
+      - e047239b-f61e-4d5b-b30d-2511cb5a6d57
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Headers:
@@ -94,7 +93,7 @@ http_interactions:
       X-Amzn-Remapped-Connection:
       - keep-alive
       X-Amz-Apigw-Id:
-      - Zbf7hEMjoAMFQOg=
+      - agQRHFUloAMFfHw=
       Cache-Control:
       - no-store, no-cache, must-revalidate
       X-Amzn-Remapped-Server:
@@ -104,18 +103,18 @@ http_interactions:
       Pragma:
       - no-cache
       X-Amzn-Remapped-Date:
-      - Wed, 20 Jan 2021 04:09:58 GMT
+      - Wed, 10 Feb 2021 00:49:36 GMT
       Access-Control-Max-Age:
       - '86400'
     body:
       encoding: UTF-8
-      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"count":14601,"limit":0,"offset":0,"took":113,"facets":[{"count":7,"details":[{"data":{"acronym":null,"descr":"Indiana
-        DOE","guid":"9128B2EC-F1B9-11E5-862E-0938DC287387"},"count":5079},{"data":{"descr":"Ohio
-        DOE","guid":"9127A816-F1B9-11E5-862E-0938DC287387","acronym":null},"count":2372},{"data":{"descr":"NGA
-        Center/CCSSO","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22","acronym":"CC"},"count":2372},{"count":2030,"data":{"acronym":"FDOE","guid":"9127FF50-F1B9-11E5-862E-0938DC287387","descr":"Florida
-        DOE"}},{"count":1136,"data":{"acronym":"KSDE","descr":"Kansas State Department
-        of Education","guid":"9129A0F8-F1B9-11E5-862E-0938DC287387"}},{"count":1041,"data":{"acronym":"ALSDE","descr":"Alabama
-        State Department of Education","guid":"912A8036-F1B9-11E5-862E-0938DC287387"}},{"data":{"acronym":null,"descr":"Achieve","guid":"095383F6-BBCB-11E1-9321-88419DFF4B22"},"count":571}],"facet":"document.publication.authorities"}]}}'
+      string: '{"links":{"self":"https://api.abconnect.certicaconnect.com/rest/v4.1/standards?facet=document.publication.authorities&limit=0&offset=0"},"data":[],"meta":{"took":107,"facets":[{"details":[{"data":{"descr":"Indiana
+        DOE","acronym":null,"guid":"9128B2EC-F1B9-11E5-862E-0938DC287387"},"count":5079},{"data":{"descr":"NGA
+        Center/CCSSO","acronym":"CC","guid":"A83297F2-901A-11DF-A622-0C319DFF4B22"},"count":2454},{"data":{"guid":"9127A816-F1B9-11E5-862E-0938DC287387","descr":"Ohio
+        DOE","acronym":null},"count":2372},{"data":{"guid":"9127FF50-F1B9-11E5-862E-0938DC287387","descr":"Florida
+        DOE","acronym":"FDOE"},"count":2030},{"count":1136,"data":{"guid":"9129A0F8-F1B9-11E5-862E-0938DC287387","acronym":"KSDE","descr":"Kansas
+        State Department of Education"}},{"data":{"guid":"912A8036-F1B9-11E5-862E-0938DC287387","acronym":"ALSDE","descr":"Alabama
+        State Department of Education"},"count":1041},{"count":571,"data":{"acronym":null,"descr":"Achieve","guid":"095383F6-BBCB-11E1-9321-88419DFF4B22"}}],"facet":"document.publication.authorities","count":7}],"count":14683,"limit":0,"offset":0}}'
     http_version: 
-  recorded_at: Wed, 20 Jan 2021 04:09:58 GMT
+  recorded_at: Wed, 10 Feb 2021 00:49:36 GMT
 recorded_with: VCR 3.0.3
