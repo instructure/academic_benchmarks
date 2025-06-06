@@ -1,9 +1,13 @@
-FROM ruby:2.6
+FROM ruby:2.6-slim
 
 RUN apt-get update && \
-    apt-get --only-upgrade install -y libc-dev-bin libc6-dev libc-bin libc6 libnghttp2-14 libwebp-dev libwebp6 libwebpdemux2 libwebpmux3 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+  apt-get install -y --no-install-recommends \
+    # Required for building `bigdecimal`
+    build-essential \
+    # Required, because original versions in `-slim` are vulnerable according to Snyk
+    libc-dev-bin libc6-dev libc-bin libc6 && \
+    # Clear cache
+  apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # The locale must be UTF-8 for the json fixtures
 # to be interpreted correctly by ruby
