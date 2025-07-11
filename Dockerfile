@@ -6,7 +6,9 @@ RUN apt-get update && \
     build-essential \
     # Required, because original versions in `-slim` are vulnerable according to Snyk
     libc-dev-bin libc6-dev libc-bin libc6 && \
-    # Clear cache
+  # Upgrade vulnerable packages to secure versions
+  apt-get install -y --only-upgrade libsystemd0 libudev1 && \
+  # Clear cache
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # The locale must be UTF-8 for the json fixtures
