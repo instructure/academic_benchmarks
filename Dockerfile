@@ -5,7 +5,9 @@ RUN apt-get update && \
     # Required for building `bigdecimal`
     build-essential \
     # Required, because original versions in `-slim` are vulnerable according to Snyk
-    libc-dev-bin libc6-dev libc-bin libc6 && \
+    libc-dev-bin libc6-dev libc-bin libc6 \
+    # SSL packages with latest versions
+    libssl-dev openssl libssl1.1 && \
   # Upgrade vulnerable packages to secure versions
   apt-get install -y --only-upgrade libsystemd0 libudev1 && \
   # Clear cache
